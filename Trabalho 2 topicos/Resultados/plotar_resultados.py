@@ -116,7 +116,6 @@ def processar_arquivo(caminho_jsimg):
              markersize=5, linewidth=1.2, label="Class1")
     ax1.set_xlabel("Arrival Rate (data/s)")
     ax1.set_ylabel("System Response Time (s)")
-    ax1.set_title("(a) System Response Time", loc="center", fontsize=11)
     ax1.legend(loc="best")
     fig1.tight_layout()
     fig1.savefig(os.path.join(pasta_saida, "tempo_resposta.png"))
@@ -130,7 +129,6 @@ def processar_arquivo(caminho_jsimg):
              markersize=5, linewidth=1.2, label="Class1")
     ax2.set_xlabel("Arrival Rate (data/s)")
     ax2.set_ylabel("System Throughput (jobs/s)")
-    ax2.set_title("(b) System Throughput", loc="center", fontsize=11)
     ax2.legend(loc="best")
     fig2.tight_layout()
     fig2.savefig(os.path.join(pasta_saida, "throughput.png"))
@@ -144,7 +142,6 @@ def processar_arquivo(caminho_jsimg):
              markersize=5, linewidth=1.2, label="Class1")
     ax3.set_xlabel("Arrival Rate (data/s)")
     ax3.set_ylabel("Drop Rate (data/s)")
-    ax3.set_title("(c) System Drop Rate", loc="center", fontsize=11)
     ax3.legend(loc="best")
     fig3.tight_layout()
     fig3.savefig(os.path.join(pasta_saida, "drop_rate.png"))
@@ -158,7 +155,6 @@ def processar_arquivo(caminho_jsimg):
                  marker=MARCADORES[i % len(MARCADORES)], markersize=5, linewidth=1.2, label=label)
     ax4.set_xlabel("Arrival Rate (data/s)")
     ax4.set_ylabel("Utilization (%)")
-    ax4.set_title("(d) Station Utilization", loc="center", fontsize=11)
     ax4.legend(loc="best")
     fig4.tight_layout()
     fig4.savefig(os.path.join(pasta_saida, "utilizacao.png"))
@@ -175,7 +171,6 @@ def processar_arquivo(caminho_jsimg):
             markersize=4, linewidth=1.0, label="Class1")
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("System Response Time (s)")
-    ax.set_title("(a) System Response Time", fontsize=10)
     ax.legend(loc="best", fontsize=8)
 
     # (b) Throughput
@@ -185,7 +180,6 @@ def processar_arquivo(caminho_jsimg):
             markersize=4, linewidth=1.0, label="Class1")
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Throughput (jobs/s)")
-    ax.set_title("(b) System Throughput", fontsize=10)
     ax.legend(loc="best", fontsize=8)
 
     # (c) Drop Rate
@@ -195,7 +189,6 @@ def processar_arquivo(caminho_jsimg):
             markersize=4, linewidth=1.0, label="Class1")
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Drop Rate (data/s)")
-    ax.set_title("(c) System Drop Rate", fontsize=10)
     ax.legend(loc="best", fontsize=8)
 
     # (d) Utilização
@@ -205,10 +198,8 @@ def processar_arquivo(caminho_jsimg):
                 marker=MARCADORES[i % len(MARCADORES)], markersize=4, linewidth=1.0, label=label)
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Utilization (%)")
-    ax.set_title("(d) Station Utilization", fontsize=10)
     ax.legend(loc="best", fontsize=8)
 
-    fig5.suptitle(f"Simulation Results - {nome_arquivo}", fontsize=13, fontweight="bold", y=0.98)
     fig5.tight_layout()
     fig5.savefig(os.path.join(pasta_saida, "painel_completo.png"))
     plt.close(fig5)
@@ -302,7 +293,6 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
                 markersize=5, linewidth=1.2, label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("System Response Time (s)")
-    ax.set_title(f"System Response Time — {nome_cenario}", fontsize=11)
     ax.legend(loc="best")
     fig.tight_layout()
     fig.savefig(os.path.join(pasta_saida, "tempo_resposta_unificado.png"))
@@ -319,7 +309,6 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
                 markersize=5, linewidth=1.2, label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("System Throughput (jobs/s)")
-    ax.set_title(f"System Throughput — {nome_cenario}", fontsize=11)
     ax.legend(loc="best")
     fig.tight_layout()
     fig.savefig(os.path.join(pasta_saida, "throughput_unificado.png"))
@@ -336,7 +325,6 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
                 markersize=5, linewidth=1.2, label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Drop Rate (data/s)")
-    ax.set_title(f"System Drop Rate — {nome_cenario}", fontsize=11)
     ax.legend(loc="best")
     fig.tight_layout()
     fig.savefig(os.path.join(pasta_saida, "drop_rate_unificado.png"))
@@ -354,7 +342,6 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
                     markersize=5, linewidth=1.2, label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Utilization (%)")
-    ax.set_title(f"System Utilization — {nome_cenario}", fontsize=11)
     ax.legend(loc="best")
     fig.tight_layout()
     fig.savefig(os.path.join(pasta_saida, "utilizacao_unificado.png"))
@@ -387,25 +374,20 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
 
     axes[0, 0].set_xlabel("Arrival Rate (data/s)")
     axes[0, 0].set_ylabel("System Response Time (s)")
-    axes[0, 0].set_title("(a) System Response Time", fontsize=10)
     axes[0, 0].legend(loc="best", fontsize=8)
 
     axes[0, 1].set_xlabel("Arrival Rate (data/s)")
     axes[0, 1].set_ylabel("Throughput (jobs/s)")
-    axes[0, 1].set_title("(b) System Throughput", fontsize=10)
     axes[0, 1].legend(loc="best", fontsize=8)
 
     axes[1, 0].set_xlabel("Arrival Rate (data/s)")
     axes[1, 0].set_ylabel("Drop Rate (data/s)")
-    axes[1, 0].set_title("(c) System Drop Rate", fontsize=10)
     axes[1, 0].legend(loc="best", fontsize=8)
 
     axes[1, 1].set_xlabel("Arrival Rate (data/s)")
     axes[1, 1].set_ylabel("Utilization (%)")
-    axes[1, 1].set_title("(d) System Utilization", fontsize=10)
     axes[1, 1].legend(loc="best", fontsize=8)
 
-    fig.suptitle(f"Unified Results — {nome_cenario}", fontsize=13, fontweight="bold", y=0.98)
     fig.tight_layout()
     fig.savefig(os.path.join(pasta_saida, "painel_unificado.png"))
     plt.close(fig)
