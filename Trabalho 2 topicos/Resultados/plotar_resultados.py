@@ -293,7 +293,7 @@ def extrair_dados(caminho_jsimg):
         "num_maquinas": num_maquinas,
         "nucleos_por_maquina": nucleos_por_maquina,
         "util_key_primeira": util_key_primeira,
-        "label": f"{num_maquinas} Raspberry Pi",
+        "label": f"{num_maquinas} Máq. × {nucleos_por_maquina} Núcleos",
     }
 
 
