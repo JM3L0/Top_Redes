@@ -1,0 +1,578 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{placeins}
+\usepackage{dblfloatfix}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+
+
+% Titulo
+\title{Avaliação de Desempenho de Infraestrutura de Computação de Borda para Redes de Sensores Agrícolas Utilizando Teoria de Filas\\
+% \thanks{Identify applicable funding agency here. If none, delete this.}
+}
+
+
+
+
+% Nome dos integrantes
+\author{%
+\IEEEauthorblockN{1\textsuperscript{st} João Marcos Sousa Rufino Leal}
+\IEEEauthorblockA{\textit{Universidade Federal do Piaui} \\
+\textit{UFPI}\\
+Picos, Piauí \\
+jsousarufinoleal@ufpi.edu.br}
+}
+
+\maketitle
+
+
+
+% Inicio do documento
+\begin{abstract}
+A agricultura de precisão demanda processamento eficiente de grandes volumes de dados gerados por redes de sensores distribuídos em campo. O uso de computação de borda permite reduzir a latência e a dependência de conectividade com a nuvem, processando os dados localmente em nós computacionais instalados próximos às áreas de cultivo. No entanto, o dimensionamento adequado dessa infraestrutura é fundamental para garantir qualidade de serviço sob diferentes condições de carga. Este trabalho avalia o desempenho de uma infraestrutura distribuída de computação de borda para processamento de dados agrícolas, utilizando o simulador Java Modelling Tools (JMT) com modelo de filas M/M/c/K e política de roteamento Join the Shortest Queue (JSQ). Dois cenários de escalabilidade são investigados: o primeiro avalia a escalabilidade vertical, variando o número de contêineres de processamento por nó de 2 a 10; o segundo avalia a escalabilidade horizontal, variando o número de nós em paralelo de 2 a 10. As métricas analisadas incluem tempo médio de resposta (MRT), throughput, taxa de descarte e utilização dos nós. Os resultados demonstram que ambas as estratégias são eficazes para manter o sistema estável sob alta demanda, sendo que configurações com 10 contêineres ou 10 nós mantêm o MRT próximo de 1 segundo e a taxa de descarte próxima de zero mesmo com taxa de chegada de alta intensidade. Os resultados fornecem diretrizes práticas para o dimensionamento de infraestruturas de borda em ambientes agrícolas, auxiliando gestores na escolha entre estratégias de escalabilidade conforme restrições de custo e disponibilidade de recursos.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Teoria de Filas, Computação de Borda, Internet das Coisas, Agricultura de Precisão, Avaliação de Desempenho.
+\end{IEEEkeywords}
+
+\section{Introdução}
+
+A agricultura de precisão tem se beneficiado do uso crescente de tecnologias de Internet das Coisas (IoT) para monitoramento e automação de processos em campo~\cite{junaidi2025deep}. Sensores instalados em áreas de cultivo coletam continuamente dados como temperatura, umidade do solo, índices pluviométricos e condições de irrigação, gerando volumes significativos de informações que necessitam de processamento em tempo real para apoiar a tomada de decisão agrícola.
+
+O processamento centralizado desses dados em servidores de nuvem apresenta limitações relacionadas à latência e à dependência de conectividade estável, fatores críticos em ambientes rurais com infraestrutura de comunicação limitada. A transmissão contínua de grandes volumes de dados para datacenters remotos também implica custos elevados de banda e consumo energético, tornando essa abordagem pouco viável para aplicações em tempo real.
+
+Nesse contexto, a computação de borda surge como alternativa promissora, permitindo o processamento local dos dados em dispositivos instalados próximos às áreas de cultivo~\cite{zhang2025edge, gong2025edge}. A adoção de contêineres para encapsular as aplicações oferece vantagens como isolamento e portabilidade, permitindo que cada nó execute múltiplos contêineres em paralelo e aumente sua capacidade de processamento de forma flexível.
+
+O dimensionamento adequado da infraestrutura de borda é essencial para garantir o atendimento eficiente das requisições. O número de nós computacionais e a quantidade de contêineres por nó impactam diretamente métricas como tempo de resposta, throughput e taxa de descarte. Um sistema subdimensionado pode resultar em perda de dados e atrasos inaceitáveis, enquanto um sistema superdimensionado implica custos desnecessários.
+
+A teoria de filas oferece um arcabouço consolidado para modelar e analisar sistemas com recursos limitados, permitindo a avaliação de cenários sem implementação física. O modelo M/M/c/K é particularmente adequado para representar nós computacionais com múltiplos processadores e capacidade de fila limitada. A combinação desse modelo com políticas de roteamento como o JSQ (Join the Shortest Queue) permite simular gateways que distribuem requisições de forma balanceada entre os nós.
+
+Este trabalho avalia o desempenho de uma infraestrutura distribuída de processamento de dados agrícolas utilizando o simulador JMT com modelo M/M/c/K e roteamento JSQ. Dois cenários são investigados: (i) escalabilidade vertical, variando contêineres por nó de 2 a 10; e (ii) escalabilidade horizontal, variando nós em paralelo de 2 a 10.
+
+O artigo está organizado da seguinte forma: a Seção II apresenta os trabalhos relacionados; a Seção III descreve a arquitetura; a Seção IV detalha o modelo de simulação; a Seção V apresenta os resultados; e a Seção VI conclui o trabalho.
+
+
+\begin{table*}[t]
+\centering
+\caption{Trabalhos Relacionados}
+\label{tab:related}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{2.8cm}|c|p{2.0cm}|p{2.0cm}|p{2.0cm}|p{2.8cm}|}
+\hline
+\textbf{Referência} &
+\textbf{Ano} &
+\textbf{Contexto} &
+\textbf{Modelo de Fila} &
+\textbf{Ferramenta} &
+\textbf{Métricas} \\
+\hline
+\cite{atalla2023iot} & 2023 &
+Agricultura IoT &
+-- &
+Simulação &
+Conectividade, consumo de energia \\
+\hline
+\cite{benos2023applying} & 2023 &
+Agricultura IoT &
+-- &
+Revisão &
+Latência, volume de dados \\
+\hline
+\cite{zhang2025edge} & 2025 &
+Edge + Agricultura &
+-- &
+Revisão &
+Latência, tempo de resposta \\
+\hline
+\cite{wang2022edge} & 2022 &
+Edge + IoT Agrícola &
+-- &
+Simulação &
+Ocupação de servidores, tempo de fila \\
+\hline
+\cite{santos2021iot} & 2021 &
+IoT / Edifícios &
+M/M/c/K &
+JMT &
+MRT, Throughput, Drop Rate \\
+\hline
+\cite{rocha2025enhancing} & 2025 &
+Cloud-Edge + Sensores &
+M/M/c/K &
+Analítico &
+MRT, Utilização, Throughput \\
+\hline
+\cite{mmck2024performance} & 2024 &
+Cloud Computing &
+M/M/1 &
+Analítico &
+Tempo de espera, eficiência \\
+\hline
+\cite{li2025modeling} & 2025 &
+Edge Computing &
+M/M/c/K &
+Analítico &
+Atraso, bloqueio, serviço imediato \\
+\hline
+\textbf{Este Trabalho} & \textbf{2025} &
+\textbf{Edge + Sensores Agrícolas} &
+\textbf{M/M/c/K} &
+\textbf{JMT} &
+\textbf{MRT, Throughput, Drop Rate, Utilização} \\
+\hline
+\end{tabular}
+\end{table*}
+
+\section{Trabalhos Relacionados}
+
+
+Esta seção apresenta oito trabalhos relacionados que utilizam
+modelos analíticos ou de simulação para avaliar o desempenho
+de sistemas IoT, computação de borda ou redes de sensores. A
+Tabela~\ref{tab:related} compara suas principais
+características segundo quatro critérios: Contexto de
+Aplicação, Modelo de Fila, Ferramenta de Avaliação e Métricas.
+
+
+No contexto de aplicação, \cite{atalla2023iot} e \cite{junaidi2025deep} propõem
+ecossistemas IoT para gerenciamento de culturas, avaliando a
+escalabilidade de redes de sensores e revisando tendências recentes em edge computing aplicado à agricultura, enquanto
+\cite{benos2023applying} revisa o uso de sensores IoT e Big
+Data na agricultura, evidenciando requisitos críticos de
+latência e capacidade de processamento.
+
+Quanto à infraestrutura de borda, \cite{zhang2025edge} e \cite{gong2025edge}
+apresentam revisões do uso de edge computing em agricultura
+inteligente, destacando que o processamento local reduz a
+dependência de conectividade com a nuvem e resolve gargalos técnicos. \cite{wang2022edge}
+investiga a integração entre IoT e computação de borda,
+mostrando que a alocação de recursos impacta métricas como
+ocupação dos servidores e tempo de espera.
+
+Em relação ao modelo de fila e ferramenta de avaliação,
+\cite{santos2021iot} e \cite{van2025leveraging} utilizam modelos M/M/c/K para modelar redes IoT e infraestruturas IoT-Edge-Fog-Cloud, avaliando MRT, throughput e taxa de descarte.
+\cite{rocha2025enhancing} e \cite{ghandour2025scalable} aplicam o modelo M/M/c/K para
+quantificar o desempenho de sistemas Cloud-Edge, enquanto
+\cite{mmck2024performance} avalia modelos M/M/1 em ambientes
+de nuvem, fornecendo base teórica para a notação de Kendall.
+Por fim, \cite{li2025modeling} propõe uma arquitetura de edge
+computing heterogênea, derivando métricas como atraso médio e
+probabilidade de bloqueio, demonstrando que o aumento de
+núcleos de CPU reduz o tempo de espera.
+
+Diferentemente dos estudos revisados, este trabalho avalia uma
+infraestrutura distribuída para redes de sensores agrícolas
+utilizando o JMT com modelo M/M/c/K e roteamento JSQ. Dois
+cenários são investigados: variação de nós em paralelo e
+variação de contêineres por nó, analisando MRT, throughput,
+taxa de descarte e utilização.
+
+
+
+% ============================================================
+% SEÇÃO: ARQUITETURA (versão intermediária)
+% ============================================================
+
+\section{Arquitetura}
+
+A arquitetura proposta modela um sistema de processamento
+distribuído voltado ao tratamento de dados gerados por redes
+de sensores em ambientes agrícolas, seguindo o paradigma de computação colaborativa entre camadas~\cite{yu2025cloud}. O sistema é organizado
+em três camadas funcionais: a camada de sensoriamento,
+responsável pela coleta de dados em campo; a camada de
+roteamento, responsável pela distribuição das requisições
+entre os nós de processamento; e a camada de processamento,
+onde os dados são efetivamente tratados pelos contêineres
+embarcados nos nós computacionais. A Figura~\ref{fig:arquitetura}
+ilustra a arquitetura do sistema proposto.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{imagens/Arquitetura.png}
+    \caption{Arquitetura do sistema de processamento distribuído
+    para redes de sensores agrícolas.}
+    \label{fig:arquitetura}
+\end{figure}
+
+A camada de sensoriamento é composta por dispositivos instalados
+em campo que coletam continuamente dados como temperatura,
+umidade do solo, índices pluviométricos e dados de irrigação,
+gerando requisições modeladas como um processo de Poisson com
+taxa de chegada $\lambda$, refletindo o caráter aleatório e
+descentralizado da geração de dados em ambientes agrícolas.
+
+A camada de roteamento é representada por um gateway central
+que distribui as requisições entre os nós computacionais
+utilizando a estratégia JSQ (\textit{Join the Shortest Queue}),
+direcionando cada requisição ao nó com menor fila de espera,
+minimizando o tempo médio de resposta e evitando sobrecarga
+assimétrica entre os nós.
+
+A camada de processamento é composta por nós de borda, como
+Raspberry Pi, equipados com contêineres paralelos para análise
+local, consolidação de leituras e detecção de anomalias. Cada
+nó é modelado como uma fila M/M/c/K~\cite{rocha2025enhancing},
+onde $c$ é o número de contêineres e $K$ a capacidade máxima.
+Requisições que chegam com a fila cheia são descartadas
+(\textit{drop}).
+
+\subsection{Mapeamento entre Arquitetura e Modelo}
+
+A Tabela~\ref{tab:mapeamento} apresenta o mapeamento entre
+os componentes da arquitetura e os elementos do modelo no JMT.
+
+\begin{table}[htbp]
+\centering
+\caption{Mapeamento entre Arquitetura e Modelo de Simulação}
+\label{tab:mapeamento}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{2.8cm}|p{4.6cm}|}
+\hline
+\textbf{Componente do Modelo} & \textbf{Elemento da Arquitetura} \\
+\hline
+Source & Sensores agrícolas gerando requisições \\
+\hline
+Router (JSQ) & Gateway central de roteamento inteligente \\
+\hline
+Queue (Máquina) & Nó computacional de borda (Raspberry Pi) \\
+\hline
+Servidores da fila & Contêineres de processamento do nó \\
+\hline
+Capacidade $K$ & Buffer máximo de requisições do nó \\
+\hline
+Sink & Dados processados e entregues ao sistema \\
+\hline
+\end{tabular}
+\end{table}
+
+% ============================================================
+% SEÇÃO: MODELO (versão intermediária)
+% ============================================================
+
+\section{Modelo}
+
+O modelo analítico proposto é baseado na teoria de filas,
+utilizando a notação de Kendall para caracterizar formalmente
+o comportamento de cada nó computacional da arquitetura
+proposta. A Figura~\ref{fig:modelo} ilustra o modelo de
+simulação implementado no JMT.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{imagens/MODELO.png}
+    \caption{Modelo de simulação implementado no JMT.}
+    \label{fig:modelo}
+\end{figure}
+
+\subsection{Notação de Kendall}
+
+A notação de Kendall é amplamente utilizada para descrever
+sistemas de filas por meio de uma expressão compacta no
+formato $A/S/c/K$~\cite{mmck2024performance}, onde $A$ é a
+distribuição do processo de chegada, $S$ a distribuição do
+tempo de serviço, $c$ o número de servidores e $K$ a
+capacidade máxima do sistema, incluindo requisições em
+atendimento e em espera. Neste trabalho, cada nó computacional
+agrícola é modelado como \textbf{M/M/c/K}: as chegadas seguem
+um processo de Poisson com taxa $\lambda$, refletindo o caráter
+aleatório da geração de dados pelos sensores; os tempos de
+serviço seguem distribuição exponencial com taxa $\mu$ por
+contêiner; $c$ contêineres operam em paralelo; e requisições
+que chegam com a fila cheia são descartadas (\textit{drop}),
+modelando as limitações de memória de dispositivos de borda
+como Raspberry Pi e microcontroladores industriais.
+
+\subsection{Parâmetros do Modelo}
+
+A Tabela~\ref{tab:parametros} apresenta os parâmetros
+utilizados na simulação e suas justificativas no contexto
+agrícola.
+
+\begin{table}[htbp]
+\centering
+\caption{Parâmetros do Modelo de Simulação}
+\label{tab:parametros}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|p{3.5cm}|}
+\hline
+\textbf{Parâmetro} & \textbf{Valor} & \textbf{Descrição} \\
+\hline
+$\lambda$ & 1 a 20 req/s & Taxa de chegada dos dados dos sensores \\
+\hline
+$\mu$ & 1,25 req/s & Taxa de serviço por contêiner \\
+\hline
+$c$ & 2, 4, 6, 8, 10 & Número de contêineres por nó \\
+\hline
+$K$ & 30 & Capacidade máxima da fila por nó \\
+\hline
+$N$ & 2, 4, 6, 8, 10 & Número de nós em paralelo \\
+\hline
+Roteamento & JSQ & Join the Shortest Queue \\
+\hline
+Disciplina & FCFS & First Come, First Served \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Fator de Utilização}
+
+O fator de utilização $\rho$ de cada nó computacional
+representa a proporção do tempo em que os contêineres estão
+ocupados processando requisições. Para o modelo
+M/M/c/K~\cite{li2025modeling}:
+
+\begin{equation}
+    \rho = \frac{\lambda}{c \cdot \mu}
+    \label{eq:utilizacao}
+\end{equation}
+
+\noindent onde $\lambda$ é a taxa de chegada de requisições
+ao nó, $c$ é o número de contêineres e $\mu$ é a taxa de
+serviço por contêiner. O sistema opera de forma estável
+quando $\rho < 1$, condição necessária para que a fila não
+cresça indefinidamente. Quando $\rho \geq 1$, o sistema
+entra em regime de saturação, com crescimento da fila e
+aumento do descarte de requisições.
+
+\subsection{Métricas de Desempenho}
+
+O Tempo Médio de Resposta (MRT) representa o tempo médio
+que uma requisição leva desde sua chegada ao sistema até a
+conclusão do processamento, incluindo o tempo de espera na
+fila e o tempo de serviço. Formalmente, pelo Teorema de
+Little~\cite{santos2021iot}:
+
+\begin{equation}
+    MRT = \frac{N_{q}}{\lambda_{ef}}
+    \label{eq:mrt}
+\end{equation}
+
+\noindent onde $N_q$ é o número médio de requisições no
+sistema e $\lambda_{ef}$ é a taxa efetiva de chegada,
+descontando os descartes. O Throughput ($X$) corresponde
+à taxa média de requisições processadas com sucesso por
+unidade de tempo, e a Taxa de Descarte indica a taxa média
+de requisições perdidas por esgotamento da capacidade da
+fila:
+
+\begin{equation}
+    X = \lambda \cdot (1 - P_{drop})
+    \label{eq:throughput}
+\end{equation}
+
+\begin{equation}
+    \text{Drop Rate} = \lambda \cdot P_{drop}
+    \label{eq:droprate}
+\end{equation}
+
+A Utilização ($U$) representa a fração média do tempo em
+que os contêineres de um nó estão ativos processando
+requisições, conforme a Equação~\ref{eq:utilizacao}.
+
+\subsection{Cenários de Avaliação}
+
+No Cenário 1, o número de contêineres por nó varia entre 2,
+4, 6, 8 e 10, com $N = 2$ fixo, avaliando a escalabilidade
+vertical. No Cenário 2, o número de nós varia entre 2, 4, 6,
+8 e 10, com $c = 2$ fixo, avaliando a escalabilidade
+horizontal. Em ambos os cenários, $\lambda$ varia de 1 a
+20 req/s, permitindo observar o comportamento do sistema
+desde o regime de baixa carga até a saturação completa.
+ 
+O modelo é baseado na teoria de filas com notação de Kendall
+para caracterizar o comportamento de cada nó computacional.
+A Figura~\ref{fig:modelo} ilustra o modelo implementado no JMT.
+
+\section{Estudo de Caso}
+
+Esta seção apresenta os resultados obtidos por meio das
+simulações realizadas no JMT, organizados em dois cenários
+de avaliação. Em ambos os cenários, a taxa de chegada $\lambda$
+varia de 1 a 20 req/s no eixo X dos gráficos. As métricas
+avaliadas são o Tempo Médio de Resposta (MRT), o Throughput,
+a Taxa de Descarte (Drop Rate) e a Utilização dos nós
+computacionais.
+
+\subsection{Cenário 1}
+
+O primeiro cenário avalia a escalabilidade vertical, variando
+o número de contêineres por máquina entre 2, 4, 6, 8 e 10,
+com $N = 2$ fixo.
+
+O MRT, apresentado na Figura~\ref{fig:cenario1_mrt}, exibe
+transição abrupta entre o regime estável e o saturado. A
+configuração com 2 contêineres satura em $\lambda \approx 5$
+req/s com MRT atingindo 12 segundos, enquanto a com 4
+contêineres satura em $\lambda \approx 10$ req/s. As com 6
+e 8 contêineres saturam em $\lambda \approx 15$ e
+$\lambda \approx 19$ req/s, respectivamente. A com 10
+contêineres mantém o MRT próximo de 1 segundo ao longo de
+toda a faixa avaliada, sem atingir saturação.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 1/tempo_resposta_unificado_1.png}
+    \caption{Tempo Médio de Resposta (MRT) para o Cenário 1.}
+    \label{fig:cenario1_mrt}
+\end{figure}
+
+O throughput, ilustrado na Figura~\ref{fig:cenario1_throughput},
+cresce linearmente com $\lambda$ enquanto o sistema opera
+abaixo da saturação, com cada configuração atingindo um teto
+proporcional à sua capacidade total. A configuração com 2
+contêineres satura em aproximadamente 5 req/s, enquanto
+configurações com maior número de contêineres continuam
+crescendo por mais tempo antes de atingir o teto. Destaca-se
+que as configurações com 8 e 10 contêineres apresentam
+throughput crescente ao longo de toda a faixa avaliada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 1/throughput_unificado_1.png}
+    \caption{Throughput para o Cenário 1.}
+    \label{fig:cenario1_throughput}
+\end{figure}
+
+A taxa de descarte, conforme a Figura~\ref{fig:cenario1_drop},
+permanece nula para todas as configurações enquanto o sistema
+opera abaixo da saturação, com o início do descarte
+coincidindo com o ponto de saturação de cada configuração.
+A transição entre zero descarte e alto descarte é abrupta,
+refletindo a sensibilidade do sistema à variação de
+contêineres.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 1/drop_rate_unificado_1.png}
+    \caption{Taxa de Descarte para o Cenário 1.}
+    \label{fig:cenario1_drop}
+\end{figure}
+
+As curvas de utilização, mostradas na
+Figura~\ref{fig:cenario1_utilizacao}, são progressivamente
+mais suaves conforme o número de contêineres aumenta, com
+maior separação entre as linhas ao longo de toda a faixa
+de $\lambda$. A configuração com 10 contêineres atinge 80\%
+de utilização em $\lambda = 20$ req/s, enquanto a
+configuração com 2 contêineres já opera a 100\% desde
+$\lambda \approx 5$ req/s.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 1/utilizacao_unificado_1.png}
+    \caption{Utilização dos nós para o Cenário 1.}
+    \label{fig:cenario1_utilizacao}
+\end{figure}
+
+\subsection{Cenário 2}
+
+O segundo cenário avalia o impacto da escalabilidade
+horizontal do sistema, variando o número de máquinas em
+paralelo entre 2, 4, 6, 8 e 10 nós, mantendo fixo o número
+de contêineres por máquina em $c = 2$.
+
+Os resultados de MRT, apresentados na
+Figura~\ref{fig:cenario2_mrt}, mostram que a configuração
+com 2 máquinas apresenta o maior MRT, atingindo
+aproximadamente 12 segundos a partir de $\lambda \approx 5$
+req/s, ponto em que o sistema entra em saturação. Conforme
+o número de máquinas aumenta, o ponto de saturação se
+desloca progressivamente para taxas de chegada mais altas,
+evidenciando o benefício da escalabilidade horizontal. A
+configuração com 10 máquinas mantém o MRT próximo de 1
+segundo ao longo de toda a faixa de $\lambda$ avaliada,
+demonstrando que o aumento de nós em paralelo é eficaz para
+manter baixos tempos de resposta mesmo sob alta demanda.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 2/tempo_resposta_unificado_2.png}
+    \caption{Tempo Médio de Resposta (MRT) para o Cenário 2.}
+    \label{fig:cenario2_mrt}
+\end{figure}
+
+O throughput, conforme a Figura~\ref{fig:cenario2_throughput},
+cresce linearmente com $\lambda$ enquanto o sistema opera
+abaixo da saturação. Após o ponto de saturação, cada
+configuração apresenta um teto de throughput proporcional
+à sua capacidade total de processamento. A configuração com
+2 máquinas satura em aproximadamente 5 req/s, enquanto a
+configuração com 4 máquinas satura em torno de 10 req/s.
+As configurações com 8 e 10 máquinas continuam crescendo
+ao longo de toda a faixa avaliada, indicando que possuem
+capacidade suficiente para atender à demanda máxima simulada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 2/throughput_unificado_2.png}
+    \caption{Throughput para o Cenário 2.}
+    \label{fig:cenario2_throughput}
+\end{figure}
+
+A taxa de descarte, ilustrada na
+Figura~\ref{fig:cenario2_drop}, permanece nula para todas
+as configurações enquanto o sistema opera abaixo da
+saturação. A configuração com 2 máquinas inicia o descarte
+a partir de $\lambda \approx 5$ req/s, atingindo
+aproximadamente 15 req/s descartados em $\lambda = 20$
+req/s. Cada máquina adicional desloca o início do descarte
+para valores mais altos de $\lambda$. As configurações com
+8 e 10 máquinas apresentam taxa de descarte próxima de zero
+ao longo de toda a faixa avaliada, confirmando sua
+capacidade de absorver a carga sem perdas significativas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 2/drop_rate_unificado_2.png}
+    \caption{Taxa de Descarte para o Cenário 2.}
+    \label{fig:cenario2_drop}
+\end{figure}
+
+A utilização dos nós, apresentada na
+Figura~\ref{fig:cenario2_utilizacao}, cresce
+proporcionalmente com $\lambda$ e atinge 100\% no ponto de
+saturação de cada configuração. A configuração com 2
+máquinas satura em $\lambda \approx 5$ req/s, enquanto as
+configurações com maior número de máquinas saturam em
+valores progressivamente mais altos. A configuração com 10
+máquinas atinge apenas 80\% de utilização no limite da
+faixa avaliada ($\lambda = 20$ req/s), indicando que ainda
+possui capacidade ociosa disponível.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{Graficos/Unificados 2/utilizacao_unificado_2.png}
+    \caption{Utilização dos nós para o Cenário 2.}
+    \label{fig:cenario2_utilizacao}
+\end{figure}
+
+
+\section{Conclusão}
+
+Este trabalho avaliou o desempenho de uma infraestrutura distribuída de computação de borda para processamento de dados de sensores agrícolas, utilizando o simulador JMT com modelo de filas M/M/c/K e roteamento JSQ.
+
+Os resultados demonstram que tanto a escalabilidade vertical quanto a horizontal são estratégias eficazes para melhorar o desempenho do sistema. Configurações com maior capacidade de processamento deslocam o ponto de saturação para taxas de chegada mais altas, reduzindo o tempo médio de resposta e a taxa de descarte.
+
+No Cenário 1, a configuração com 10 contêineres manteve o MRT próximo de 1 segundo e taxa de descarte próxima de zero. No Cenário 2, a configuração com 10 nós apresentou comportamento similar, atingindo 80\% de utilização em $\lambda = 20$ req/s.
+
+Os resultados fornecem diretrizes práticas para o dimensionamento de infraestruturas de borda em ambientes agrícolas, permitindo que gestores escolham entre escalabilidade vertical ou horizontal conforme as restrições de custo e disponibilidade de recursos.
+
+Como trabalhos futuros, pretende-se investigar cenários híbridos combinando ambas as estratégias de escalabilidade, além de avaliar o impacto de diferentes políticas de roteamento e distribuições de tempo de serviço não exponenciais.
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}

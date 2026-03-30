@@ -93,10 +93,16 @@ def processar_arquivo(caminho_jsimg):
     for measure in results.findall("measure"):
         nome = measure.get("name")
         medias = []
+        lower_bounds = []
+        upper_bounds = []
         for sample in measure.findall("sample"):
             medias.append(float(sample.get("meanValue")))
+            lower_bounds.append(float(sample.get("lowerBound")))
+            upper_bounds.append(float(sample.get("upperBound")))
         metricas[nome] = {
             "media": np.array(medias),
+            "lower": np.array(lower_bounds),
+            "upper": np.array(upper_bounds),
             "ref_class": measure.get("referenceClass"),
             "ref_station": measure.get("referenceStation"),
         }
@@ -112,8 +118,10 @@ def processar_arquivo(caminho_jsimg):
     # --- Gráfico 1: Tempo de Resposta do Sistema ---
     fig1, ax1 = plt.subplots(figsize=(7, 5))
     m = metricas["Network_Class1_System Response Time"]
-    ax1.plot(taxas_chegada, m["media"], color=CORES[0], marker=MARCADORES[0],
-             markersize=5, linewidth=1.2, label="Class1")
+    yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+    ax1.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[0], 
+                 marker=MARCADORES[0], markersize=5, linewidth=1.2, 
+                 capsize=3, capthick=1, label="Class1")
     ax1.set_xlabel("Arrival Rate (data/s)")
     ax1.set_ylabel("System Response Time (s)")
     ax1.legend(loc="best")
@@ -125,8 +133,10 @@ def processar_arquivo(caminho_jsimg):
     # --- Gráfico 2: Throughput do Sistema ---
     fig2, ax2 = plt.subplots(figsize=(7, 5))
     m = metricas["Network_Class1_System Throughput"]
-    ax2.plot(taxas_chegada, m["media"], color=CORES[0], marker=MARCADORES[0],
-             markersize=5, linewidth=1.2, label="Class1")
+    yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+    ax2.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[0], 
+                 marker=MARCADORES[0], markersize=5, linewidth=1.2, 
+                 capsize=3, capthick=1, label="Class1")
     ax2.set_xlabel("Arrival Rate (data/s)")
     ax2.set_ylabel("System Throughput (jobs/s)")
     ax2.legend(loc="best")
@@ -138,8 +148,10 @@ def processar_arquivo(caminho_jsimg):
     # --- Gráfico 3: Taxa de Drop do Sistema ---
     fig3, ax3 = plt.subplots(figsize=(7, 5))
     m = metricas["Network_Class1_System Drop Rate"]
-    ax3.plot(taxas_chegada, m["media"], color=CORES[0], marker=MARCADORES[0],
-             markersize=5, linewidth=1.2, label="Class1")
+    yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+    ax3.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[0], 
+                 marker=MARCADORES[0], markersize=5, linewidth=1.2, 
+                 capsize=3, capthick=1, label="Class1")
     ax3.set_xlabel("Arrival Rate (data/s)")
     ax3.set_ylabel("Drop Rate (data/s)")
     ax3.legend(loc="best")
@@ -151,8 +163,11 @@ def processar_arquivo(caminho_jsimg):
     # --- Gráfico 4: Utilização das Estações ---
     fig4, ax4 = plt.subplots(figsize=(7, 5))
     for i, (uk, label) in enumerate(zip(util_keys, util_labels)):
-        ax4.plot(taxas_chegada, metricas[uk]["media"], color=CORES[i % len(CORES)],
-                 marker=MARCADORES[i % len(MARCADORES)], markersize=5, linewidth=1.2, label=label)
+        m = metricas[uk]
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        ax4.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[i % len(CORES)],
+                     marker=MARCADORES[i % len(MARCADORES)], markersize=5, linewidth=1.2, 
+                     capsize=3, capthick=1, label=label)
     ax4.set_xlabel("Arrival Rate (data/s)")
     ax4.set_ylabel("Utilization (%)")
     ax4.legend(loc="best")
@@ -167,8 +182,10 @@ def processar_arquivo(caminho_jsimg):
     # (a) Response Time
     ax = axes[0, 0]
     m = metricas["Network_Class1_System Response Time"]
-    ax.plot(taxas_chegada, m["media"], color=CORES[0], marker=MARCADORES[0],
-            markersize=4, linewidth=1.0, label="Class1")
+    yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+    ax.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[0], 
+                marker=MARCADORES[0], markersize=4, linewidth=1.0, 
+                capsize=2.5, capthick=0.8, label="Class1")
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("System Response Time (s)")
     ax.legend(loc="best", fontsize=8)
@@ -176,8 +193,10 @@ def processar_arquivo(caminho_jsimg):
     # (b) Throughput
     ax = axes[0, 1]
     m = metricas["Network_Class1_System Throughput"]
-    ax.plot(taxas_chegada, m["media"], color=CORES[0], marker=MARCADORES[0],
-            markersize=4, linewidth=1.0, label="Class1")
+    yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+    ax.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[0], 
+                marker=MARCADORES[0], markersize=4, linewidth=1.0, 
+                capsize=2.5, capthick=0.8, label="Class1")
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Throughput (jobs/s)")
     ax.legend(loc="best", fontsize=8)
@@ -185,8 +204,10 @@ def processar_arquivo(caminho_jsimg):
     # (c) Drop Rate
     ax = axes[1, 0]
     m = metricas["Network_Class1_System Drop Rate"]
-    ax.plot(taxas_chegada, m["media"], color=CORES[0], marker=MARCADORES[0],
-            markersize=4, linewidth=1.0, label="Class1")
+    yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+    ax.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[0], 
+                marker=MARCADORES[0], markersize=4, linewidth=1.0, 
+                capsize=2.5, capthick=0.8, label="Class1")
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Drop Rate (data/s)")
     ax.legend(loc="best", fontsize=8)
@@ -194,8 +215,11 @@ def processar_arquivo(caminho_jsimg):
     # (d) Utilização
     ax = axes[1, 1]
     for i, (uk, label) in enumerate(zip(util_keys, util_labels)):
-        ax.plot(taxas_chegada, metricas[uk]["media"], color=CORES[i % len(CORES)],
-                marker=MARCADORES[i % len(MARCADORES)], markersize=4, linewidth=1.0, label=label)
+        m = metricas[uk]
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        ax.errorbar(taxas_chegada, m["media"], yerr=yerr, color=CORES[i % len(CORES)],
+                    marker=MARCADORES[i % len(MARCADORES)], markersize=4, linewidth=1.0, 
+                    capsize=2.5, capthick=0.8, label=label)
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Utilization (%)")
     ax.legend(loc="best", fontsize=8)
@@ -245,8 +269,12 @@ def extrair_dados(caminho_jsimg):
     for measure in results.findall("measure"):
         nome = measure.get("name")
         medias = [float(s.get("meanValue")) for s in measure.findall("sample")]
+        lower_bounds = [float(s.get("lowerBound")) for s in measure.findall("sample")]
+        upper_bounds = [float(s.get("upperBound")) for s in measure.findall("sample")]
         metricas[nome] = {
             "media": np.array(medias),
+            "lower": np.array(lower_bounds),
+            "upper": np.array(upper_bounds),
             "ref_class": measure.get("referenceClass"),
             "ref_station": measure.get("referenceStation"),
         }
@@ -265,7 +293,7 @@ def extrair_dados(caminho_jsimg):
         "num_maquinas": num_maquinas,
         "nucleos_por_maquina": nucleos_por_maquina,
         "util_key_primeira": util_key_primeira,
-        "label": f"{num_maquinas} Máq. × {nucleos_por_maquina} Núcleos",
+        "label": f"{num_maquinas} Raspberry Pi",
     }
 
 
@@ -287,10 +315,13 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
     fig, ax = plt.subplots(figsize=(7, 5))
     for i, d in enumerate(dados):
         m = d["metricas"]["Network_Class1_System Response Time"]
-        ax.plot(d["taxas_chegada"], m["media"],
-                color=cores_ext[i % len(cores_ext)],
-                marker=marcadores_ext[i % len(marcadores_ext)],
-                markersize=5, linewidth=1.2, label=d["label"])
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        cor = cores_ext[i % len(cores_ext)]
+        ax.errorbar(d["taxas_chegada"], m["media"], yerr=yerr,
+                    color=cor,
+                    marker=marcadores_ext[i % len(marcadores_ext)],
+                    markersize=5, linewidth=1.2, capsize=3, capthick=1, 
+                    label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("System Response Time (s)")
     ax.legend(loc="best")
@@ -303,10 +334,13 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
     fig, ax = plt.subplots(figsize=(7, 5))
     for i, d in enumerate(dados):
         m = d["metricas"]["Network_Class1_System Throughput"]
-        ax.plot(d["taxas_chegada"], m["media"],
-                color=cores_ext[i % len(cores_ext)],
-                marker=marcadores_ext[i % len(marcadores_ext)],
-                markersize=5, linewidth=1.2, label=d["label"])
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        cor = cores_ext[i % len(cores_ext)]
+        ax.errorbar(d["taxas_chegada"], m["media"], yerr=yerr,
+                    color=cor,
+                    marker=marcadores_ext[i % len(marcadores_ext)],
+                    markersize=5, linewidth=1.2, capsize=3, capthick=1, 
+                    label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("System Throughput (jobs/s)")
     ax.legend(loc="best")
@@ -319,10 +353,13 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
     fig, ax = plt.subplots(figsize=(7, 5))
     for i, d in enumerate(dados):
         m = d["metricas"]["Network_Class1_System Drop Rate"]
-        ax.plot(d["taxas_chegada"], m["media"],
-                color=cores_ext[i % len(cores_ext)],
-                marker=marcadores_ext[i % len(marcadores_ext)],
-                markersize=5, linewidth=1.2, label=d["label"])
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        cor = cores_ext[i % len(cores_ext)]
+        ax.errorbar(d["taxas_chegada"], m["media"], yerr=yerr,
+                    color=cor,
+                    marker=marcadores_ext[i % len(marcadores_ext)],
+                    markersize=5, linewidth=1.2, capsize=3, capthick=1, 
+                    label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Drop Rate (data/s)")
     ax.legend(loc="best")
@@ -336,10 +373,14 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
     for i, d in enumerate(dados):
         uk = d["util_key_primeira"]
         if uk and uk in d["metricas"]:
-            ax.plot(d["taxas_chegada"], d["metricas"][uk]["media"],
-                    color=cores_ext[i % len(cores_ext)],
-                    marker=marcadores_ext[i % len(marcadores_ext)],
-                    markersize=5, linewidth=1.2, label=d["label"])
+            m = d["metricas"][uk]
+            yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+            cor = cores_ext[i % len(cores_ext)]
+            ax.errorbar(d["taxas_chegada"], m["media"], yerr=yerr,
+                        color=cor,
+                        marker=marcadores_ext[i % len(marcadores_ext)],
+                        markersize=5, linewidth=1.2, capsize=3, capthick=1, 
+                        label=d["label"])
     ax.set_xlabel("Arrival Rate (data/s)")
     ax.set_ylabel("Utilization (%)")
     ax.legend(loc="best")
@@ -356,21 +397,30 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
         lbl = d["label"]
 
         m = d["metricas"]["Network_Class1_System Response Time"]
-        axes[0, 0].plot(d["taxas_chegada"], m["media"], color=c, marker=mk,
-                        markersize=4, linewidth=1.0, label=lbl)
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        axes[0, 0].errorbar(d["taxas_chegada"], m["media"], yerr=yerr, color=c, 
+                            marker=mk, markersize=4, linewidth=1.0, 
+                            capsize=2.5, capthick=0.8, label=lbl)
 
         m = d["metricas"]["Network_Class1_System Throughput"]
-        axes[0, 1].plot(d["taxas_chegada"], m["media"], color=c, marker=mk,
-                        markersize=4, linewidth=1.0, label=lbl)
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        axes[0, 1].errorbar(d["taxas_chegada"], m["media"], yerr=yerr, color=c, 
+                            marker=mk, markersize=4, linewidth=1.0, 
+                            capsize=2.5, capthick=0.8, label=lbl)
 
         m = d["metricas"]["Network_Class1_System Drop Rate"]
-        axes[1, 0].plot(d["taxas_chegada"], m["media"], color=c, marker=mk,
-                        markersize=4, linewidth=1.0, label=lbl)
+        yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+        axes[1, 0].errorbar(d["taxas_chegada"], m["media"], yerr=yerr, color=c, 
+                            marker=mk, markersize=4, linewidth=1.0, 
+                            capsize=2.5, capthick=0.8, label=lbl)
 
         uk = d["util_key_primeira"]
         if uk and uk in d["metricas"]:
-            axes[1, 1].plot(d["taxas_chegada"], d["metricas"][uk]["media"],
-                            color=c, marker=mk, markersize=4, linewidth=1.0, label=lbl)
+            m = d["metricas"][uk]
+            yerr = [np.abs(m["media"] - m["lower"]), np.abs(m["upper"] - m["media"])]
+            axes[1, 1].errorbar(d["taxas_chegada"], m["media"], yerr=yerr,
+                                color=c, marker=mk, markersize=4, linewidth=1.0, 
+                                capsize=2.5, capthick=0.8, label=lbl)
 
     axes[0, 0].set_xlabel("Arrival Rate (data/s)")
     axes[0, 0].set_ylabel("System Response Time (s)")
