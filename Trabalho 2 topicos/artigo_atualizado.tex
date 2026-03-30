@@ -39,7 +39,7 @@ jsousarufinoleal@ufpi.edu.br}
 
 % Inicio do documento
 \begin{abstract}
-A agricultura de precisão demanda processamento eficiente de grandes volumes de dados gerados por redes de sensores distribuídos em campo. O uso de computação de borda permite reduzir a latência e a dependência de conectividade com a nuvem, processando os dados localmente em nós computacionais instalados próximos às áreas de cultivo. No entanto, o dimensionamento adequado dessa infraestrutura é fundamental para garantir qualidade de serviço sob diferentes condições de carga. Este trabalho avalia o desempenho de uma infraestrutura distribuída de computação de borda para processamento de dados agrícolas, utilizando o simulador Java Modelling Tools (JMT) com modelo de filas M/M/c/K e política de roteamento Join the Shortest Queue (JSQ). Dois cenários de escalabilidade são investigados: o primeiro avalia a escalabilidade vertical, variando o número de contêineres de processamento por nó de 2 a 10; o segundo avalia a escalabilidade horizontal, variando o número de nós em paralelo de 2 a 10. As métricas analisadas incluem tempo médio de resposta (MRT), throughput, taxa de descarte e utilização dos nós. Os resultados demonstram que ambas as estratégias são eficazes para manter o sistema estável sob alta demanda, sendo que configurações com 10 contêineres ou 10 nós mantêm o MRT próximo de 1 segundo e a taxa de descarte próxima de zero mesmo com taxa de chegada de alta intensidade. Os resultados fornecem diretrizes práticas para o dimensionamento de infraestruturas de borda em ambientes agrícolas, auxiliando gestores na escolha entre estratégias de escalabilidade conforme restrições de custo e disponibilidade de recursos.
+A agricultura de precisão demanda processamento eficiente de dados gerados por redes de sensores distribuídos em campo. A computação de borda reduz a latência processando dados localmente, mas o dimensionamento adequado é fundamental para garantir qualidade de serviço. Este trabalho avalia o desempenho de uma infraestrutura distribuída de borda utilizando o simulador Java Modelling Tools (JMT) com modelo M/M/c/K e roteamento Join the Shortest Queue (JSQ). Dois cenários são investigados: escalabilidade vertical (variando contêineres de 2 a 10 por nó) e horizontal (variando nós de 2 a 10). As métricas analisadas incluem tempo médio de resposta, throughput, taxa de descarte e utilização. Os resultados demonstram que ambas as estratégias são eficazes sob alta demanda, com configurações de 10 contêineres ou 10 nós mantendo MRT próximo de 1 segundo e taxa de descarte próxima de zero. Os resultados fornecem diretrizes práticas para dimensionamento de infraestruturas de borda em ambientes agrícolas.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -48,19 +48,17 @@ Teoria de Filas, Computação de Borda, Internet das Coisas, Agricultura de Prec
 
 \section{Introdução}
 
-A agricultura de precisão tem se beneficiado do uso crescente de tecnologias de Internet das Coisas (IoT) para monitoramento e automação de processos em campo~\cite{junaidi2025deep}. Sensores instalados em áreas de cultivo coletam continuamente dados como temperatura, umidade do solo, índices pluviométricos e condições de irrigação, gerando volumes significativos de informações que necessitam de processamento em tempo real para apoiar a tomada de decisão agrícola.
+A agricultura de precisão tem se beneficiado do uso de tecnologias de Internet das Coisas (IoT) para monitoramento em campo~\cite{junaidi2025deep}. Sensores coletam continuamente dados como temperatura, umidade do solo e índices pluviométricos, gerando volumes significativos de informações que necessitam de processamento em tempo real. A análise desses dados permite identificar padrões, detectar anomalias e otimizar recursos como água e fertilizantes.
 
-O processamento centralizado desses dados em servidores de nuvem apresenta limitações relacionadas à latência e à dependência de conectividade estável, fatores críticos em ambientes rurais com infraestrutura de comunicação limitada. A transmissão contínua de grandes volumes de dados para datacenters remotos também implica custos elevados de banda e consumo energético, tornando essa abordagem pouco viável para aplicações em tempo real.
+A computação de borda surge como alternativa ao processamento centralizado em nuvem, permitindo o processamento local próximo às áreas de cultivo~\cite{zhang2025edge, gong2025edge}. A adoção de contêineres oferece isolamento, portabilidade e escalabilidade, permitindo que nós executem múltiplos processos em paralelo. Essa arquitetura reduz a latência e a dependência de conectividade com datacenters remotos, fatores críticos em ambientes rurais.
 
-Nesse contexto, a computação de borda surge como alternativa promissora, permitindo o processamento local dos dados em dispositivos instalados próximos às áreas de cultivo~\cite{zhang2025edge, gong2025edge}. A adoção de contêineres para encapsular as aplicações oferece vantagens como isolamento e portabilidade, permitindo que cada nó execute múltiplos contêineres em paralelo e aumente sua capacidade de processamento de forma flexível.
+O dimensionamento adequado da infraestrutura de borda é essencial para garantir qualidade de serviço. O número de nós e contêineres impacta métricas como tempo de resposta, throughput e taxa de descarte. Sistemas subdimensionados resultam em perda de dados, enquanto superdimensionados implicam custos desnecessários. A ausência de diretrizes práticas dificulta a tomada de decisão.
 
-O dimensionamento adequado da infraestrutura de borda é essencial para garantir o atendimento eficiente das requisições. O número de nós computacionais e a quantidade de contêineres por nó impactam diretamente métricas como tempo de resposta, throughput e taxa de descarte. Um sistema subdimensionado pode resultar em perda de dados e atrasos inaceitáveis, enquanto um sistema superdimensionado implica custos desnecessários.
+A teoria de filas oferece um arcabouço para modelar sistemas com recursos limitados, permitindo avaliação sem implementação física~\cite{santos2021iot, rocha2025enhancing}. O modelo M/M/c/K representa nós computacionais com múltiplos processadores e capacidade limitada~\cite{li2025modeling}. A política JSQ (\textit{Join the Shortest Queue}) permite simular gateways que distribuem requisições de forma balanceada.
 
-A teoria de filas oferece um arcabouço consolidado para modelar e analisar sistemas com recursos limitados, permitindo a avaliação de cenários sem implementação física. O modelo M/M/c/K é particularmente adequado para representar nós computacionais com múltiplos processadores e capacidade de fila limitada. A combinação desse modelo com políticas de roteamento como o JSQ (Join the Shortest Queue) permite simular gateways que distribuem requisições de forma balanceada entre os nós.
+Este trabalho avalia uma infraestrutura distribuída para processamento de dados agrícolas utilizando o simulador JMT com modelo M/M/c/K e roteamento JSQ. Dois cenários são investigados: escalabilidade vertical (variando contêineres de 2 a 10) e horizontal (variando nós de 2 a 10). As métricas analisadas incluem tempo de resposta, throughput, taxa de descarte e utilização.
 
-Este trabalho avalia o desempenho de uma infraestrutura distribuída de processamento de dados agrícolas utilizando o simulador JMT com modelo M/M/c/K e roteamento JSQ. Dois cenários são investigados: (i) escalabilidade vertical, variando contêineres por nó de 2 a 10; e (ii) escalabilidade horizontal, variando nós em paralelo de 2 a 10.
-
-O artigo está organizado da seguinte forma: a Seção II apresenta os trabalhos relacionados; a Seção III descreve a arquitetura; a Seção IV detalha o modelo de simulação; a Seção V apresenta os resultados; e a Seção VI conclui o trabalho.
+O artigo está organizado da seguinte forma: a Seção II apresenta os trabalhos relacionados; a Seção III descreve a arquitetura; a Seção IV detalha o modelo; a Seção V apresenta os resultados; e a Seção VI conclui o trabalho.
 
 
 \begin{table*}[t]
@@ -68,74 +66,92 @@ O artigo está organizado da seguinte forma: a Seção II apresenta os trabalhos
 \caption{Trabalhos Relacionados}
 \label{tab:related}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|p{2.8cm}|c|p{2.0cm}|p{2.0cm}|p{2.0cm}|p{2.8cm}|}
+\begin{tabular}{|p{2.2cm}|p{3.2cm}|p{1.8cm}|p{2.5cm}|p{2.0cm}|p{1.6cm}|c|}
 \hline
 \textbf{Referência} &
-\textbf{Ano} &
 \textbf{Contexto} &
-\textbf{Modelo de Fila} &
-\textbf{Ferramenta} &
-\textbf{Métricas} \\
+\textbf{Abordagem} &
+\textbf{Métricas Analisadas} &
+\textbf{Método de Avaliação} &
+\textbf{Escalabilidade} &
+\textbf{Fila?} \\
 \hline
-\cite{atalla2023iot} & 2023 &
+\cite{atalla2023iot} &
 Agricultura IoT &
--- &
-Simulação &
-Conectividade, consumo de energia \\
+Experimental &
+Conectividade, consumo de energia &
+Testbed real &
+Horizontal &
+Não \\
 \hline
-\cite{benos2023applying} & 2023 &
+\cite{benos2023applying} &
 Agricultura IoT &
--- &
 Revisão &
-Latência, volume de dados \\
+Latência, volume de dados &
+Literatura &
+Não avaliada &
+Não \\
 \hline
-\cite{zhang2025edge} & 2025 &
+\cite{zhang2025edge} &
 Edge + Agricultura &
--- &
 Revisão &
-Latência, tempo de resposta \\
+Latência, tempo de resposta &
+Literatura &
+Não avaliada &
+Não \\
 \hline
-\cite{wang2022edge} & 2022 &
+\cite{wang2022edge} &
 Edge + IoT Agrícola &
--- &
 Simulação &
-Ocupação de servidores, tempo de fila \\
+Ocupação de servidores, tempo de fila &
+Simulador próprio &
+Horizontal &
+Não \\
 \hline
-\cite{santos2021iot} & 2021 &
+\cite{santos2021iot} &
 IoT / Edifícios &
-M/M/c/K &
+Modelagem &
+MRT, Throughput, Drop Rate &
 JMT &
-MRT, Throughput, Drop Rate \\
+Horizontal &
+Sim \\
 \hline
-\cite{rocha2025enhancing} & 2025 &
+\cite{rocha2025enhancing} &
 Cloud-Edge + Sensores &
-M/M/c/K &
-Analítico &
-MRT, Utilização, Throughput \\
+Modelagem &
+MRT, Utilização, Throughput &
+Modelo analítico &
+Vertical &
+Sim \\
 \hline
-\cite{mmck2024performance} & 2024 &
+\cite{mmck2024performance} &
 Cloud Computing &
-M/M/1 &
-Analítico &
-Tempo de espera, eficiência \\
+Modelagem &
+Tempo de espera, eficiência &
+Modelo analítico &
+Não avaliada &
+Sim \\
 \hline
-\cite{li2025modeling} & 2025 &
+\cite{li2025modeling} &
 Edge Computing &
-M/M/c/K &
-Analítico &
-Atraso, bloqueio, serviço imediato \\
+Modelagem &
+Atraso, bloqueio, serviço imediato &
+Modelo analítico &
+Vertical &
+Sim \\
 \hline
-\textbf{Este Trabalho} & \textbf{2025} &
+\textbf{Este Trabalho} &
 \textbf{Edge + Sensores Agrícolas} &
-\textbf{M/M/c/K} &
+\textbf{Modelagem} &
+\textbf{MRT, Throughput, Drop Rate, Utilização} &
 \textbf{JMT} &
-\textbf{MRT, Throughput, Drop Rate, Utilização} \\
+\textbf{Vertical e Horizontal} &
+\textbf{Sim} \\
 \hline
 \end{tabular}
 \end{table*}
 
 \section{Trabalhos Relacionados}
-
 
 Esta seção apresenta oito trabalhos relacionados que utilizam
 modelos analíticos ou de simulação para avaliar o desempenho
@@ -145,24 +161,25 @@ características segundo quatro critérios: Contexto de
 Aplicação, Modelo de Fila, Ferramenta de Avaliação e Métricas.
 
 
-No contexto de aplicação, \cite{atalla2023iot} e \cite{junaidi2025deep} propõem
-ecossistemas IoT para gerenciamento de culturas, avaliando a
-escalabilidade de redes de sensores e revisando tendências recentes em edge computing aplicado à agricultura, enquanto
+No contexto de aplicação, \cite{atalla2023iot} propõe um
+ecossistema IoT para gerenciamento de culturas, avaliando a
+escalabilidade de redes de sensores, enquanto
 \cite{benos2023applying} revisa o uso de sensores IoT e Big
 Data na agricultura, evidenciando requisitos críticos de
 latência e capacidade de processamento.
 
-Quanto à infraestrutura de borda, \cite{zhang2025edge} e \cite{gong2025edge}
-apresentam revisões do uso de edge computing em agricultura
+Quanto à infraestrutura de borda, \cite{zhang2025edge}
+apresenta uma revisão do uso de edge computing em agricultura
 inteligente, destacando que o processamento local reduz a
-dependência de conectividade com a nuvem e resolve gargalos técnicos. \cite{wang2022edge}
+dependência de conectividade com a nuvem. \cite{wang2022edge}
 investiga a integração entre IoT e computação de borda,
 mostrando que a alocação de recursos impacta métricas como
 ocupação dos servidores e tempo de espera.
 
 Em relação ao modelo de fila e ferramenta de avaliação,
-\cite{santos2021iot} e \cite{van2025leveraging} utilizam modelos M/M/c/K para modelar redes IoT e infraestruturas IoT-Edge-Fog-Cloud, avaliando MRT, throughput e taxa de descarte.
-\cite{rocha2025enhancing} e \cite{ghandour2025scalable} aplicam o modelo M/M/c/K para
+\cite{santos2021iot} utiliza o JMT para modelar redes IoT com
+modelos M/M/c/K, avaliando MRT, throughput e taxa de descarte.
+\cite{rocha2025enhancing} aplica o modelo M/M/c/K para
 quantificar o desempenho de sistemas Cloud-Edge, enquanto
 \cite{mmck2024performance} avalia modelos M/M/1 em ambientes
 de nuvem, fornecendo base teórica para a notação de Kendall.
