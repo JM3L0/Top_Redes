@@ -293,7 +293,6 @@ def extrair_dados(caminho_jsimg):
         "num_maquinas": num_maquinas,
         "nucleos_por_maquina": nucleos_por_maquina,
         "util_key_primeira": util_key_primeira,
-        "label": f"{num_maquinas} Máq. × {nucleos_por_maquina} Núcleos",
     }
 
 
@@ -307,6 +306,22 @@ def gerar_graficos_unificados(arquivos_cenario, nome_cenario):
     for arq in sorted(arquivos_cenario):
         dados.append(extrair_dados(arq))
     dados.sort(key=lambda d: (d["num_maquinas"], d["nucleos_por_maquina"]))
+
+    # Detectar o que está variando: máquinas ou núcleos?
+    num_maquinas_set = set(d["num_maquinas"] for d in dados)
+    nucleos_set = set(d["nucleos_por_maquina"] for d in dados)
+    
+    # Gerar labels baseado no que varia
+    for d in dados:
+        if len(num_maquinas_set) > 1 and len(nucleos_set) == 1:
+            # Varia máquinas, núcleos constante
+            d["label"] = f"{d['num_maquinas']} Raspberry Pi"
+        elif len(nucleos_set) > 1 and len(num_maquinas_set) == 1:
+            # Varia núcleos, máquinas constante
+            d["label"] = f"{d['nucleos_por_maquina']} Núcleos"
+        else:
+            # Variam ambos (manter o formato original)
+            d["label"] = f"{d['num_maquinas']} Máq. × {d['nucleos_por_maquina']} Núcleos"
 
     cores_ext = ["blue", "red", "black", "green", "purple", "orange", "brown", "gray"]
     marcadores_ext = ["s", "o", "^", "D", "v", "P", "X", "h"]
