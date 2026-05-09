@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mercuryauto">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/pasid-validator-main/lib/mercuryauto.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
