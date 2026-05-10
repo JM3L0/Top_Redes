@@ -1,6 +1,6 @@
 <com.local.entities.ProjectDesdac>
-  <file class="sun.awt.shell.Win32ShellFolder2" resolves-to="file">C:\Users\jsous\OneDrive\Área de Trabalho\Top_Redes\Trabalho 4\pasid-validator-main\src\tests\model\model.xml</file>
-  <graphChanged>true</graphChanged>
+  <file>ProjectTemp.xml</file>
+  <graphChanged>false</graphChanged>
   <name>model</name>
   <mercuryVersion>5.0.1</mercuryVersion>
   <appSPN>
@@ -1000,7 +1000,7 @@
               <org.modcs.tools.spn.model.Definition>
                 <name>AD</name>
                 <type>DOUBLE</type>
-                <value>1111</value>
+                <value>100.0</value>
                 <position class="java.awt.geom.Point2D$Double">
                   <x>2.2466666666666666</x>
                   <y>2.32</y>
@@ -1020,7 +1020,7 @@
               <org.modcs.tools.spn.model.Definition>
                 <name>C</name>
                 <type>INTEGER</type>
-                <value>4</value>
+                <value>5.0</value>
                 <position class="java.awt.geom.Point2D$Double">
                   <x>8.286666666666667</x>
                   <y>0.6466666666666666</y>
