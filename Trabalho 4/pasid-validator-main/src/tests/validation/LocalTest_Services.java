@@ -1,6 +1,5 @@
 package tests.validation;
 
-
 import domain.LoadBalancerProxy;
 import domain.Source;
 
@@ -10,9 +9,11 @@ import java.nio.file.Paths;
 
 /**
  * Estes estudos de caso são apenas ilustrativos e de testes.
- * Estes estudos de caso não devem ser executados da maneira que está aqui (monolítico).
- * Você deve executar os componentes separadamente de forma distribuída em máquinas vísicas ou VMs e contêineres.
- *  *  @author Airton
+ * Estes estudos de caso não devem ser executados da maneira que está aqui
+ * (monolítico).
+ * Você deve executar os componentes separadamente de forma distribuída em
+ * máquinas vísicas ou VMs e contêineres.
+ * * @author Airton
  */
 public class LocalTest_Services {
 
@@ -26,10 +27,10 @@ public class LocalTest_Services {
 		String loadBalancerJsonPath1 = path + "loadbalancer1.properties";
 		String loadBalancerJsonPath2 = path + "loadbalancer2.properties";
 
-		new LoadBalancerProxy(loadBalancerJsonPath2).start();
-
-		new LoadBalancerProxy(loadBalancerJsonPath1).start();
-
+		////////////////////// Para rodar na máquina local///////////////////////
+		// new LoadBalancerProxy(loadBalancerJsonPath2).start();
+		// new LoadBalancerProxy(loadBalancerJsonPath1).start();
+		//////////////////////////////////////////////////////////////////////////
 		new Source(path).start();
 	}
 
@@ -51,4 +52,3 @@ public class LocalTest_Services {
 						+ " or " + nested);
 	}
 }
-

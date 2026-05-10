@@ -1,6 +1,6 @@
-# Setup: Execução Distribuída com VirtualBox (VM1 — Server2)
+# Setup: Execução Distribuída com VirtualBox (VM1 — Server2 e VM2 — Server1)
 
-Este documento registra o passo a passo completo para configurar uma VM com Ubuntu Server e executar o componente `LoadBalancerProxy` do PASID de forma distribuída.
+Este documento registra o passo a passo completo realizado para configurar o ambiente de execução distribuída do PASID.
 
 ---
 
@@ -9,19 +9,19 @@ Este documento registra o passo a passo completo para configurar uma VM com Ubun
 | Máquina | Papel | IP |
 |---|---|---|
 | Host (Windows) | Source | `192.168.1.5` |
-| VM1 | Server2 (porta 3000) | `192.168.1.11` |
-| VM2 | Server1 (porta 2000) | *(a definir)* |
+| VM1 | Server2 (porta 3000) | `192.168.1.16` |
+| VM2 | Server1 (porta 2000) | `192.168.1.15` |
 
 ---
 
-## PARTE 1 — Criar a VM no VirtualBox
+## PARTE 1 — Criar a VM1 no VirtualBox
 
 ### 1.1 Nova VM
 1. Abra o **Oracle VirtualBox Gerenciador**
 2. Clique em **Novo**
 3. Preencha:
    - **VM Name:** `VM1`
-   - **ISO Image:** selecione o arquivo `ubuntu-XX.XX-live-server-amd64.iso` (baixar em https://ubuntu.com/download/server)
+   - **ISO Image:** selecione o arquivo `ubuntu-XX.XX-live-server-amd64.iso`
    - **OS:** Linux | **Distribution:** Ubuntu | **Version:** Ubuntu (64-bit)
    - Marque **"Proceed with Unattended Installation"**
 4. Clique **Próximo**
@@ -47,83 +47,46 @@ Este documento registra o passo a passo completo para configurar uma VM com Ubun
 
 ### 1.5 Ligar a VM
 - Clique **Iniciar** e aguarde a instalação automática (pode levar 5–15 min)
-- Quando aparecer o prompt de login, pressione **Enter** se necessário
 - Login: `ubuntu` | Senha: `ubuntu`
 
 ---
 
-## PARTE 2 — Configurar Java na VM
+## PARTE 2 — Configurar Java na VM1
 
-### 2.1 Instalar Java 11
+### 2.1 Instalar Java 11 e SSH Server
 Na janela da VM, digite:
 ```bash
-sudo apt install -y openjdk-11-jdk
-```
-Senha: `ubuntu`
-
-Verifique:
-```bash
-java -version
-# Esperado: openjdk version "11.0.x"
-```
-
-### 2.2 Instalar SSH Server
-```bash
-sudo apt install -y openssh-server
+sudo apt install -y openjdk-11-jdk openssh-server
 ```
 
 ---
 
-## PARTE 3 — Compartilhar Arquivos via Pasta Compartilhada do VirtualBox
-
-> **Dica:** O terminal da VM não suporta Ctrl+V. Use SSH pelo PowerShell do Windows para colar comandos facilmente.
+## PARTE 3 — Compartilhar Arquivos via Pasta Compartilhada
 
 ### 3.1 Adicionar Pasta Compartilhada
 Na **janela da VM1** → menu superior → **Dispositivos → Pastas Compartilhadas → Configurações de Pastas Compartilhadas...**
-
 Clique no ícone **+** e configure:
-- **Caminho da Pasta:** `C:\Users\jsous\OneDrive\Área de Trabalho\Top_Redes\Trabalho 4\out\production\Trabalho 4`
+- **Caminho da Pasta:** (Caminho do projeto no Windows)
 - **Nome da Pasta:** `Trabalho_4`
-- ✅ **Montar Automaticamente**
-- ✅ **Make Machine-permanent**
-- Clique **OK**
+- ✅ **Montar Automaticamente** | ✅ **Make Machine-permanent**
 
 ### 3.2 Montar a pasta na VM
 Na VM:
 ```bash
 sudo mkdir -p /mnt/pasid
 sudo mount -t vboxsf Trabalho_4 /mnt/pasid
-ls /mnt/pasid
-# Esperado: domain  tests  tests2
 ```
 
 ---
 
-## PARTE 4 — Usar o PowerShell do Windows como terminal da VM (Recomendado)
+## PARTE 4 — Copiar Classes e Configurar o LoadBalancer da VM1
 
-> Isso permite colar comandos com Ctrl+V no terminal, muito mais prático.
-
-### 4.1 Conectar via SSH do PowerShell
-Abra o **PowerShell** no Windows e execute:
-```powershell
-ssh ubuntu@192.168.1.11
-```
-- Na primeira vez, responda `yes` para aceitar o fingerprint
-- Senha: `ubuntu`
-
-A partir daqui você controla a VM pelo PowerShell e pode colar com **Ctrl+V**.
-
----
-
-## PARTE 5 — Copiar Classes e Configurar o LoadBalancer
-
-### 5.1 Copiar classes compiladas
-No PowerShell (já conectado por SSH):
+No PowerShell (já conectado por `ssh ubuntu@192.168.1.16`):
 ```bash
 cp -r /mnt/pasid/domain ~/pasid/
 ```
 
-### 5.2 Criar arquivo de configuração da VM1 (Server2)
+Criar arquivo de configuração da VM1 (Server2):
 ```bash
 cat > ~/pasid/loadbalancer.properties << 'EOF'
 server.loadBalancerName=Server2
@@ -139,66 +102,43 @@ service.targetIsSource=true
 EOF
 ```
 
-Verifique:
+---
+
+## PARTE 5 — Criar a VM2 Clonando a VM1
+
+Devido a travamentos no instalador do Ubuntu na criação manual, a VM2 foi criada clonando a VM1, que já possuía Java e SSH instalados.
+
+### 5.1 Descartar Estado da VM1
+1. Certifique-se de que a VM1 não está "Salva". Clique com botão direito na VM1 → **Descartar estado salvo...** (A VM deve estar totalmente desligada).
+
+### 5.2 Processo de Clone
+1. Clique com o botão direito na **VM1** → **Clonar...**
+2. **Nome:** `VM_2` (ou `VM2` caso o nome não exista)
+3. **Política de Endereço MAC (Crucial):** Selecione **"Gerar novos endereços MAC para todas as placas de rede"**.
+4. **Tipo de Clone:** Clone Completo.
+5. Inicie a VM_2.
+
+### 5.3 Renovar IP e Hostname na VM2
+Como as VMs foram clonadas, a VM2 pode herdar configurações de rede idênticas. Para forçar DHCP diferente e alterar o nome visível no terminal, rode na VM2:
 ```bash
-ls ~/pasid/
-# Esperado: domain/  loadbalancer.properties  (+ .class files)
+# Limpa o ID da máquina para forçar IP novo
+sudo rm /etc/machine-id
+sudo systemd-machine-id-setup
+
+# Renomeia a máquina para VM2
+sudo hostnamectl set-hostname VM2
+sudo sed -i 's/VM1/VM2/g' /etc/hosts
+
+sudo reboot
 ```
+Após reiniciar, a VM2 assumiu o IP `192.168.1.15`.
 
 ---
 
-## PARTE 6 — Rodar o Server2 na VM1
+## PARTE 6 — Configurar LoadBalancer na VM2
 
-```bash
-cd ~/pasid && java -cp . domain.LoadBalancerProxy loadbalancer.properties
-```
+Conecte via PowerShell na VM2 (`ssh ubuntu@192.168.1.15`) e altere as propriedades para rodar o Server 1:
 
-### Saída esperada no console:
-```
-Load Balancer Parameters:
-Load Balancer Name: Server2
-Local Port: 3000
-Queue Load Balancer Max Size: 100
-Qtd Services List: [4]
-====================================
-Starting service3001
-Starting service3002
-...
-service3001 enabled to receive messages.
-...
-```
-
-✅ **Server2 está rodando e aguardando conexões na porta 3000.**
-
----
-
-## PARTE 7 — Salvar Estado da VM para retomar depois
-
-Na janela da VM → clique no **X** → selecione **"Salvar o estado da máquina"** → OK
-
-Para retomar: basta clicar **Iniciar** no VirtualBox — a VM volta exatamente onde parou.
-
----
-
-## ✅ Status Atual
-
-| Etapa | Status |
-|---|---|
-| VM1 criada e configurada | ✅ Concluído |
-| Java 11 instalado na VM1 | ✅ Concluído |
-| SSH funcionando | ✅ Concluído |
-| Pasta compartilhada configurada | ✅ Concluído |
-| Classes copiadas para VM1 | ✅ Concluído |
-| Server2 (porta 3000) testado e funcionando | ✅ Concluído |
-
----
-
-## ⏳ Próximos Passos
-
-### 1. Criar VM2 (Server1 — porta 2000)
-Processo **idêntico** ao da VM1. Após subir, anotar o IP (ex: `192.168.1.12`).
-
-Arquivo de configuração para VM2:
 ```bash
 cat > ~/pasid/loadbalancer.properties << 'EOF'
 server.loadBalancerName=Server1
@@ -206,7 +146,7 @@ server.loadBalancerPort=2000
 server.queueLoadBalancerMaxSize=100
 server.qtdServices=4
 
-service.serviceTargetIp=192.168.1.11
+service.serviceTargetIp=192.168.1.16
 service.serviceTargetPort=3000
 service.serviceTime=100.0
 service.std=2.0
@@ -214,34 +154,10 @@ service.targetIsSource=false
 EOF
 ```
 
-Rodar na VM2:
-```bash
-cd ~/pasid && java -cp . domain.LoadBalancerProxy loadbalancer.properties
-```
+---
 
-### 2. Configurar o Host (Source) para apontar para as VMs
-Editar `pasid-validator-main/src/tests/validation/source.properties`:
-```properties
-modelFeedingStage=false
-sourcePort=1000
-targetIp=192.168.1.12        # IP da VM2 (Server1)
-targetPort=2000
-maxConsideredMessagesExpected=100
+## PARTE 7 — Configurar o Source (Host / IntelliJ)
 
-variatingServices.arrivalDelay=100
-variatingServices.variatedServerLoadBalancerIp=192.168.1.11   # IP da VM1 (Server2)
-variatingServices.variatedServerLoadBalancerPort=3000
-
-variatingServices.qtdServices=1,2,3,4,5
-mrtsFromModel=409349.11,204644.08,136857.28,103048.66,82790.55
-sdvsFromModel=1254.19,628.70,421.26,317.77,255.73
-```
-
-### 3. Ordem de inicialização para o vídeo
-1. ▶ Iniciar **Server2** na VM1: `cd ~/pasid && java -cp . domain.LoadBalancerProxy loadbalancer.properties`
-2. ▶ Iniciar **Server1** na VM2: `cd ~/pasid && java -cp . domain.LoadBalancerProxy loadbalancer.properties`
-3. ▶ Iniciar **Source** no Host: rodar `LocalTest_Services` no IntelliJ (com `source.properties` apontando para as VMs)
-
-### 4. Gravar o vídeo
-- Mostre os 3 consoles simultaneamente (Host + VM1 + VM2)
-- Grave as mensagens sendo trocadas entre IPs reais (não localhost)
+Arquivo `source.properties` modificado no Windows para refletir os IPs:
+- `targetIp=192.168.1.15` (Aponta para Server 1 / VM2)
+- `variatingServices.variatedServerLoadBalancerIp=192.168.1.16` (Aponta para Server 2 / VM1)
