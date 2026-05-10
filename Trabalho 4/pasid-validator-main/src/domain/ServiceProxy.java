@@ -52,6 +52,7 @@ public class ServiceProxy extends AbstractProxy {
 
 	private void processAndSendToDestiny() {
 		if (hasSomethingToProcess()){
+			System.out.println("[" + this.proxyName + "] Processando e encaminhando pacote..."); //apenas para mostrar que chegou
 			double val = (new Random().nextGaussian() * std + serviceTime);
 			contentToProcess += System.currentTimeMillis()+";";
 			try {Thread.sleep((long) val);} catch (InterruptedException e) {e.printStackTrace();} //SE DESEJADO PODES SUBSTINUIR PELO SEU PROCESSAMENTO ESPECÍFICO

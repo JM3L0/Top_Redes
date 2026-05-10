@@ -218,6 +218,7 @@ public class LoadBalancerProxy extends AbstractProxy {
 	}
 
 	private void handleMessage(String receivedMessage) {
+		System.out.println("[" + this.proxyName + "] Recebeu requisição..."); //apenas para mostrar que chegou
 		receivedMessage = Utils.registerTime(receivedMessage);
 		receivedMessage += System.currentTimeMillis() + ";" + "\n";
 		this.queue.add(receivedMessage);
