@@ -1,0 +1,1589 @@
+--- PAGE 1 ---
+Journal of Cluster Computing manuscript No.
+(will be inserted by the editor)
+Quantifying the Impact of Resource Redundancy on
+Smart City System Dependability: A Model-Driven
+Approach
+Francisco Airton Silva · Iure F´e ·
+Francisco Silva · Tuan Anh Nguyen
+Received:DDMonthYEAR/Accepted:DDMonthYEAR
+Abstract Effective quality management plays a pivotal role in ensuring the
+smooth operation of smart city systems, which have significant implications
+for safety, accessibility, affordability, and maintainability. Dependability of
+autonomoussystemsisofutmostimportance,asachievingsatisfactorylevelsof
+availability and reliability poses considerable challenges. Smart cities are char-
+acterizedbyinterconnectedsub-architectures,encompassingvehiclemonitoring,
+sidewalk monitoring, and building monitoring, all of which need to function
+efficiently. Analytical models such as Petri nets, Markov chains, and fault trees
+are well-suited for evaluating complex scenarios in the context of smart cities.
+This paper presents analytical models that utilize fault tree and Markov chain
+techniques to assess the availability and reliability of smart city monitoring
+systems. The model is divided into shared and non-shared components, with
+non-shared components being specific to certain contextual applications, while
+shared components, such as data processing and electrical power, are essential
+for all smart city monitoring and management systems. The study underscores
+the ease with which the fault tree model can enhance availability by modifying
+failure requirements and resources. Case studies provide concrete examples
+of how availability improved from 95.3% to 99.8% by varying a configuration
+known as ”KooN” in multiple components. This paper takes a comprehensive
+approach to evaluating the dependability of smart city architectures and con-
+tributes advancements, such as hierarchical modeling, sequential sensitivity
+analysis, and the ”KooN” analytic method. These contributions expand the
+Francisco Airton Silva (F.A.S.), Iure F´e (I.F.) (corresponding author) are with Federal
+UniversityofPiau´ı(UFPI),Picos,Piau´ı,Brazil
+E-mail:{faps,iure.fe}@ufpi.edu.br
+FranciscoSilva(F.S.)iswith
+FederalUniversityofMaranha˜o-BrazilE-mail:fssilva@lsdi.ufma.br
+TuanAnhNguyen(T.A.N.)iswith
+KonkukUniversity-SouthKoreaE-mail:anhnt2407@konkuk.ac.kr
+--- PAGE 2 ---
+2 FranciscoAirtonSilvaetal.
+existing knowledge and methodologies in smart city dependability analysis.
+Moreover, this work aims to serve as a practical tool to assist smart city
+managers in optimizing their proposals. All modeling aspects and parameters
+are detailed thoroughly to enable effective implementation of the proposed
+approach by anyone using it.
+Keywords Quality management, smart city, dependability, fault tree, Markov
+chain, resource redundancy
+1 Introduction
+Smart cities have emerged as a prominent initiative by governments worldwide
+to make cities more navigable and livable, as evidenced by numerous ongoing
+projectsinthepublicandprivatesectors[14,17].Giventheprojectedgrowthof
+theworldpopulationbyover10%inthenext30years[50],qualitymanagement
+is of utmost importance in the development and management of smart cities.
+Countriesaroundtheglobearestrivingtoequiptheircitiestoeffectivelyhandle
+such growth [2]. While cities are hubs of human and economic activity, they
+also present a plethora of challenges that can become increasingly difficult to
+solve as they grow in size and complexity. Disparities in cities, particularly
+in more developed areas, can have negative consequences that may outweigh
+their positive aspects if not addressed effectively. Urban regions must manage
+their growth while promoting economic competitiveness, social cohesion, and
+sustainability.
+Theconceptofasmartcityencompassesalocalentity,suchasacity,region,
+orsmalllocality,thatadoptsaholisticapproachinemployinginformationtech-
+nologies with real-time analysis to promote sustainable economic development
+[28]. The implementation of a smart city entails addressing a myriad of chal-
+lenges in diverse areas, including healthcare, education, power, transportation,
+waste management, unemployment, and cyber-security [48]. The fundamental
+premise of a smart city rests on the utilization of user-friendly information
+and communication technologies specifically designed for urban areas by major
+enterprises. This subject matter has garnered substantial attention from both
+academia and practitioners, emerging as a robust research domain.
+Numerouscitiesacrosstheworldareactivelypursuingthegoalofbecoming
+”smarter” by leveraging Information and Communication Technology (ICT) to
+enhancevariousaspectsofcityoperationsandmanagement[29].Notably,cities
+such as Singapore, Helsinki, and Zurich have been acknowledged as some of
+the world’s leading smart cities in the 2020 Smart City Index [18]. These cities
+are subject to stringent system requirements, given that human lives are often
+at stake in multiple facets of a smart city. For instance, in the context of smart
+traffic,itisimperativeforallintelligenttrafficlightstofunctionoptimallywith
+maximum availability and reliability to prevent catastrophic failures in densely
+populated urban centers.
+--- PAGE 3 ---
+TitleSuppressedDuetoExcessiveLength 3
+Dependability pertains to a system’s ability to consistently and accurately
+deliver a service, considering the potential failure of one or more system
+components that may impede its ability to provide the intended service. As
+such, reliability is a crucial attribute of dependability, denoting the probability
+ofasystemoperatingwithoutfailureoveraspecifiedperiodoftime[45].Another
+vitalaspectofdependabilityisavailability,whichquantifiestheprobabilityofa
+systemcontinuingtofunctiondespitetheoccurrenceoffailuresandsubsequent
+repairs [40].
+Ensuring the reliability and availability of highly complex systems poses
+a formidable challenge. As the number of components in a system increases,
+predicting its behavior becomes more intricate. Smart cities, for instance,
+encompass intricate computational architectures that comprise multiple sub-
+architectures, such as smart buildings, vehicular ad hoc networks (VANETs),
+andsmartsurveillance.Eachofthesesub-architecturesencompassesitsownset
+of sub-components, which cannot be analyzed in isolation. A system is deemed
+available only when all of its sub-components are functional. Consequently,
+for a smart city to be considered reliable and available, the smart building,
+VANET, and smart surveillance systems must all operate seamlessly. It is
+noteworthy that conducting real-world experiments to assess the dependability
+of smart cities, which typically involve real-time systems, may not always be
+feasible.
+Previous research has not comprehensively addressed the crucial aspect of
+dependability in the context of smart cities, specifically in analyzing multiple
+sub-architectures concurrently. Most studies have focused on smart buildings,
+examining automation mechanisms and Internet of Things (IoT) sensor com-
+munication [24, 1, 4, 42, 49]. Only one paper has explored the topic of smart
+surveillance [19]. In this study, Gonc¸alves et al. [19] developed stochastic Petri
+net models for a surveillance monitoring system, analyzing several parameters
+to achieve the highest level of dependability. Furthermore, only four papers
+have investigated dependability in the context of vehicular ad-hoc networks
+(VANETs) [39, 15, 41, 5]. For instance, Qi et al. [39] utilized Time Petri nets
+(TPN) and Synchronized Petri nets (SPNs) to design a traffic control sys-
+tem (ITCS) for intersections, addressing accidents and providing emergency
+response to prevent further accidents.
+Evaluating the dependability of smart cities can be complex and costly,
+particularlyinreal-worldenvironmentswhereadiverserangeofcomponentsand
+significantinfrastructurearerequired.Additionally,conductingrealexperiments
+inactualenvironmentscanhavenegativeimpactsonlocalcitizens.Toovercome
+these challenges, formal mathematical models such as queue networks, Markov
+chains, and Petri nets can be utilized at an early design stage or to evaluate
+complex configurations in an operating system.
+Therefore, the novelty of this work stands out due to its unique approach
+inassessingthedependabilityofsmartcityarchitectures,whichcombines
+fault tree models and Markov chains, adopts a hierarchical modeling
+strategy, employs KooN gates, and introduces a novel method called
+sequential sensitivity analysis.
+--- PAGE 4 ---
+4 FranciscoAirtonSilvaetal.
+This study contributes to the advancement of modeling and analysis of
+smart city systems in the following ways specifically:
+– Theutilizationoffaulttree(FT)andMarkovchainmodelingtoevaluatethe
+dependability of complex smart city architectures is proposed. FT analysis,
+a well-established and widely-used technique for evaluating system depend-
+ability,isemployed[23].Markovchains,withtheirmathematicalproperties,
+are used in conjunction with FT to model component dependencies [7].
+– A hierarchical modeling approach is proposed to represent and calculate
+the availability and reliability of a smart city control system, using stan-
+dard macro components such as smart buildings, VANETs, and smart
+surveillance.
+– Advancedsensitivityanalysis,knownassequentialsensitivityanalysis(SSA),
+is conducted to identify the most impactful components in multiple base
+model updates.
+– Case studies are presented to investigate the impact of changing failure
+requirements and scalability on availability and reliability metrics.
+Thestructureoftheremainingsectionsinthispaperisasfollows:Section2
+discusses related works. Section 3 presents the background. Section 4 presents
+the methodology. Section 5 provides an overview of the architecture of the
+modeledsystem.Section6presentstheproposedFTmodels,theirfunctionality,
+and key characteristics. Section 7 presents the results of three case studies,
+serving as a practical guide for system administrators. Finally, Section 8
+concludes the paper and highlights potential areas for future research.
+2 Related Work
+In this section, a comprehensive literature review pertaining to the proposed
+work is presented, with a specific focus on the state-of-the-art research in the
+fieldofsmartcities.Theselectioncriteriaforrelatedworksprimarilyconsidered
+their relevance to smart cities, as well as their utilization of analytical models.
+In particular, works that specifically addressed architectural issues related
+to computational aspects, particularly data processing, were prioritized. To
+further refine the selection, a final filtering process was conducted to exclude
+articles that explored topics such as urban mobility [10] and delivery logistics
+[6], which were not directly pertinent to the technological challenges addressed
+in this work. The initial search string employed on Google Scholar was as
+follows: ”smart AND (city OR cities OR building OR surveillance OR vanet)
+AND (Markov OR Petri net OR fault tree OR RBD OR queue)”.
+Inthecontextofthereviewedliterature,themajorityoftheworksidentified
+were focused on the theme of smart buildings. Kharchenko et al. [24] presented
+acontrolsystemforsmartbuildingsthatincorporatesathree-levelarchitecture
+forthe building automationsystem,encompassing FPGA,communication,and
+management components. Abate et al. [1] applied quantitative model checking
+to analyze the Fault Maintenance Tree (FMT) of a Heating, Ventilation, and
+--- PAGE 5 ---
+TitleSuppressedDuetoExcessiveLength 5
+Air-Conditioning (HVAC) unit in a smart building. Specifically, they modeled
+the FMT using continuous-time Markov chains and priced time automata.
+Araujo et al. [4] proposed a modeling strategy based on hierarchical models
+using Stochastic Petri Net (SPN) and Reliability Block Diagram (RBD) to
+evaluate dependability in an IoT system, utilizing a case study of a smart
+building scenario. Santos et al. [42] proposed a queuing network-based message
+exchange architecture to evaluate the performance of an intelligent building
+infrastructureassociatedwithmultipleprocessinglayers,includingedgeandfog
+computing.Theyconsideredabuildingwithmultiplefloorsandrooms,equipped
+with sensors and edge devices. Victor et al. [49] proposed a modeling approach
+based on stochastic Petri nets (SPN) for the quantification of performability in
+domotics architectures. The SPN performability models were developed based
+on the architecture of a home automation system that incorporates several
+IoT sensors, enabling the evaluation of trade-offs between performance and
+availability.
+In the context of smart hospitals, three works were analyzed. Nguyen et al.
+[36]proposedacomprehensiveperformabilitySRNmodelforanedge/fog-based
+Medical Information System (MIS) to quantify medical data transactions and
+services in local hospitals or medical centers. The model incorporated different
+failure modes of fog nodes and their virtual machines (VMs) under the imple-
+mentation of fail-over mechanisms. Rodrigues et al. [40] employed analytical
+modelstoassesstheperformanceandavailabilityofintelligenthospitalsystems
+without the need for real equipment investment. They proposed two Stochastic
+Petri Net models to represent intelligent hospital architectures. Silva et al. [46]
+proposed an M/M/c/K queuing network model for the performance evaluation
+of an Internet of Healthcare Things (IoHT) infrastructure in conjunction with
+a three-layer cloud/fog/edge computing continuum. The model considered the
+life cycle of medical data from body-attached IoT sensors in the edge layer to
+local clients through the fog layer and remote clients through the cloud layer.
+Onlyonepublicationtodatehasinvestigatedthetopicofsmartsurveillance,
+as elucidated in the study conducted by Gon¸calves et al. [19]. The authors
+developed stochastic Petri net models to analyze the dependability of a surveil-
+lance monitoring system, by manipulating various parameters to obtain the
+optimallevelofreliabilityandavailability.Thedependabilityofthesystemwas
+comprehensively assessed, with a particular focus on reliability and availability
+as the main metrics of interest.
+Four scholarly papers have delved into the realm of Vehicular Ad-hoc
+Networks (VANETs). Qi et al. [39] employed Time Petri nets (TPN) and
+Synchronized Petri nets (SPNs) to devise a traffic control system for inter-
+sections, capable of managing accidents and providing emergency response
+while preventing further accidents. The proposed system incorporated camera
+surveillance (CSS) and traffic light control (TLCS) components, which were
+simulated using SPNs and TPN.
+Cesarioetal.[15]introduceda”local”synchronizationapproachforVANETs,
+whereby computation pertaining to a specific region is performed based on
+information received from a subset of neighboring regions. This approach of-
+--- PAGE 6 ---
+6 FranciscoAirtonSilvaetal.
+fers significant benefits, including reduced computation time, real-time model
+extraction, and improved support for local decisions.
+Rodrigues et al. [41] presented a performance evaluation of a cooperative
+smart traffic light using a stochastic Petri net (SPN) model. The proposed
+model enabled the calculation of metrics such as mean response time, resource
+utilization, and the number of discarded requests. Three case studies were
+presented to illustrate the utility of the model.
+In a study by Araujo et al. [5], stochastic Petri nets (SPNs) and reliability
+blockdiagrams(RBD)wereemployedtoassesstheavailabilityandreliabilityof
+avehicularcloudcomputingarchitecturewithmultipleRoadsideUnits(RSUs).
+Two sensitivity analyses were conducted to identify the components of the
+model with the most significant impact.
+In our research article, we present a novel approach for evaluating the
+availability and reliability of a complex smart city system, which encompasses
+three interconnected sub-architectures: smart building, smart surveillance, and
+VANETs.Ourmodelsaredevelopedusingacombinationoffaulttree(FT)and
+Markovchains,utilizingahierarchicalmodelingstrategy.Thisapproachenables
+thesimplificationofmacro-componentsusingFT,whilealsofacilitatingdetailed
+analysis of sub-components at a granular level. Additionally, we introduce a
+uniquemethodcalledsequentialsensitivityanalysis(SSA),whichallowsforthe
+optimization of evaluated metrics by identifying the most critical components
+of the system. To the best of our knowledge, this is the first study to employ
+such a strategy. Furthermore, our work is distinguished by the utilization of
+KooN gates, a distinctive feature inherent to fault tree models, to assess the
+availability of specific resources and explore diverse failure requirements.
+Our proposal places a significant emphasis on achieving a high level of
+modeling granularity in order to effectively encompass three intricate contexts.
+However, existing literature has commonly adopted the Petri net approach as
+a prevailing methodology in this domain, as evidenced by the works of Araujo
+et al. [4], Victor et al. [49], Nguyen et al. [36], Rodrigues et al. [40], Gonccalves
+et al. [19], and Qi et al. [39].
+Araujo et al. [4] have proposed a modeling strategy based on hierarchical
+models that utilize Stochastic Petri Net (SPN) and Reliability Block Diagram
+(RBD) techniques to evaluate the dependability of an IoT system, with a
+specific case study focused on a smart building scenario. Victor et al. [49]
+have put forth a modeling approach that employs stochastic Petri nets (SPN)
+to quantify the performability of domotics architectures, including various
+IoT sensors/devices, in order to evaluate trade-offs between performance and
+availability of home automation services. Nguyen et al. [36] have presented
+a comprehensive performability Stochastic Reward Net (SRN) model for an
+edge/fog-basedmedicalinformationsystem,aimedatquantifyingtheperforma-
+bility of medical data transactions and services in local hospitals or medical
+centers.
+In addition, Rodrigues et al. [40] have utilized analytical models to assess
+the performance and availability of intelligent hospital systems, without the
+need for physical equipment, by proposing two Stochastic Petri Net models to
+--- PAGE 7 ---
+TitleSuppressedDuetoExcessiveLength 7
+representintelligenthospitalarchitectures.Gonccalvesetal.[19]havedeveloped
+Stochastic Petri Net models for surveillance monitoring systems, where they
+variedmultipleparameterstoachievethehighestdependability,withreliability
+and availability being the primary metrics of interest. Lastly, Qi et al. [39]
+have employed Time Petri Nets (TPNs) and Synchronized Petri Nets (SPNs)
+to design a traffic control system (ITCS) for intersections, specifically aimed at
+dealingwithaccidents,providingemergencyresponse,andpreventingadditional
+accidents from occurring.
+Cesario et al. [15] address the challenge of extracting mobility patterns in
+an urban computing scenario using stochastic Petri nets (SPN). The authors
+propose and analyze a ”local” synchronization approach, wherein computation
+for a specific region is performed based on information received from a subset
+of neighboring regions. Rodrigues et al. [41] present a performance evaluation
+of a cooperative smart traffic light using an SPN model. The proposed model
+is capable of calculating the mean response time, resource utilization, and the
+number of discarded requests. Araujo et al. [5] utilize SPNs and reliability
+block diagrams (RBD) to assess the availability and reliability of a vehicular
+cloudcomputing(VCC)architecturewithmultipleroadsideunits(RSUs).Two
+sensitivity analyses were conducted to identify the model components that
+have the most significant impact.
+Another related context to the current topic in smart cities is railway
+transportation, in which requires high availability, reliability and security. Two
+papers applied modelling mechanisms in this context, Lin et al. [30] and Liu et
+al. [31]. Lin et al. [30] proposed an advanced finite-state Markov chain channel
+model for high-speed railway, which incorporates the impacts of moving speed
+onthetemporalchannelstatisticalcharacteristic.Theclosed-formexpressionsof
+state transition probabilities between channel states are derived. The accuracy
+of the proposed FSMC channel model is validated via extensive measurements
+conducted on the Zhengzhou-Xi’an HSR line in China. Liu et al. [31] have
+focusedonemployingthefaulttreeanalysismethodcombinedwithquantitative
+analysistoinvestigatehigh-speedrailwayaccidents.Specifically,byestablishing
+a fault tree logic diagram based on a high-speed railway accident, an in-depth
+fault tree analysis combined with quantitative analysis is given to present a
+more comprehensive view of the accident.
+Table 1 provides a comparison of related works in the field of smart city
+systems.Ourproposedmodelstandsoutduetoitsuniqueapproachinassessing
+the dependability of smart city architectures, which combines fault tree models
+and Markov chains, adopts a hierarchical modeling strategy, employs KooN
+gates, and introduces a novel method called sequential sensitivity analysis.
+--- PAGE 8 ---
+8 FranciscoAirtonSilvaetal.
+Table 1: Related Works.
+Paper Context Model Metrics Hierarchical Sequential KooN
+Types Modeling Sensitivity Anal-
+Analysis isys
+[24] Smart Markov Security and × × ×
+building chain availability
+[1] Smart Fault Availability, ✓ × ×
+building tree and reliability and
+Markov cost
+chain
+[4] Smart Petri Availability ✓ × ×
+building net and
+RBD
+[42] Smart Queueing MRT,resource × × ×
+building network utilization,
+flow rate, dis-
+card rate, and
+the number of
+messages
+[49] Smart Petrinet Availability × × ×
+building and perfor-
+mance
+[36] Smart Petrinet Availability × × ×
+hospital and perfor-
+mance
+[40] Smart Petrinet MRT,resource × × ×
+hospital utilization,and
+discardrate
+[46] Smart Queueing MRT, utiliza- × × ×
+hospital Network tion, through-
+put,numberof
+messagese,and
+droprate
+[19] Smart Petrinet Availability × × ×
+surveil- andreliability
+lance
+[39] VANETs Petrinet Numberoftraf- × × ×
+ficaccidentpre-
+diction
+[15] VANETs Petrinet Computational × × ×
+time
+[41] VANETs Petrinet MRT,resource × × ×
+utilization,and
+the number
+of requests
+discards
+[5] VANETs Petri Availability × × ×
+net and andreliability
+RBD
+This Smart Fault Availability ✓ ✓ ✓
+work build- tree and andreliability
+ing, Markov
+smart chain
+surveil-
+lance
+and
+VANETs
+While the existing literature has predominantly adopted the Petri net
+approach, our proposal offers a more comprehensive and holistic perspective
+on the dependability of smart city architectures. In future research, we plan to
+investigate the impact of different distribution types on the results, establish
+--- PAGE 9 ---
+TitleSuppressedDuetoExcessiveLength 9
+a more realistic baseline scenario, conduct performance analysis to evaluate
+the impact of availability on response time and throughput, and incorporate
+additional components such as onboard units of vehicles in vehicular ad hoc
+networks (VANETs) to further enhance the realism of our model. The field of
+InternetofThings(IoT)anddependabilityhasbeenenrichedbyseveralnotable
+studies,includingSilvaetal.[47],Ojieetal.[37],Andradeetal.[3],andBoano
+et al. [8]. Silva et al. [47] propose a tool for evaluating the dependability of IoT
+applications, considering both hardware faults and permanent link faults.
+Similarly, Ojie et al. [37] explore dependability issues in IoT applications
+throughacomprehensiveanalysisofexistingliteratureandconceptualizationof
+dependabilityrequirements,regardlessofthesizeanddomainoftheapplications.
+Andradeetal.[3]presentaPetrinet-basedapproachformodelingandanalyzing
+disasterrecovery(DR)solutionsforIoTinfrastructures.Theirproposedmodels
+enable assessment of important DR measures such as system availability, cost,
+and recovery time objective, with a real-world healthcare IoT system used
+as a case study. Boano et al. [8] provide methods and tools for predicting,
+guaranteeing, and enhancing the dependability of IoT systems. They highlight
+contributions in dependable wireless networking and present a cost-effective
+solution for ensuring IoT applications meet specific performance requirements
+despitechallengesposedbylow-powerwirelessnetworksandtheirenvironments.
+It is noteworthy that these studies focus on specific aspects of networking,
+which may differ from the broad perspective of our proposal in modeling smart
+city systems.
+3 Background
+This section presents some concepts regarding modeling mechanisms.
+3.1 Modelling with Fault Tree
+InaHierarchicalFaultTree(HFT)analysis,thesystemunderstudyismodeled
+as a tree-like structure, with the top-level representing the overall system
+failure and lower levels representing the failures of individual components
+that contribute to the overall system failure. Fault Tree Analysis (FTA) is a
+method for modeling the top-down failure behavior of a system by identifying
+and analyzing the combinations of basic events that can lead to a specific
+top event, such as system failure. The basic events are typically low-level
+components or subsystems that can fail, while the top event represents the
+overall system failure. In an HFT, the top-level represents the system-level
+failure and each lower level represents a more detailed failure mode. Each level
+of the fault tree is constructed using basic events, which are the lowest level
+failure modes, and gates, which are logical operators that combine the basic
+events. The mathematical representation of a fault tree is a Boolean function,
+represented by a set of Boolean equations. The probability of the top event
+--- PAGE 10 ---
+10 FranciscoAirtonSilvaetal.
+can be calculated by using the probability of the basic events and the logical
+operators connecting them. Fault Tree Analysis (FTA) is a technique used
+to identify and assess potential failure modes and their causes in a system.
+It is often used in conjunction with a Reliability Block Diagram (RBD) to
+identify the cause-and-effect relationships between different components and
+subsystemsinasystem.AFaultTreeisagraphicalrepresentationofthelogical
+relationships between the various failure events that can lead to a specific top
+event, such as system failure. The basic building blocks of a Fault Tree are the
+basic events, which represent a single failure or malfunction of a component,
+and the gates, which represent the logical relationships between the events.
+The probability of the top-level system failure, Pr(S), can be calculated using
+the following equation:
+(cid:89)
+Pr(S)=1−Pr(S′)=1− (1−Pr(E )) (1)
+i
+Where Pr(S′) is the probability of the system not failing, Pr(E ) is the
+i
+probability of a basic event i, and the product is taken over all basic events.
+In summary, Fault Tree Analysis and Markov Chain are two methodologies
+formodelingthedependabilityofsystems.WhileFTAisusedformodelingtop-
+downfailurebehavior,MCisusedformodelingthetime-dependentbehaviorof
+a system. Both methodologies can be used in hierarchical manner to represent
+thesystembehaviorinmoredetail.CombiningtheuseoffaulttreeandMarkov
+chain analysis in a hierarchical manner allows for a more detailed and accurate
+assessment of system dependability and performance.
+Let X be a random variable which represents the lifetime of a device. That
+is, if the device is turned on at time zero, X would represent the time at which
+the device fails. The reliability function of the device, RX (t), is simply the
+probability that the device is still functioning at time t:
+Rx(t)=Pr(X >t) (2)
+Where R(t) is the reliability of the system at time t, and Pr(failure) is
+the probability of failure at time t. Additionally, we would like to note that
+the reliability of a system can also be represented by the mean time between
+failures (MTBF) or the mean time to failure (MTTF). MTBF is calculated as
+the total operating time of a system divided by the number of failures, while
+MTTF is calculated as the reciprocal of the failure rate. These formulas are as
+follows:
+Total Operating Time
+MTBF =
+Number of Failures
+(3)
+1
+MTTF =
+Failure Rate
+Availability (A) is a measure of the system’s ability to perform its in-
+tended function when required. It is typically expressed as a percentage and is
+calculated using the formula:
+--- PAGE 11 ---
+TitleSuppressedDuetoExcessiveLength 11
+uptime
+A= ×100% (4)
+uptime+downtime
+Where uptime is the total time the system is functioning as intended and
+downtime is the total time the system is not functioning as intended. This
+formulacan alsobe expressedin termsof MeanTime Between Failure(MTBF)
+and Mean Time To Repair (MTTR) as:
+MTBF
+A= (5)
+(MTBF +MTTR)
+In this equation, MTBF represents the average time between failures and
+MTTRrepresentstheaveragetimerequiredtorepairthesystemafterafailure.
+It’s also important to note that the availability of a system can be affected
+by factors such as concurrent failures, maintenance, and scheduled downtimes,
+which should be considered when calculating availability.
+3.2 Modelling with Markov Chain
+Markov models are the fundamental building blocks upon which many quanti-
+tative analytical performance techniques are built [26, 33]. Such models may
+be used to represent the interactions between various system components, for
+both descriptive and predictive purposes [35]. Markov models have been in use
+intensively in performance and dependability modeling since around the fifties
+[13]. Besides computer science, the range of applications for Markov models
+is very extensive. Economics, meteorology, physics, chemistry and telecommu-
+nications are some examples of fields which found in this kind of stochastic1
+modeling a good approach to address various problems.
+A Markov model can be described as a state-space diagram associated
+to a Markov process, which constitutes a subclass of stochastic processes. A
+definition of stochastic process is presented: A stochastic process is a family of
+random variables {X :t∈T} where each random variable X is indexed by
+t t
+parametert∈T,whichisusuallycalledthetimeparameterifT ⊂R =[0,∞),
++
+i.e.,Tisinthesetofnon-negativerealnumbers.Thesetofallpossiblevaluesof
+X (for each t∈T) is known as the state space S of the stochastic process [9].
+t
+Let Pr{k} be the probability of a given event k occurs. A Markov process
+(cid:8) (cid:9)
+is a stochastic process in which Pr X ≤s depends only on the last
+tn+1 i+1
+previous value X , for all t > t > t > ··· > t = 0, and all s ∈ S.
+tn n+1 n n−1 0 i
+This is the so-called Markov property [20], which, in plain words, means that
+the future evolution of the Markov process is totally described by the current
+state, and is independent of past states [20].
+In this work, there is only interest on discrete (countable) state space
+Markov models, also known as Markov chains, which are distinguished in two
+classes: Discrete Time Markov Chains (DTMCs) and Continuous Time Markov
+1 Stochasticreferstosomethingwhichinvolvesorcontainsarandomvariableorvariables
+--- PAGE 12 ---
+12 FranciscoAirtonSilvaetal.
+Chains (CTMCs) [25]. In DTMCs, the transitions between states can only take
+place at known intervals, that is, step-by-step. Systems where transitions only
+occur in a daily basis, or following a strict discrete clock are well represented
+by DTMCs. If state transitions may occur at arbitrary (continuous) instants of
+time,theMarkovchainisaCTMC.TheMarkovpropertyimpliesthatthetime
+of transitions is driven by a memoryless distribution [9]. In the case of DTMC,
+the geometric distribution is the only discrete time distribution that presents
+the memoryless property. In the case of CTMC, the exponential distribution is
+used.
+Markov chains can be represented as a directed graph with labeled transi-
+tions, indicating the probability or rate at which such transitions occur. When
+dealing with CTMCs, such as the availability model of Figure 1, transitions
+occur with a rate, instead of a probability, due to the continuous nature of
+this kind of model. The CTMC is represented through its transition matrix,
+often referenced as infinitesimal generator matrix. Considering the CTMC
+availability model of Figure 1, the rates are measured in failures per second,
+repairs per second, and detections per second. The generator matrix Q is
+(cid:80)
+composed by components q and q , where i ̸= j and q = −q . Using
+ii ij ij ii
+the availability model that was just mentioned, considering a state-space S =
+{Up,Down,Repair} = {0,1,2} the Q matrix is:
+   
+q q q −0.0010.001 0
+00 01 02
+Q=q 10 q 11 q 12= 0 −2 2 
+q q q 0.2 0 −0.2
+20 21 22
+Up
+0.2 0.001
+Repair Down
+2
+Fig. 1: Simple CTMC
+Equation 6 and the system of Equations 7 describe the computation of
+the state probability vector, respectively for transient (i.e., time-dependent)
+analysis, and steady-state (i.e., stationary) analysis. From the state probability
+vector, nearly all other metrics can be derived, depending on the system that
+is represented.
+π′(t)=π(t)Q, given π(0) (6)
+--- PAGE 13 ---
+TitleSuppressedDuetoExcessiveLength 13
+(cid:88)
+πQ=0, π =1 (7)
+i
+i∈S
+Detailedexplanationsabouthowtoobtaintheseequationsmaybefoundin
+[21,9].ForallkindsofanalysisusingMarkovchains,animportantaspectmust
+be kept in mind: the exponential distribution of transition rates. The behavior
+of events in many computer systems may be fit better by other probability
+distributions, but in some of these situations the exponential distribution is
+considered an acceptable approximation, enabling the use of Markov models.
+It is also possible to adapt transition in Markov chains to represent other
+distributions by means of phase approximation, as shown in [33]. The use of
+such technique allows the modeling of events described by distributions such
+as Weibull, Erlang, Cox, hypoexponential, and hyperexponential.
+4 Methodology
+This section presents the methodology employed in this study, outlining the
+stepstakentoimprovetheavailabilityandreliabilityofthesystemunderexam-
+ination. The primary objective of this section is to facilitate future replication
+of the methodology, enabling the enhancement of dependability for systems
+with similar physical and logical structures. The methodology describes the
+processes used in constructing the proposed environment, including the evalua-
+tion and construction of models of the infrastructure used by the system, as
+well as the proposal of alternative structures aimed at increasing the system’s
+dependability. Figure 2 provides a visual representation of the steps in the
+proposed methodology, with the processes depicted as macro-activities, which
+are described in detail below.
+System Understanding. This process involves understanding the struc-
+ture of the system, including the study of the main physical and logical
+components, their basic functionalities, and the existing components in the
+physical and virtual layers, among other characteristics of the environment.
+The evaluated system was designed based on information from the literature.
+The decision on which macro-components to include was made first. The three
+macro-components (VANET, Smart Building and Surveillance) were chosen
+as they are common in many works related to smart cities [34, 43, 40, 19, 5].
+Additionally, the availability of parameters to feed the entire proposed model
+was considered to be an important factor. Architecture Design. Before
+actually modeling the system, it is necessary to define the specific components
+and how they relate to one another. This step involves determining the number
+of sub-components each macro-component has and defining the failure require-
+ments of the system. System Modeling. The main objective of this process
+is to construct a model that accurately represents the studied environment,
+classified as a baseline, allowing for more precise analysis of the environment
+and proposals for improvements in dependability. The proposed models were
+designed and evaluated using the Mercury [44] tool. Two types of models are
+--- PAGE 14 ---
+14 FranciscoAirtonSilvaetal.
+System Architecture System
+Understanding Design Modeling
+Base Model Sensitivity Model
+Configuration Analysis Upgrade
+No It has
+Improved
+enough?
+Yes
+Fig. 2: Modelling and Analysis Methodology Organized in Macro-Activities.
+proposed in this work: fault tree and Markov chains. In this step, for example,
+the gates of the fault tree were specified. Base Model Configuration. In
+this step, the model receives the values of the availability parameters of each of
+the chosen components, as well as information on which components will have
+redundancy and the number of redundant elements (referred to as KooN).
+Sensitivity Analysis. The sensitivity analysis process aims to identify
+the components that can be adjusted in order to increase the dependability
+of the environment. This activity aims to adjust the environment with the
+fewest possible changes, allowing for more assertive changes. In this work,
+the new concept of sequential sensitivity analysis (SSA) is employed. SSA
+involves not only one, but multiple executions of sensitivity analysis, allowing
+for even more effective upgrades in the designed models. Model Upgrade.
+The main objective of this macro-activity is to construct a model with better
+dependability results for the studied environment. This construction is linked
+to the sensitivity list, taking as input one or more components that will be
+improved. Several techniques are used to improve availability and reliability.
+In this work, changes in gates (in fault trees) and changes in the structure of
+Markov chains are proposed.
+In this work, a specific scenario of simple infrastructure and manual config-
+urations was considered for modeling and analyzing the dependability of such
+systems. The proposed methodologies provide a clear and easy-to-understand
+--- PAGE 15 ---
+TitleSuppressedDuetoExcessiveLength 15
+approach for this specific scenario. However, it is important to note that
+there are more advanced techniques, such as the automatic build of mul-
+tiple/hierarchical formalism, that have been proposed in the literature for
+modeling and analyzing more complex systems. It should be noted that the
+model does not include dynamic aspects of the network, and the mean time to
+failures (MTTF) and mean time to recovery (MTTR) of all components are
+calculated from more detailed sub-architectures.
+For example, the cloud component can have near infinite possibilities of
+granularity. While it was not the goal of this work to detail such components,
+the proposed model can still provide a reasonably big picture of the modelled
+system. It is worth mentioning that the literature does not present a modelling
+approach combining distinct contexts as presented in this work. Focusing on a
+specific context allows for a more accurate representation of network, power
+source, mobility, etc. In this sense, the proposed model can be considered as a
+complementary approach that can be used in specific scenarios, rather than a
+replacement for more advanced techniques.
+5 Architecture
+Figure 3 presents an overview of a computer systems cluster in a smart city.
+The architecture is designed to separate and emphasize three crucial sub-
+architectures: Smart Surveillance, VANETs, and Smart Building. Each of the
+sub-architectures has distinct hardware and software requirements. At the core
+of the architecture, elements that are shared by the three sub-architectures are
+highlighted. The following sections will provide a detailed description of the
+four macro architectural components.
+5.1 Smart Surveillance
+The use of Closed-Circuit Television (CCTV) has seen a significant increase
+in the past two decades, particularly following the 9/11 attacks. The United
+Kingdom, considered the most monitored country in the world, has approxi-
+mately4millionsurveillancecameras,withanestimated300camerascapturing
+footage of a London resident daily [27]. These cameras cover both public and
+private areas, including downtown areas, airports, and shopping malls. This
+growth is driven by two factors: the decrease in the cost of CCTV systems
+and the increasing demand for security. The purpose of an intelligent video
+surveillance system is to detect anomalies, or behavior that does not conform
+toanormalscenebehaviorspecification.Smartsurveillanceplaysanimportant
+role in anomaly detection by extracting, representing, and interpreting visual
+information for learning and classifying behavior. There have been numerous
+workspublishedintheareaofintelligentsurveillance,withsomestudiesaiming
+to determine the level of system supervision, extracting characteristics that
+describe the behavior of different classes of objects inthe scene, and generating
+--- PAGE 16 ---
+16 FranciscoAirtonSilvaetal.
+VANETs
+RSU RSU
+Camera
+RSU
+Camera
+Network
+Edge
+Power
+Cloud Switch
+Grid
+Shared
+Resources
+Cell
+Tower
+Sensors Routers
+Camera
+Smart Smart
+Surveillance Building
+Fig. 3: Smart City Systems Architecture.
+a compact representation of the extracted characteristics. All these practical
+applications require high computational capacity for processing, storage, and
+communication.
+To effectively cover a large city with a multi-camera scenario (fixed and
+mobile), a mobile network capable of handling the large amount of data is
+required. In addition to providing characteristics such as broadband, reliability,
+latency, and mobility superior to previous networks, it must also be highly
+adaptable. Such a network must be fast, responsive, and stable, which are
+characteristicsofferedby5G.5Gcanadapttofluctuationsintraffic,dynamically
+directing services, such as a higher data transfer rate, if a specific application
+or user requires it. Therefore, the smart surveillance sub-architecture includes
+a set of high-performance cameras and one or more transmission towers. The
+transmission towers (cell towers) then communicate with centralized edge and
+cloud resources.
+5.2 VANETs
+The increase in population concentration in urban centers, particularly in large
+metropolitan regions, and the resulting mobility linked to the increased use of
+motor vehicles have negative impacts on society. These factors contribute to
+--- PAGE 17 ---
+TitleSuppressedDuetoExcessiveLength 17
+poorqualityoflifefordriversandpedestrians,aswellasenvironmentaldamage
+associated with carbon dioxide emissions and economic losses. Congestion is
+one of the most severe issues in large cities worldwide. There is significant
+research being conducted to address this problem, and one promising approach
+is smart mobility, which is a domain of smart cities. The main idea behind
+smart mobility is the use of Information and Communication Technologies
+(ICT)toenhancetheuseoftransitinfrastructureincities.Manysmartmobility
+initiatives are already in place, such as VANETs networks.
+Vehicle networks allow for the exchange of information between vehicles
+(V2V - Vehicle-to-Vehicle communication) and between vehicles and infras-
+tructure located on the side of the roads (V2I - Vehicle-to-Infrastructure
+communication), with the possibility of utilizing both types of communications
+on the same network (V2X architecture). Vehicular networks have unique char-
+acteristics that present challenges in communication between vehicles, such as
+highnodemobilityandthepotentialforhighratesofpacketlossduetonetwork
+congestion. Road Side Units (RSUs) are communication base stations in the
+vicinity of roads and highways that communicate with vehicles. These RSUs
+must communicate directly with remote resources such as edge servers and
+cloud computing services. Therefore, in the present architecture, we consider
+a set of RSUs that must be fully operational for the sub-architecture to be
+considered in an active state.
+5.3 Smart Building
+The Internet of Things (IoT) has great potential for use in a variety of ap-
+plications, including commerce, industry, and education. IoT devices can be
+used, for example, to automate activities in smart homes. Identifying abnormal
+behavior in a monitored environment using IoT has proven to be very useful
+in residential settings. Historically, smart homes were primarily used to control
+environmental systems such as lighting and heating. However, the use of IoT
+has allowed for all electrical components in a home to be connected to a single
+system. A smart home can provide context-based services to homeowners using
+sensorsandothertechnologies.Fromtheconceptofsmarthomes,IoThasbeen
+extended to the context of smart buildings. Due to their size and complexity,
+buildingsrequiremoresophisticatedcomputinginfrastructuresandpreparation
+to meet the high demand for data generation. Energy consumption is a major
+concerninsmartbuildingresourcemanagement.Intelligentenergymanagement
+of a building can play a crucial role in addressing energy consumption, which
+has a significant impact on the environment. Most current IoT sensors must
+be installed throughout the building to collect data, which is then processed
+locally and remotely (edge/cloud). In the present work, we consider that each
+building environment (floor) has one or more routers, and the entire building
+has a switch device to forward data to the external environment.
+--- PAGE 18 ---
+18 FranciscoAirtonSilvaetal.
+5.4 Shared Resources
+The proposed architecture for a smart city includes four shared components:
+power grid, cloud, edge, and network. These components are essential for the
+functioning of the smart city’s three sub-architectures: Smart Surveillance,
+VANETs, and Smart Building. The power grid supplies electrical power for
+all devices, while the network connects the sub-architectures to the edge and
+cloud components. The edge and cloud play a crucial role in the system, with
+the edge providing faster information processing and the cloud handling more
+complex processing and storage for backup. It is important to note that these
+four shared components, along with the three sub-architectures, are of equal
+importance for the dependability of the overall smart city system. However,
+care must be taken to ensure proper consideration of their individual roles and
+effects on dependability.
+6 Model
+Figure 4 presents the fault tree model proposed in this work.
+Weobservetwometricsinthispaper:availabilityandreliability.Availability
+is the ability of a component to be in a functional state to perform a required
+function. Reliability is the ability of the equipment to satisfactorily perform a
+givenfunctionduringaspecifictime.[32]Allthemodelsandrespectivesolutions
+were performed using the modelling tool Mercury [44]. We tried to design a
+model well aligned with the architecture described in the previous section. The
+primary gate is an OR gate. For the model root (smart city system) to fail, all
+shared,ornon-sharedcomponentsmustfail.Forunsharedresourcestofail,one
+of the following components must fail: surveillance, smart building, or VANET.
+In the proposed architecture, the cameras (CAs) or the tower (TO) are
+critical components for the surveillance sub-architecture. The failure of these
+components can cause the entire sub-architecture to fail. To account for this, a
+new type of gate, known as K out of N (KooN) gate, is introduced. The KooN
+gate is a practical tool for modeling component dependencies, where K out of
+N items must fail for the component to fail. For example, in the Figure 5, if
+there are five cameras in total and the model states "3 out of 5 cameras",
+the component will only fail if three or more cameras fail. The proposed model
+includesfiveKooN gatesthatwerestrategicallyplacedto accuratelyreflectthe
+reality of modern cities. However, some simplifications were made to facilitate
+data manipulation. For example, the model assumes that there is only one
+tower in the surveillance module, as it is typically sufficient for coverage in city
+centers. The use of KooN gates also considered the likelihood of components
+having a shorter time to failure.
+The smart building component comprises three sub-components: sensors
+(SS),routers(RTs),andaswitch(ST).Whileotherphysicaldevicescouldhave
+been broken down, such as actuators, we aim to simplify the architecture by
+focusing on more commonly adopted components. A K-out-of-N (KooN) gate
+--- PAGE 19 ---
+TitleSuppressedDuetoExcessiveLength 19
+Smart City
+Failure
+OR
+Unshared Shared
+Resources Resources
+OR OR
+Surveillance Smart Building VANET Edge Server HW Cloud Network Power Grid
+OR OR OR
+KooN
+CAs TO SSs RTs ST RSUs HW OS DK CTs
+KooN KooN KooN KooN
+CCAA SS RT CT
+Fig. 4: Smart City Systems Fault Tree Model.
+is applied for sensors and routers to account for the grouping of devices within
+a building. For example, in a smart hospital, sensors are typically organized
+by floor, with a specific number of sensors communicating with a router on
+each floor. The use of KooN gates also allows for more flexible definition of
+reliability requirements. Given the large number of sensors typically present
+in a building, it is unlikely that the failure of just one sensor would cause the
+entire system to fail.
+The number of routers will be proportional to the number of monitored
+floors in the building, with all routers connected to a strategically placed
+switch. In the proposed architecture, the VANETs component is comprised of
+a single sub-component: Road Side Units (RSUs). Typically, VANETs consist
+of two basic elements: RSUs and Onboard Units (OBUs). However, due to
+the complexities associated with defining the actual quantity of OBUs in a
+smart city, they were not included in this study. The architectural planning of
+RSUs is relatively straightforward as they are fixed, pre-established structures.
+As with the sensors in the smart building component, it is not reasonable to
+assume that the failure of a single RSU would cause the entire system to fail,
+as RSUs are typically organized in a redundant manner.
+The gate related to shared resources includes four macro-components: edge
+server, hardware cloud, network, and power grid. The edge server is divided
+into four sub-components: hardware (HW), operating system (OS), docker
+(DK), and containers (CTs). The use of Docker was incorporated to more
+accurately reflect modern and scalable architectures that utilize containers.
+The container component includes a KooN gate with a set of N parallel
+--- PAGE 20 ---
+20 FranciscoAirtonSilvaetal.
+Up State Down State
+KooN 3 out of 5 cam. system down with fail >=3
+System Up
+System Up
+System Down
+Fig. 5: KooN example using cameras in up and down states.
+containers. The cloud architecture, in terms of software, can vary depending
+on the provider adopted. Therefore, the cloud component has been simplified
+to consider only the hardware aspect. The network component encompasses all
+wiredcommunicationinterconnectingthesmartcitynetwork.Lastly,thepower
+grid component supplies power to the entire architecture under consideration.
+Renewableenergysourcescanalsobeconsideredinasubsequentphase,however,
+they are not included in this analysis due to the low failure rate of power grids.
+Table2presentsthemeantimetofail(MTTF)andmeantimetorepair(MTTR)
+for each component as extracted from literature sources [34, 43, 40, 19, 5].
+6.1 Sensitivity Analysis
+In this part of the work, we present a sensitivity analysis of the macro com-
+ponents of the model: surveillance (SV), smart building (BU), VANET (VN),
+edge server (ED), hw cloud (CL), network (NE) and power grid (PG). The
+objective is to identify which component has the greatest impact on the avail-
+ability metric. Sensitivity analysis measures the local effect of a given input
+data on the output data. The main objective is to identify the weak links of
+computer systems and, subsequently, to adopt a set of techniques to improve
+such systems in different scenarios [11]. Sensitivity analysis can provide the
+necessary security and present the results within the perspective established by
+--- PAGE 21 ---
+TitleSuppressedDuetoExcessiveLength 21
+Table 2: Model Parameters
+Component MTTF MTTR
+Camera (CA) 90000.00 1.00
+Surveillance
+Cell Tower (TO) 150000.00 5.00
+Sensor (SS) 300000.00 1.00
+Smart Building Router (RO) 480770.00 8.00
+Switch (ST) 698220.00 8.00
+Hardware (HW) 8760.00 1.67
+Operating System (OS) 1667.00 0.25
+Edge Server
+Docker (DK) 2516.00 0.25
+Container (CT) 1258.00 0.23
+Power Grid 8757.00 4.80
+Hardware Cloud 8760.00 1.60
+RSU 500.00 2.00
+Network 83220.00 12.00
+the system administrators. There are various methods available for performing
+sensitivity analysis, such as regression analysis, perturbation analysis (PA),
+one-to-one variation, Monte Carlo simulation, parametric differential analysis,
+correlationanalysis,andpercentagedifference.Thedecisionofwhichmethodto
+useisachallengingstep,requiringtheconsiderationofavailablecomputational
+resources and the characteristics of the addressed problems [12] [38].
+The percentage difference method was chosen to perform the sensitivity
+analysis of the fault tree model, as it is an approach that does not require the
+use of a continuous domain for the input values of parameters. This process is
+basedoncalculatingthepercentagedifferencewhenvaryinganinputparameter
+from its minimum value to its maximum value. It is necessary to use the entire
+range of possible values of each parameter in order to calculate the sensitivities
+of the parameters, as outlined in Equation 8. The expression max Y(θ) and
+min Y(θ) represent the maximum and minimum output values, respectively,
+as measured by varying the parameter θ over a range of its n possible values
+of interest. If it is known that Y (θ) varies monotonically, only the extreme
+values of θ (i.e., θ and θ ) need to be used to calculate max Y(θ) , min Y(θ)
+1 n
+and as a result S Y [16, 22].
+θ
+max{Y(θ)}−min{Y(θ)}
+S {Y}= (8)
+θ max{Y(θ)}
+Wepresentthecalculationofthesensitivityindexbyvaryingoneparameter
+over its design range. It is important to note that the values of the remaining
+parameters are held constant during this calculation. This approach allows us
+to isolate the effect of a single parameter on the overall system performance
+and assess its relative importance. Additionally, it should be noted that in the
+sensitivity analysis, a set of scenarios were considered with different values of
+theremainingparameterstoensuretherobustnessoftheresults.Thesensitivity
+index provides a measure of the relative importance of each design parameter
+and allows the designer to prioritize design decisions.
+--- PAGE 22 ---
+22 FranciscoAirtonSilvaetal.
+Table 3 presents the sensitivity indexes in descending order. Therefore,
+the three most impacting components are: VANETs, edge server and smart
+building. VANETs is the most influential component probably due to its low
+MTTF compared to the other components.
+Table 3: Sensitivity Analysis Result.
+Parameter Sensitivity Index
+MTTF VN 0.0258777602608578
+MTTR VN 0.01331305761385408
+MTTF BU 0.002206516444554778
+MTTF ED 0.0016366888322117829
+MTTR BU 0.0010814511382172705
+MTTR ED 7.069677847551544E-4
+MTTF SV 6.40961033860294E-4
+MTTF PG 3.216745273348131E-4
+MTTR PG 3.170190776072599E-4
+MTTR SV 2.72584548561388E-4
+MTTF CL 2.2045099731459627E-4
+MTTR NE 1.0141813678947335E-4
+MTTF NE 8.385117185474646E-5
+MTTR CL 2.158935723395704E-5
+Figure6presentstheparametersvariationforeacheminentcomponent.The
+variation have considered increments and decrements of 25% from the baseline.
+It is important to note that edge and smart building varies the availability
+inside the range of 95%. However, the RSU MTTF goes from 92% to more
+than 96%.
+0.96
+0.95
+0.94
+0.93
+0.92
+30 40 50 60 70
+MTTF_VN
+ytilibaliavA 0.97
+Model 0.96
+Baseline
+Varied Parameter
+1.0 1.5 2.0 2.5 3.0
+MTTR_VN
+(a)RSUsMTTFVariation
+ytilibaliavA 0.953
+0.952
+Model
+Baseline
+Varied Parameter 0.951
+50 75 100 125 150
+MTTF_ED
+(b)RSUsMTTRVariation
+ytilibaliavA
+Model
+Baseline
+Varied Parameter
+(c)EdgeMTTFVariation
+0.9545
+0.9540
+0.9535
+0.9530 0.2 0.3
+MTTR_ED
+ytilibaliavA
+0.954
+0.953
+0.952
+0.951
+Model
+Baseline
+Varied Parameter 0.950
+200 300 400
+MTTF_BU
+(d)EdgeMTTRVariation
+ytilibaliavA
+0.9550
+0.9545
+0.9540
+Model 0.9535
+Baseline
+Varied Parameter
+0.9530 0.50 0.75 1.00 1.25 1.50
+MTTR_BU
+(e)BuildingMTTFVariation
+ytilibaliavA
+Model
+Baseline
+Varied Parameter
+(f)BuildingMTTRVariation
+Fig. 6: Parameters Variation of Macro Components
+--- PAGE 23 ---
+TitleSuppressedDuetoExcessiveLength 23
+7 Case Studies
+This section presents two case studies that aim to identify system availability
+and reliability for the different parameters. The case studies focus on the five
+KooN gates. Changing the KooN gate can represent two aspects: a change
+in the failure requirement and a change in the number of available resources.
+These two aspects were explored and described in the following sections.
+7.1 Scenario One - Changing the Failure Requirement
+The first aspect of the KooN gate change pertains to the variation of the
+k factor, without altering the value of N. This variation indicates a change
+in the failure requirements of that component. As the value of k increases,
+the component becomes less likely to fail, as there will be more redundant
+elements. In this scenario, three configurations of the KooN gates were applied,
+as detailed in Table 4. The settings for the five components with a KooN
+gate were changed: cameras, sensors, routers, RSUs, and containers. The total
+capacity for each component was fixed, with 100 cameras, 1000 sensors, and 10
+routers, RSUs, and containers. For the configurations C1, C2, and C3, three
+different k values were adopted, respectively: k=1, k=N/2, and k=N.
+Table 4: Configurations considering distinct K values.
+Configurations
+Components
+C01 - 1 oo N C02 - N/2 oo N C03 - N oo N
+Cameras 1outof100 50outof100 100outof100
+Sensors 1outof1000 500outof1000 1000outof1000
+Routers 1outof10 5outof10 10outof10
+RSU 1outof10 5outof10 10outof10
+Containers 1outof10 5outof10 10outof10
+The first aspect of the KooN gate change is related to the variation in the
+k factor (without changing N). This variation indicates a change in the failure
+requirement of that component. As the k value increases, the system becomes
+less likely to fail, as there will be more redundant elements. In this scenario,
+three configurations of the KooN gates were applied, as detailed in Table 4.
+The total capacity of the cameras, sensors, routers, RSUs, and containers
+were fixed at 100, 1000, 10, respectively. The steady-state availability results
+for these configurations are presented in Figure 7. Configuration C1 had an
+availability of approximately 95.3%, while C2 and C3 had an availability of
+approximately99.8%.ConfigurationC1canbeconsideredasaverydemanding
+failure requirement, as the failure of just one out of a thousand sensors would
+cause the system to fail. However, it serves to illustrate the ease of exploration
+of the model. If a Service Level Agreement (SLA) with a target availability
+of 98% is established, configurations C2 and C3 would meet this demand
+--- PAGE 24 ---
+24 FranciscoAirtonSilvaetal.
+equally. However, C3 is more fault-tolerant as it requires all elements to fail
+for the system to enter a failed state. Therefore, it is important to consider the
+reliability metric when defining an SLA.
+1.00
+0.98
+0.96
+0.94
+C01 − 1 oo N C02 − N/2 oo N C03 − N oo N
+Configuration
+ytilibaliavA
+etatS−ydaetS
+Fig. 7: Scenario One - Variation of KooN observing availability.
+The Figure 8 illustrates the results of the reliability analysis for the three
+configurations of the KooN gates, C1, C2, and C3. The x-axis represents
+the elapsed time since the system is considered active, with the simulation
+considering a time of 2000 hours. It is evident that configuration C3 has better
+reliabilitythanC2,whichinturnhasbetterreliabilitythanC1,forthemajority
+of the time. At time zero, the system’s reliability is 100%, as the system has
+not yet attempted to fail. As time progresses, reliability is diminished. Initially,
+C2 and C3 are practically the same until 125 hours, after which they begin to
+diverge. C1, with its high constraint, achieves zero reliability near 250 hours (a
+little over a week). C2 reaches zero reliability after 500 hours, while C3 reaches
+zero reliability only after 2000 hours (over two months).
+The Figure 7 and 8 present the results of a sensitivity analysis performed
+on the fault tree model using the percentage difference method. The analysis
+aimed to identify the impact of varying the k factor of the KooN gates on
+the availability and reliability of the system. The results demonstrate that
+increasing the value of k, or the number of redundant elements, results in a
+higher availability and reliability for the system. The study also highlighted
+the importance of considering the time frame when defining Service Level
+--- PAGE 25 ---
+TitleSuppressedDuetoExcessiveLength 25
+1.00
+0.75
+0.50
+0.25
+0.00
+0 500 1000 1500 2000
+Time
+ytilibaileR
+Configuration
+C03 − N oo N
+C02 − N/2 oo N
+C01 − 1 oo N
+Fig. 8: Scenario One - Variation of KooN observing reliability.
+Agreements (SLAs) for reliability. As the results can vary greatly depending
+on the time analyzed, it is important to carefully consider the consequences
+of partial unavailability when defining SLAs with high k values. Additionally,
+it is also important to take into account the maintenance of the system, as
+high k values may not trigger corrective actions for individual failures and may
+negatively affect the system’s performance.
+7.2 Scenario Two - Changing the Quantity of Available Resources
+The Vehicle Ad-hoc Network (VANET) was identified as the most significant
+macro-component in the sensitivity analysis. In this case study, we focus on
+the VANET component by altering the respective KooN gate. This scenario
+involves variations in both the value of K and the value of N. It is important to
+notethatwhenKisequaltoN,thereisonlyfailureifallelementsfail,referred
+to as the ”maximized failure condition.” Additionally, it is worth noting that
+N represents the number of available elements. In this scenario, we aim to
+maintain the maximized failure condition by changing the number of available
+devices (N) as outlined in Table 5. We simulated the increase in available Road
+Side Units (RSUs) with three possible configurations.
+As shown in Figure 9, the system’s availability as a whole for the variation
+describedaboveisdepicted.Incomparisontothepreviousscenario,theimpact
+on availability is relatively small as the configuration changes. With two
+--- PAGE 26 ---
+26 FranciscoAirtonSilvaetal.
+Table 5: Configurations considering distinct K and N values for VANET com-
+ponent.
+Configuration
+C1 C2 C3
+KooN of RSU 2outof2 5outof5 10outof10
+available RSUs, the availability is recorded as A = 99.8625885%. The C2 and
+C3 settings have identical values: A=99.8641736%. There is, therefore, very
+little difference in changing the settings for availability. However, the difference
+represents an hour of downtime. Downtime is calculated using the equation D
+=(1-A)×8760,whereAdenotesavailabilityand8760representsthenumber
+of hours in a year. Although small, this one hour of downtime can potentially
+result in traffic accidents.
+0.99865
+0.99864
+0.99863
+0.99862
+0.99861
+0.99860
+C01 − 2 oo 2 C02 − 5 oo 5 C03 − 10 oo 10
+Configurations
+ytilibaliavA
+etatS−ydaetS
+Fig. 9: Availability changing K and N of RSU.
+Figure 10 presents the results of the reliability analysis for the second case
+study,consideringamaximumtimeof2000hours.Unlikeavailability,thethree
+configurations exhibit differences in terms of reliability. Reliability is directly
+proportional to the number of RSUs. Therefore, overall, the C3 configuration
+has higher reliability than the C2 configuration, which in turn has higher
+reliability than the C1 configuration. Starting from time zero, the C2 and C3
+configurations are quite similar. However, from point 500h onwards, the lines
+--- PAGE 27 ---
+TitleSuppressedDuetoExcessiveLength 27
+begin to diverge. At the point of greatest distance (approximately 750h), the
+C1 configuration has a reliability of 12%, the C2 configuration has a reliability
+of 25%, and the C3 configuration has a reliability of 37%. The C1 and C3
+configurations exhibit a significant difference for half of the analyzed time. The
+lines converge only at point 2000h. Therefore, arbitrarily adding RSUs can be
+an effective strategy for improving reliability, but it may not have a significant
+impact on availability.
+1.00
+0.75
+0.50
+0.25
+0.00
+0 500 1000 1500 2000
+Time
+ytilibaileR
+Configuration
+C1 − 2 oo 2
+C2 − 5 oo 5
+C3 − 10 oo 10
+Fig. 10: Availability changing K and N of RSU.
+7.3 Scenario Three - Changes Guided by Sensitivity Analysis
+The design of smart city systems necessitates achieving minimum acceptable
+levels of Mean Time to Failure (MTTF). Attaining specific MTTF values
+in multi-component systems can be challenging. This scenario presents a
+methodology based on the successive use of sensitivity analysis to identify
+which components require modification to have the greatest impact on the
+system. The nature of the change to be applied depends on the characteristics
+of each component. Possible change options include the implementation of
+redundancy directly to the component, incorporating redundant elements into
+the infrastructure, or replacing an existing component with a more reliable one.
+Figure 11 illustrates the actions taken to achieve a system MTTF of 500 hours.
+--- PAGE 28 ---
+28 FranciscoAirtonSilvaetal.
+Configuration 1 - Sensitivity Configuration 2 -
+Base Model Analiysis Add Hotstandby RSU
+Configuration 3 -
+Sensitivity Sensitivity
+Add Redundant
+Analiysis Analiysis
+Container
+Configuration 4 - Configuration 5 -
+Sensitivity
+Change sensor Add Redundant
+Analiysis
+MTTF Container
+Fig. 11: Actions performed to achieve the minimum MTTF.
+Initially, the MTTF of the base system was calculated as 80.72 hours. The
+base model was then subjected to sensitivity analysis based on the general
+system MTTF metric result. The outcome of this analysis can be observed
+in column Configuration 1 of Table 6, where it is evident that the Road Side
+Unit (RSU) is the most critical component. To improve this component, an
+action was taken to add an RSU in hot-standby mode, meaning that each RSU
+receives a redundant RSU as a secondary processing option.
+A Continuous-Time Markov Chain (CTMC) model was developed to deter-
+mine the MTTF of the RSU in hot-standby mode. Figure 12 illustrates the
+CTMC model for the RSU. This model comprises four states (UU, UD, DU,
+andDD)andutilizesafailurerateofλforthefailureofanRSUandarecovery
+rate of µ for the recovery of an RSU. The failure rate of an RSU, represented
+by λ, has a value of 1/500.00, and the repair rate of an RSU, represented by µ,
+has a value of 1/2.00, as per the parameters outlined in Table 2. The UU state
+represents the scenario where two RSUs from a single point are functioning
+correctly and can only fail at the λ rate. The UD and DU states represent the
+scenarioswhenoneRSUhasfailed,buttheotherremainsoperational,inwhich
+--- PAGE 29 ---
+TitleSuppressedDuetoExcessiveLength 29
+Table 6: MTTF sensitivity analysis with highest indexes colored in blue.
+Parameter Configuration1 Configuration2 Configuration3 Configuration4
+rsuMTTF 0.12953794 8.52E-05 2.06E-04 3.18E-04
+ctMTTF 0.040002993 0.118845515 0.060952061 0.102774879
+sensorMTTF 0.009643628 0.036647992 0.071397819 0.002071902
+osMTTF 0.007715903 0.016740269 0.026970735 0.033861797
+dckMTTF 0.005132598 0.011189549 0.018099929 0.022789887
+cloudMTTF 0.001510418 0.003443205 0.005489943 0.007096034
+powergridMTTF 0.001510096 0.003439918 0.005482019 0.007082858
+hardwareMTTF 0.001472536 0.003205538 0.005185181 0.006527514
+cameraMTTF 0.001334406 0.006006158 0.012952436 0.019616187
+networkMTTF 1.59E-04 3.63E-04 5.79E-04 7.49E-04
+celltowerMTTF 8.04E-05 1.84E-04 2.94E-04 3.82E-04
+switchMTTF 1.74E-05 4.03E-05 6.52E-05 8.22E-05
+routerMTTF 4.96E-07 2.69E-06 6.59E-06 1.03E-05
+case, as the system is still operational, it can recover at the µ rate. The DD
+state represents the scenario where both RSUs have failed, and the absorbing
+state is used to determine the MTTF of this Hot-standby RSU configuration.
+The MTTF value for the RSU configuration in this scenario is 84166.67
+hours, which is significantly higher than using a single RSU at each point,
+which is 500 hours. Incorporating this MTTF value into the system raised the
+overall MTTF to 178.93 hours, which is significantly higher than the previous
+value but still below the target stipulated in this use case. The Configuration
+2 column of Table 6 presents the results of the new sensitivity analysis of
+the last configuration, and it was identified that the container is the most
+critical element. To address this, in addition to using the redundant RSU, it
+was decided to add new containers, as this is an action that can be carried out
+with relative ease and low cost. The Edge server received 14 new containers
+in a KooN configuration. This change increased the MTTF to 298.77 hours,
+but more changes were still needed to reach the desired goal. The sensitivity
+analysis of the system with additional redundant containers, as outlined in
+Configuration 3 of Table 6, identified that the sensors are the most critical
+elements.
+UD
+λ λ
+μ
+UU DD
+μ
+λ λ
+DU
+Fig. 12: Hot-standby at the RSU.
+--- PAGE 30 ---
+30 FranciscoAirtonSilvaetal.
+The availability of sensors was improved by increasing its MTTF by 10%.
+The outcome of this change resulted in an MTTF of 393.77 hours, which is still
+insufficient to meet the minimum required value. The subsequent sensitivity
+analysis of the entire system with this configuration can be found in Table
+6 - Configuration 4. This result demonstrates that the increase in redundant
+containers was not sufficient to stop it from being a significant factor in the
+system’s MTTF. Therefore, it was determined that the containers required
+a further increase in redundant components. Various quantities of containers
+were tested, and it was observed that the change from 14 to 21 redundant
+containers resulted in an MTTF of 505.29 hours, which exceeds the desired
+value for the system.
+Figure 13 illustrates the MTTF for each different configuration. Five con-
+figurations were performed, resulting in an increase of the system’s MTTF
+from 80.72 hours to 505.29 hours. As anticipated, the changes also impacted
+the system’s reliability, which can be observed in the reliability graph shown
+in Figure 14. The impact on reliability can be observed by examining the
+impact of modifying the components with the highest sensitivity index in each
+configuration on reliability. For example, the system reliability at 400 hours in
+Configuration 1 is only 02%, while in Configuration 2, the reliability is 6.52%.
+On the other hand, Configuration 3 increases the reliability to 27.93%. In
+Configurations 4 and 5, the reliabilities are 45.09% and 53.37%, respectively.
+Thiscasestudyillustratestheusefulnessofthemodelcombinedwiththeuseof
+sequential sensitivity analyses to increase the MTTF and reliability of systems
+with multiple components.
+500
+450
+400
+350
+300
+250
+200
+150
+100
+50
+0
+Configuration 1 Configuration 2 Configuration 3 Configuration 4 Configuration 5
+Configuration
+FTTM
+Fig. 13: System MTTF.
+--- PAGE 31 ---
+TitleSuppressedDuetoExcessiveLength 31
+1.00
+0.75
+0.50
+0.25
+0.00
+0 200 400 600 800 1000 1200 1400 1600 1800 2000
+Time
+ytilibaileR
+Configuration
+Configuration 1
+Configuration 2
+Configuration 3
+Configuration 4
+Configuration 5
+Fig. 14: System MTTF.
+7.4 Discussions and Insights
+Complexity of System Architecture In this paper, we proposed a fault tree
+model with a Markov chain for an architecture of a smart city to help system
+administrators plan complex computing architectures. The model presented in
+Figure3isahigh-levelrepresentationofthesystemandisintendedtoprovidean
+overviewofthedifferentcomponentsandtheirinteractions.Itisnotintendedto
+replaceexistingmethodologiesintheliteraturebutrathertoprovideadifferent
+perspective on evaluating the dependability of smart city systems. Our goal in
+this paper was to provide a broad and adaptable model to represent a smart
+city with three macro-contexts, including smart building, VANET, and smart
+surveillance. It is acknowledged that the model may appear over-simplistic
+and may not consider certain aspects of communications redundancy, such as
+multiple routes to reach the sink node/server. However, it is important to note
+that the proposed model is not meant to be a detailed and specific model of
+a single component or system, but rather a high-level representation of the
+overall smart city architecture. The proposed model uses hierarchical modeling,
+sequential sensitivity analysis, and KooN gates. The sequential sensitivity
+analysis method allows for identifying the most important components of the
+system in terms of their impact on dependability metrics, which can be useful
+in making decisions regarding system design and configuration. The modeling
+approach used in this paper is static and manual, which may be considered a
+limitation. However, it is believed that this approach is suitable for the scope
+of this work, which focuses on providing a high-level overview of the system
+and its components.
+--- PAGE 32 ---
+32 FranciscoAirtonSilvaetal.
+Detailed Level of Quantification The results presented in the paper are based
+on a set of assumptions and simplifications made to the system architecture,
+such as the power grid and cloud infrastructure, in order to make the model
+more manageable and computationally feasible. It is acknowledged that these
+simplifications may have an impact on the results. In addition, an exponential
+distributionwasusedtomodelthecomponents’failurerates,whichisacommon
+choice in dependability analysis. However, it is acknowledged that different
+types of distributions, such as Weibull or lognormal, may be more appropriate
+for certain types of components. Further research will investigate the impact of
+using different distribution types on the results and to provide a more realistic
+baseline scenario. Our proposal advances the state-of-the-art by evaluating the
+dependability of a smart city architecture from a broad perspective, and by
+combining the use of fault tree models and Markov chains, with a hierarchical
+modeling strategy and the use of KooN gates, as well as a new method called
+sequential sensitivity analysis. The proposal presents a novel approach for
+assessing the availability and reliability of a smart city system by combining
+the use of fault tree models and Markov chains, with a hierarchical modeling
+strategy and the use of KooN gates. Furthermore, the sequential sensitivity
+analysis method allows for identifying the most important components of the
+systemintermsoftheirimpactondependabilitymetrics.Thisisthefirstpaper
+that addresses this strategy.
+In this study, a Hierarchical Fault Tree (HFT) analysis was utilized to
+modelthedependabilityofasmartcitysystem.TheHFTapproachmodelsthe
+systemasatree-likestructure,withthetop-levelrepresentingtheoverallsystem
+failure and lower levels representing the failures of individual components.
+Fault Tree Analysis (FTA) is a method for identifying and analyzing the
+combinationsofbasiceventsthatcanleadtosystem failure.The mathematical
+representation of a fault tree is a Boolean function, and the probability of the
+topeventcanbecalculatedusingtheprobabilityofbasiceventsandthelogical
+operators connecting them. Additionally, this study utilized a new method
+calledsequentialsensitivityanalysis(SSA)tooptimizethemetricsevaluatedby
+the proposed models by identifying the system’s most important components.
+Our proposed model is unique in its approach by combining the use of fault
+tree models and Markov chains, a hierarchical modeling strategy, and the use
+of KooN gates. In future work, we plan to investigate the impact of different
+distribution types on the results, provide a more realistic baseline scenario,
+conduct a performance analysis, and include additional components such as
+onboard units of vehicles in VANETs to further improve the realism of our
+model.
+8 Conclusion
+In this paper, we proposed a novel approach for assessing the availability
+and reliability of a smart city system, utilizing a combination of a fault tree
+model and a Markov chain. By investigating three inter-correlated macro-
+--- PAGE 33 ---
+TitleSuppressedDuetoExcessiveLength 33
+architectures, including smart building, VANET, and smart surveillance, we
+were able to identify key factors that influence the total dependability of the
+system. By applying the KooN paradigm and varying the failure requirements
+of all components, we were able to conduct a sensitivity analysis to identify
+the most impactful component of the entire system. Our results indicated that
+the Road Side Unit (RSU) of the VANET macro-component had the greatest
+impact on system dependability. By varying the number of available RSUs, we
+were able to demonstrate that even small changes in configuration could result
+inasignificantreductionindowntime.Thisisparticularlyimportantinthecase
+of vehicle traffic control, where even one hour of downtime can be catastrophic.
+Furthermore, by adopting the sequential sensitivity analysis, we were able to
+significantly improve the system’s Mean Time to Failure (MTTF) from 80.72
+hours to 505.29 hours. The case studies presented in this paper provide a
+practicalguideforsystemadministratorstoapplyourmodelandassessvarious
+configurations for a smart city architecture. Future work includes conducting
+a performance analysis to evaluate the impact of component availability on
+response time and throughput of the system. Additionally, other components
+such as onboard units of vehicles in VANETs can be considered to further
+improve the realism of the model.
+9 Declarations
+Ethical Approval Not applicable
+Francisco Airton Silva (F.A.S.), Iure Fe (I.F.) (corresponding author)
+are with Federal University of Piaui (UFPI), Picos, Piaui, Brazil E-mail:
+faps,iure.fe@ufpi.edu.br Francisco Silva (F.S.) is with Federal University of
+Maranhao - Brazil E-mail: fssilva@lsdi.ufma.br Tuan Anh Nguyen (T.A.N.) is
+with Konkuk University - South Korea E-mail: anhnt2407@konkuk.ac.kr
+Competing interests The authors have no relevant financial or non-financial
+interests to disclose.
+Authors’ contributions F.A.S. has managed the process as research leader.
+F.A.S. and I.F. executed the research and wrote the paper. F.S. and T.A.N.
+reviewed the manuscript.
+Funding This research was partially supported by Basic Science Research
+Program through the National Research Foundation of Korea (NRF) funded
+by the Ministry of Education (No. 2020R1A6A1A03046811).; This research
+was supported by the Basic Science Research Program through the National
+Research Foundation of Korea (NRF) funded by the Ministry of Education
+(2021R1A2C2094943)
+Availability of data and materials Data sharing not applicable.
+--- PAGE 34 ---
+34 FranciscoAirtonSilvaetal.
+References
+1. A. Abate, C. E. Budde, N. Cauchi, K. A. Hoque, and M. Stoelinga. As-
+sessment of maintenance policies for smart buildings: application of formal
+methods to fault maintenance trees. In European conference of the prog-
+nostics and health management society, 2018.
+2. H. Ahvenniemi, A. Huovila, I. Pinto-Seppa¨, and M. Airaksinen. What are
+the differences between sustainable and smart cities? Cities, 60:234–245,
+2017.
+3. E. Andrade and B. Nogueira. Dependability evaluation of a disaster
+recovery solution for iot infrastructures. The Journal of Supercomputing,
+76(3):1828–1849, 2020.
+4. E. Araujo, J. Dantas, R. Matos, P. Pereira, and P. Maciel. Dependability
+evaluation of an iot system: A hierarchical modelling approach. In 2019
+IEEE International Conference on Systems, Man and Cybernetics (SMC),
+pages 2121–2126. IEEE, 2019.
+5. G. Arau´jo, L. Rodrigues, K. Oliveira, I. F´e, R. Khan, and F. A. Silva.
+Vehicular cloud computing networks: availability modelling and sensitivity
+analysis. Int. J. Sens. Networks, 36(3):125–138, 2021.
+6. S. Balamurugan, A. Ayyasamy, and K. S. Joseph. Enhanced petri nets
+for traceability of food management using internet of things. Peer-to-Peer
+Networking and Applications, 14(1):30–43, 2021.
+7. R. E. Barlow and F. Proschan. Mathematical theory of reliability. SIAM,
+1996.
+8. C. A. Boano, K. Ro¨mer, R. Bloem, K. Witrisal, M. Baunach, and M. Horn.
+Dependability for the internet of things—from dependable networking in
+harshenvironmentstoaholisticviewondependability. e&iElektrotechnik
+und Informationstechnik, 133(7):304–309, 2016.
+9. G. Bolch, S. Greiner, H. De Meer, and K. S. Trivedi. Queueing networks
+and Markov chains: modeling and performance evaluation with computer
+science applications. John Wiley & Sons, 2006.
+10. O.BoreikoandV.Teslyuk. Modelofdatacollectioncontrollerofautomated
+processing systems for passenger traffic public transport ”smart” city
+based on petri nets. In 2017 2nd International Conference on Advanced
+Information and Communication Technologies (AICT),pages62–65.IEEE,
+2017.
+11. F.Campolongo, S.Tarantola,andA. Saltelli. Tacklingquantitativelylarge
+dimensionalityproblems. Computer Physics Communication,117(1):75–85,
+1999.
+12. F.Campolongo,S.Tarantola,A.Saltelli,andM.Ratto. Sensitivityanalysis
+in practice: a guide to assessing scientific models. John Wiley and Sons,
+2004.
+13. V.Cardellini,E.Casalicchio,K.R.L.J.C.Branco,J.C.Estrella,andF.J.
+Monaco. Performance and dependability in service computing: Concepts,
+techniques and. 2012.
+--- PAGE 35 ---
+TitleSuppressedDuetoExcessiveLength 35
+14. P.CardulloandR.Kitchin. Beinga‘citizen’inthesmartcity:Upanddown
+the scaffold of smart citizen participation in dublin, ireland. GeoJournal,
+84(1):1–13, 2019.
+15. E. Cesario, F. Cicirelli, and C. Mastroianni. Distributed computation of
+mobility patterns in a smart city environment. In European Conference on
+Parallel Processing, pages 559–572. Springer, 2018.
+16. R. de Souza Matos Ju´nior. Identification of Availability and Performance
+Bottlenecks in Cloud Computing Systems: An Approach Based On Hier-
+archical Models and Sensitivity Analysis. PhD thesis, Federal University
+of Pernambuco, Center for Informatics, Graduate in Computer Science,
+Recife, 2016.
+17. J. Desdemoustier, N. Crutzen, and R. Giffinger. Municipalities’ under-
+standing of the smart city concept: An exploratory analysis in belgium.
+Technological Forecasting and Social Change, 142:129–141, 2019.
+18. Earth Org. Top 7 Smart Cities in the World. https://tinyurl.com/
+2s3wkkcv, 2022. Accessed: 2022-09-04.
+19. I. Gonc¸alves, L. Rodrigues, F. A. Silva, T. A. Nguyen, D. Min, and J.-W.
+Lee. Surveillance system in smart cities: a dependability evaluation based
+on stochastic models. Electronics, 10(8):876, 2021.
+20. B. R. Haverkort. Markovian models for performance and dependability
+evaluation. In School organized by the European Educational Forum, pages
+38–83. Springer, 2000.
+21. B. R. Haverkort and A. M. H. Meeuwissen. Sensitivity and uncertainty
+analysis of markov-reward models. IEEE Transactions on Reliability,
+44(1):147–154, 1995.
+22. F.HoffmanandR.Gardner. Evaluation of Uncertainties in Environmental
+Radiological Assessment Models. Radiological Assessments, 1983.
+23. S. Kabir. An overview of fault tree analysis and its application in model
+baseddependabilityanalysis. ExpertSystemswithApplications,77:114–135,
+2017.
+24. V. Kharchenko, Y. Ponochovnyi, A.-S. Abdulmunem, and A. Boyarchuk.
+Security and availability models for smart building automation systems.
+International Journal of Computing, 16(4):194–202, 2017.
+25. L. Kleinrock. Queueing systems, vol. 1: Theory, 1975, 1975.
+26. A.Kolmogoroff. U¨berdieanalytischenmethodeninderwahrscheinlichkeit-
+srechnung. Mathematische Annalen, 104:415–458, 1931.
+27. I. Kroener. ’caught on camera’: The media representation of video surveil-
+lance in relation to the 2005 london underground bombings. Surveillance
+& Society, 11(1/2):121–133, 2013.
+28. P.KulkarniandT.Farnham.Smartcitywirelessconnectivityconsiderations
+andcostanalysis:Lessonslearntfromsmartwatercasestudies. Ieee Access,
+4:660–672, 2016.
+29. X.-X. Li, Y.-W. Zhu, and J. Wang. Efficient encrypted data comparison
+through a hybrid method. Journal of Information Science & Engineering,
+33(4), 2017.
+--- PAGE 36 ---
+36 FranciscoAirtonSilvaetal.
+30. S. Lin, L. Kong, L. He, K. Guan, B. Ai, Z. Zhong, and C. Briso-Rodr´ıguez.
+Finite-statemarkovmodelingforhigh-speedrailwayfadingchannels. IEEE
+Antennas and Wireless Propagation Letters, 14:954–957, 2015.
+31. P. Liu, L. Yang, Z. Gao, S. Li, and Y. Gao. Fault tree analysis combined
+with quantitative analysis for high-speed railway accidents. Safety science,
+79:344–357, 2015.
+32. P. R. Maciel, K. S. Trivedi, R. Matias, and D. S. Kim. Dependability
+modeling. InPerformanceanddependabilityinservicecomputing:concepts,
+techniques and research directions, pages 53–97. IGI Global, 2012.
+33. J. I. McCool. Probability and statistics with reliability, queuing and
+computer science applications. Technometrics, 45(1):107, 2003.
+34. C. Melo, J. Dantas, A. Oliveira, D. Oliveira, I. F´e, J. Araujo, R. Matos,
+and P. Maciel. Availability models for hyper-converged cloud computing
+infrastructures. In 2018 Annual IEEE International Systems Conference
+(SysCon), pages 1–7. IEEE, 2018.
+35. D. A. Menasce, V. A. Almeida, L. W. Dowdy, and L. Dowdy. Perfor-
+mance by design: computer capacity planning by example. Prentice Hall
+Professional, 2004.
+36. T.A.Nguyen,I.Fe,C.Brito,V.K.Kaliappan,E.Choi,D.Min,J.W.Lee,
+and F. A. Silva. Performability evaluation of load balancing and fail-over
+strategies for medical information systems with edge/fog computing using
+stochastic reward nets. Sensors, 21(18):6253, 2021.
+37. E. Ojie and E. Pereira. Exploring dependability issues in iot applications.
+InProceedingsoftheSecondInternationalConferenceonInternetofthings,
+Data and Cloud Computing, pages 1–5, 2017.
+38. F. Pianosi, K. Beven, J. Freer, J. Hall, J. Rougier, D. Stephenson, and
+T. Wagener. Sensitivity analysis of environmental models: A systematic
+review with practical workflow. Environmental Modelling and Software,
+79:214–232, 2016.
+39. L.Qi,M.Zhou,andZ.Ding. Real-timetrafficcamera-lightcontrolsystems
+for intersections subject to accidents: A petri net approach. In 2013
+IEEE International Conference on Systems, Man, and Cybernetics, pages
+1069–1074. IEEE, 2013.
+40. L.Rodrigues,I.Gonc¸alves,I.F´e,P.T.Endo,andF.A.Silva. Performance
+and availability evaluation of an smart hospital architecture. Computing,
+103(10):2401–2435, 2021.
+41. L. Rodrigues, F. Neto, G. Gon¸calves, A. Soares, and F. A. Silva. Perfor-
+manceevaluationofsmartcooperativetrafficlightsinvanets. International
+Journal of Computational Science and Engineering, 24(3):276–289, 2021.
+42. B. Santos, A. Soares, T.-A. Nguyen, D.-K. Min, J.-W. Lee, and F.-A. Silva.
+Iot sensor networks in smart buildings: A performance assessment using
+queuing models. Sensors, 21(16):5660, 2021.
+43. G. L. Santos, P. Takako Endo, M. F. Ferreira da Silva Lisboa Tigre,
+L. G. Ferreira da Silva, D. Sadok, J. Kelner, and T. Lynn. Analyzing the
+availability and performance of an e-health system integrated with edge,
+fog and cloud infrastructures. Journal of Cloud Computing, 7(1):1–22,
+--- PAGE 37 ---
+TitleSuppressedDuetoExcessiveLength 37
+2018.
+44. B. Silva, R. Matos, G. Callou, J. Figueiredo, D. Oliveira, J. Ferreira,
+J. Dantas, A. Lobo, V. Alves, and P. Maciel. Mercury: An integrated envi-
+ronment for performance and dependability evaluation of general systems.
+In Proceedings of industrial track at 45th dependable systems and networks
+conference, DSN, 2015.
+45. F. A. Silva, C. Brito, G. Arau´jo, I. F´e, M. Tyan, J.-W. Lee, T. A. Nguyen,
+andP.R.M.Maciel. Model-drivenimpactquantificationofenergyresource
+redundancy and server rejuvenation on the dependability of medical sensor
+networks in smart hospitals. Sensors, 22(4):1595, 2022.
+46. F. A. Silva, T. A. Nguyen, I. F´e, C. Brito, D. Min, and J.-W. Lee. Perfor-
+manceevaluationofaninternetofhealthcarethingsformedicalmonitoring
+using m/m/c/k queuing models. IEEE Access, 9:55271–55283, 2021.
+47. I. Silva, R. Leandro, D. Macedo, and L. A. Guedes. A dependability evalu-
+ation tool for the internet of things. Computers & Electrical Engineering,
+39(7):2005–2018, 2013.
+48. T. Singh, A. Solanki, S. K. Sharma, A. Nayyar, and A. Paul. A decade
+review on smart cities: Paradigms, challenges and opportunities. IEEE
+Access, 2022.
+49. C.Victor,T.A.Nguyen,L.A.Silva,E.Andrade,G.L.Santos,D.Min,J.W.
+Lee, and F. A. Silva. Performability assessment and sensitivity analysis
+of a home automation system. In 2021 IEEE/ACM 25th International
+SymposiumonDistributedSimulationandRealTimeApplications(DS-RT),
+pages 1–4. IEEE, 2021.
+50. Worldometers. Worldometers. World Population Forecast. https://www.
+worldometers.info, 2022. Accessed: 2022-09-04.

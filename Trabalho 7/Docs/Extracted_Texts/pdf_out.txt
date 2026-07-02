@@ -1,0 +1,34 @@
+--- PAGE 1 ---
+DISCIPLINA DE TÓPICOS EM COMPUTAÇÃO – MODELAGEM ANALÍTICA
+PROGRAMA DE PÓS-GRADUAÇÃO EM CIÊNCIA DA COMPUTAÇÃO
+PROF. FRANCISCO AIRTON
+ÁRVORE DE FALHA
+● Escrever um artigo de no mínimo 8 páginas padrão IEEE coluna dupla.
+● Trabalho individual
+● Artigo de inspiração: Quantifying the Impact of Resource Redundancy on Smart City System
+Dependability: A Model-Driven Approach
+● Artigo de espelhamento do contexto: Model-driven Impact Quantification of Energy Resource
+Redundancy and Server Rejuvenation on Dependability of Medical Sensor Networks in Smart
+Hospitals
+○ O modelo a ser espelhado é o da Figura 6
+○ Pode abstrair regras das condições de guarda
+● Deve-se fazer um artigo semelhante ao artigo de inspiração baseado em árvore de falha.
+● O contexo e os parâmetros virão do artigo de espelhamento.
+● Não copiar o desenho da arquitetura, faça o seu
+● Partes do artigo:
+○ Título e resumo
+○ Introdução
+○ Arquitetura
+○ Modelo
+○ Estudos de Caso
+○ Conclusão
+Entregas:
+ENTREGA 01 ENTREGA 02
+Título e resumo
+Introdução
+Arquitetura
+Modelo Modelo
+Estudos de Caso Estudos de Caso
+Conclusão
+--- PAGE 2 ---
+[sem texto]

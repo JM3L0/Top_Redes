@@ -1,0 +1,4 @@
+Configuration,Availability,Downtime
+Config. A (Grid Only),0.6116916123213372,3401.5814760650865
+Config. B (Grid + Generator),0.9290086192808525,621.8844950997317
+Config. C (Grid + Gen + Solar),0.9384532016172403,539.1499538329747

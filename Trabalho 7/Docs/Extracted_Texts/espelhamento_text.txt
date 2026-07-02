@@ -1,0 +1,2069 @@
+--- PAGE 1 ---
+Article
+Model-driven Impact Quantification of Energy Resource
+Redundancy and Server Rejuvenation on Dependability of
+Medical Sensor Networks in Smart Hospitals
+FranciscoAirtonSilva1 ,CarlosBrito1 ,GabrielAraújo1,IureFé1 ,MaximTyan2,JaeWooLee3,TuanAnh
+Nguyen2 ,andPauloRomeroMartinsMaciel4
+1 LaboratoryofAppliedResearchtoDistributedSystems(PASID),UniversidadeFederaldoPiauí(UFPI),
+CampusSenadorHelvídioNunesdeBarros,Junco,Picos,Piauí64607-670,Brazil;faps@ufpi.edu.br
+(F.A.S.);carlosvictor@ufpi.edu.br(C.B.);gabrielholanda@ufpi.edu.br(G.A.);iuresf@gmail.com(I.F.)
+2 KonkukAerospaceDesign-AirworthinessResearchInstitute(KADA),KonkukUniversity,Seoul05029,
+Korea;maxim.b.tyan@gmail.com(M.T.),anhnt2407@konkuk.ac.kr(T.A.N.)
+3 DepartmentofAerospaceInformationEngineering,KonkukUniversity,Seoul05029,SouthKorea;
+jwlee@konkuk.ac.kr(J.W.L.)
+4 CentrodeInformática,UniversidadeFederaldePernambuco,Recife50740-560,Brazil;prmm@cin.ufpe.br
+(P.M.)
+* Correspondence:MaximTyan (maxim.b.tyan@gmail.com)andTuanAnh
+Nguyen(anhnt2407@konkuk.ac.kr)
+1 Abstract: The Coronavirus (COVID-19) pandemic across countries all over the world urges
+2 governmentstorevolutionizethetraditionalmedicalhospitals/centerstoprovidesustainableand
+3 trustworthymedicalservicestopatientsunderthepressureofhugeoverloadonthecomputing
+4 systemsofwirelesssensornetworks(WSN)formedicalmonitoringaswellastreatmentservicesof
+5 medicalprofessionals.Uncertainmalfunctionsinanypartofthemedicalcomputinginfrastructure,
+6 fromitspowersysteminaremoteareatothelocalcomputingsystemsatasmarthospital,can
+7 causecriticalfailuresinmedicalmonitoringservices,whichevenleadtoafatallossofhumanlife
+Citation: Silva,F.A.;Brito,C.; 8 intheworstcase.Therefore,earlydesigninthemedicalcomputinginfrastructure’spowerand
+Holanda,G.;Tyan,M.,Lee,J.W.; 9 computingsystemsneedstocarefullyconsiderthedependabilitycharacteristics,includingthe
+Nguyen,T.A.;Maciel,P.;Fé,I 10 reliabilityandavailabilityoftheWSNinsmarthospitalsundertheuncertainoutageofanypartof
+Model-drivenImpactQuantification 11 theenergyresourcesorfailuresofcomputingservers,especiallyduetosoftwareaging.Inthat
+ofEnergyResourceRedundancy 12 regard,weproposeinthispaperreliabilityandavailabilitymodelsadoptingstochasticPetrinet
+andServerRejuvenationon 13 (SPN)toquantifytheimpactofenergyresourcesandserverrejuvenationonthedependability
+DependabilityofMedicalSensor
+14 ofmedicalsensornetworks. Threedifferentavailabilitymodels(A,BandC)aredevelopedin
+NetworksinSmartHospitals.
+15 accordancewithvariousoperationalconfigurationsofasmarthospital’scomputinginfrastructure
+Sensors,1, 0. https://doi.org/
+16 toassimilatetheimpactofenergyresourceredundancyandserverrejuvenationtechniquesfor
+17 highavailability.Moreover,acomprehensivesensitivityanalysisisperformedtoinvestigatethe
+AcademicEditor:
+Received: 18 componentsthatimposethegreatestimpactonthesystemavailability.Theanalysisresultsindicate
+Accepted:D 19 differentimpactsoftheconsideredconfigurationsontheWSN’soperationalavailabilityinsmart
+Published: 20 hospitalsparticularly,99.40%,99.53%,and99.64%fortheconfigurationsA,BandC,respectively.
+21 Thisresulthighlightsthedifferenceof21hoursperyearindowntimewhencomparingtheworst
+Publisher’s Note: MDPI staysneu- 22 withthebestcase.Thisstudycanhelpleveragetheearlydesignofsmarthospitalsconsideringits
+tral with regard to jurisdictional 23 wirelessmedicalsensornetworks’dependabilityqualityofservicetocopewiththeoverloadingof
+claimsinpublishedmapsandinsti- 24 medicalservicesinworld-wideviruspandemics.
+tutionalaffiliations.
+25 Keywords:Internetofthings(IoT);smarthospital;energyresources;availability,stochasticPetri
+26 net
+Copyright: © 2026 by the authors.
+Submitted to Sensors for possible
+open access publication under the
+terms and conditions of the Cre-
+1. Introduction
+27
+ative Commons Attribution (CC
+BY) license (https://creativecom- 28 TheInternetofMedicalThings(IoMT)hasbecomeanimportantcomputingparadigm
+mons.org/licenses/by/4.0/). 29 inrecentyearsduetotheemergenceofnewdiseasesaroundtheworldinwhichwireless
+VersionJune14,2026submittedtoSensors https://www.mdpi.com/journal/sensors
+--- PAGE 2 ---
+VersionJune14,2026submittedtoSensors 2of24
+medicaldevicesandsensorsareintegratedandharmonizedintoacommonnetwork
+30
+insmarthospitals[1]. IoMTisamedicalmonitoringsystemthatprovidescontinuous
+31
+real-timemonitoringandobservationservicestopatientsthroughwearablehealthsen-
+32
+sorsanddeviceswithwirelessbodyareanetwork(WBAN),artificialintelligence(AI),
+33
+andremotemonitoringtechniques[2]. WiththefunctionaladvantagesofIoMT,anearly
+34
+warningsystemequippedwithreal-timedatacollectionandstoragecandoin-depth
+35
+andrapidanalysistocontrolthespreadofinfectiousdiseasesanddecreasetheworkload
+36
+ofhealthcareservices. Wirelesssensordatageneratedbyhardwaredevicessuchascell
+37
+phonesareusuallytransmittedtoacloud/fogcomputingplatformfordecisionmaking.
+38
+ThereforetheoperationalcontinuityoftheIoMT’soverallinfrastructurefromitspower
+39
+supplynetworkinremoteareastotheITsystemsoflocalhospitalsisessentialinthis
+40
+period.
+41
+Smarthospitalinfrastructureshavemanyfunctionsneededtokeepthemrunning
+42
+[3]suchas(i)medicalequipment(wirelesssensors)forremotemonitoringandremote
+43
+diagnosticdiagnostics(ii)networkedmedicalequipment(braceletheartratemonitor
+44
+wireless thermometer, blood glucose meter, etc.) (iii) network device (transmission
+45
+mediaroutersgateways,etc.) (iv)data(relatedtopatientorstaffinformation)and(v)
+46
+buildings and facilities (some sensors are distributed throughout the hospital). The
+47
+proper functioning and integration of these five macro-resources must be rigorously
+48
+ensuredandmaintainedongoing. Computersystemsinhospitalsoftenneedtorunas
+49
+efficientlyaspossiblewithminimallatency. However,localserversalonearenotenough
+50
+tohandlethelargevolumesofdatageneratedduringseverepandemiccases. Therefore,
+51
+usingnotonlyedgeserversbutalsocloudserversisimperative. Suchacomplexand
+52
+distributedinfrastructureinvolvingsensors,actuators,andserverscouldnotbemissing.
+53
+Insomecases, failureofoneofthecomponentscanleadtoacompletefailureofthe
+54
+patientmonitoringsystem. Therefore,itisessentialtocarryoutstudiestoensurethe
+55
+maximumavailabilityofsuchsystems.
+56
+Withoutexception,IoMTiscertainlypronetopartialcrashesandsystemcrashes
+57
+[4]. Inthecontextofapandemic, theabilitytomaintain24/7medicalservicesfrom
+58
+yourIoMTisessentialanddifficultduetothelargenumberofdatatransactionsthat
+59
+can lead to unexpected events, unexpected medical events, and even serious losses
+60
+oflife. ThepossibilityofactualactiveincidentsofIoMTinmedicalcentershasbeen
+61
+demonstratedinreportsinpractice. AtLDSHospitalinSaltLakeCity,Utah,USA,a
+62
+computerizedhospitalinformationsystemcalledHealthAssessmentThroughLogic
+63
+Programming(HELP)handles17,000loginsperday[5,6].AsurveyofElectronicMedical
+64
+Record(EMRD)downtimeinacrowdedurbanemergencydepartmentfromMay2016to
+65
+December2017in[7]foundtherewasatotalofmore58hoursofdowntimewith12episodes
+66
+ofEMRDoccurredduringthestudyperiodwiththeinterval5hourswithunpredictable
+67
+intervals.TheEHRsystemattheNationalInstitutesofHealthClinicalCenter(NIHCC)in
+68
+theUnitedStatesunexpectedlyclosedonMay13,2010,resultinginallpatientssuddenly
+69
+losing access to available clinical information, potentially affecting patient care and
+70
+safety[8]. ThesefactorsrequireIoMTresearcherstounderstandthenatureofavailability
+71
+issuesandtheirsolutionsthroughdetailedmodelingandsystemdesignevaluationeven
+72
+beforethesystemisdeployed.
+73
+Assessingtheavailabilityofhospitalcomputersystemsisimportantbutsometimes
+74
+unfeasibletoperforminrealenvironments. Hospitalcomputersystemsaresensitive
+75
+astheyhandlecriticalpatientdata. Thesesystemsandequipmentusuallyhaveahigh
+76
+monetarycost,makingon-siteexperimentsunfeasible. Twoaspectsthatinitiallydirectly
+77
+impacttheavailabilityofsmarthospitalsaretheelectricityservicequalityprovidedtothe
+78
+hospitalandissuesrelatedtothesoftwaresystemsaging. Ifthehospitaldoesnothave
+79
+electricity,itssystemswillbeoff. Ifsoftwareperformanceisaffectedbycomputational
+80
+aging (memory leakage, for example), it will also cause general availability to drop
+81
+somewhat. Thus,thequestionthatguidesthispaperis,therefore: Whatistheimpactof
+82
+--- PAGE 3 ---
+VersionJune14,2026submittedtoSensors 3of24
+usingdifferentenergysourcesandsoftwarerejuvenationmethodsundertheavailabilityofsmart
+83
+hospitalcomputersystems?
+84
+Thisworkhastwomaincontexts,energyissuesregardingthesmarthospital. The
+85
+relatedworkhasfocusedononeofthetwocontextsinisolation. Oueidaetal. [9]and
+86
+Greco et al. [10] were the only works that focused on IoT. Araujo(b) et al. [11] was
+87
+uniqueinthecontextofsmartbuilding. Allexperimentalworksintheenergycontext
+88
+usedreliabilityoravailabilitymetricswithoutdirectingthemtothehospitalcontext.
+89
+Somesmarthospitalsperformedavailabilityanalysiswithoutobservingenergyissues
+90
+andsoftwareaging. TheworksbyOueidaetal. [9],Grecoetal. [10],Chenetal. [12]and
+91
+Araujo(a)etal. [13]usedmetricsmorefocusedontheperformancearea. Therefore,to
+92
+thebestofourknowledge,ourworkisuniqueinexploringavailabilityandreliabilityin
+93
+thehospitalcontextbylookingatenergyandsoftwareagingissues.
+94
+TheavailabilityanalysisofhospitalsystemssupportedbyIoMTisoftenunfeasible
+95
+inrealenvironments. Formalmathematicalmodelssuchasqueuenetworks,Markov
+96
+chains,Petrinetscanbeadoptedatanearlydesignstageorevaluatecomplexconfigura-
+97
+tionsrequiredtoberepresentedinanoperatingsystem. Thispaperproposesaseries
+98
+ofstochasticPetrinet(SPN)models[14–16]torepresentandevaluateasmarthospital
+99
+architecturelookingatenergyissuesandsoftwareaging. Petrinetisamathematical
+100
+form based on probability theory that allows evaluating any system that undergoes
+101
+some state change. SPN can represent synchronization, sequencing, parallelization,
+102
+concurrency, among other aspects of any distributed system. SPN has already been
+103
+adoptedinpreviousstudiesinthehospitalcontext,however,withoutfocusingonenergy
+104
+issuesandsoftwareaging[17,18]. Therefore,themaincontributionsofthispaperare:
+105
+• Three availability SPN models to evaluate the availability feature of a smart
+106
+hospital system. The models may calculate the availability of the IoMT system.
+107
+Twomodelsaretheextensionsofthefirstone. Thus,thefirstmodelincludesonly
+108
+energy resources with a power grid and a diesel power generator that delivers
+109
+energytothehospital. Thesecondmodelincludesaredundantpointattheenergy
+110
+supply by including a solar system energy resource. The third model explores
+111
+a rejuvenation strategy under some important model components. These three
+112
+modelscanbetherealityofarealsmarthospital,andthisworkcanprovidethese
+113
+modelstoguidesystemdesignerstooptimizetheirinfrastructures,forexample.
+114
+• A SPN model that calculates the IoMT reliability. Reliability is the probability
+115
+thatthesystemhasperformeditsfunctionuptoapredeterminedanduninterrupted
+116
+timelimit. Wehavevariedaspecificparameterrelatedtothecloudagingtimein
+117
+thethirdproposedconfigurationmodel. Thusexperimentshaveshownthatthe
+118
+cloudagingtimeimpactssystemreliability.
+119
+• Asensitivityanalysisofthebasemodel. Theanalysishasshownwhichcompo-
+120
+nentshavethegreatestimpactonIoMTsystemavailability. Thepowergrid,for
+121
+example,wasthemostimpactingcomponentinoneoftheIoMTsystemconfigura-
+122
+tions. Inothercases,theagingaspectsofedgeandcloudimpactedmoreunderthe
+123
+availability.
+124
+The remaining of this paper is organized as follows: Section 2 presents related
+125
+works. Section3presentsanoverviewofthearchitectureofthemodeledsystem. Section
+126
+4 presents the proposed SPN models, their functioning, and their peculiarities. Sec-
+127
+tion5showstheresultsofthesensitivityanalysisoftheavailabilitymodel. Section6
+128
+presentstheresultsforthreecasestudies,whichserveasapracticalguideforasystem
+129
+administrator. Finally,Section7concludesthisworkanddiscussespossiblefuturework.
+130
+131
+2. RelatedWork
+132
+Thissectionpresentssomerelatedworkswithsimilarapproachesorcontextsto
+133
+this work. Oueida et al. [9] proposed a resource preservation net (RPN) framework
+134
+usingPetrinets. Theworkpresentsaframeworkcapableofgeneratingnon-consumable
+135
+--- PAGE 4 ---
+VersionJune14,2026submittedtoSensors 4of24
+resource models that are theoretically described and validated. The work aims to
+136
+measuresomeperformanceindicatorsofanintelligenthospitalsystemwithedgeand
+137
+cloudprocessingcomponents. Amongtheperformancemetricsofthestudy,thereisthe
+138
+patient’slengthofstay(LoS),resourcesusagerate,andaveragewaitingtime. Santoset
+139
+al. [17]proposeanalyticalmodelsofPetrinetsandReliabilityBlockDiagram(RBD)to
+140
+assesstheavailabilityofanintelligenthealthmonitoringsystemthatdependsonedge,
+141
+fog,andcloudinfrastructures. Santosetal. [17]stilluseamulti-objectiveoptimization
+142
+algorithm(NSGA-II)toimprovesystemavailability, takingintoaccountitscost asa
+143
+limitation.
+144
+Grecoetal. [10]proposeatechnologicalandarchitecturalsolutionbasedonOpen
+145
+Sourcebigdatatechnologiestoperformreal-timedataflowanalysisonwearablesensors.
+146
+The architecture proposed by the work comprises four layers: the sensing layer, the
+147
+pre-processinglayer,theclusterprocessinglayer,andthepersistencelayer. Eachlayer’s
+148
+performanceanalysiswasperformedtogaugeeachlayer’smemoryandCPUusage.
+149
+Chen et al. [12] proposed an Edge-Cognitive-Computing-based (ECC-based) smart-
+150
+healthcare system. The system can monitor and analyze the status of patients using
+151
+cognitive computing. Furthermore, the system can allocate resources according to
+152
+the patient’s degree of risk. Experiments have shown that the system improves the
+153
+userexperience,optimizesresources,andincreasespatientsurvivalchancesinsudden
+154
+emergencies.
+155
+Araujo(a) et al. [13] proposes a high-level model capable of characterizing the
+156
+behaviorofamHealthsystem. Theobjectiveoftheworkistoidentifytheprobabilityof
+157
+asystemmessagebeingdeliveredinattime. Thepaperdoesnotanalyzeavailability,
+158
+butsomepartsofthemodelarecharacterizedasanavailabilitymodel. Lisboaetal.[19]
+159
+proposeapatientmonitoringarchitectureusingsensorsandcloudandfogprocessing.
+160
+Theworkalsopresentsasensitivityanalysisthatidentifiesthecomponentsthatmost
+161
+impact system availability. Santos et al. [20] also propose a monitoring architecture
+162
+usingcloudandfog. However,[20]extendstheideaof[19]andaddsamodelthatcan
+163
+calculateperformancemetricsandidentifypossiblebottlenecksinthesystem.
+164
+Rodrigues et al. [18] propose models capable of calculating performance and
+165
+availabilitymetricsinasmarthospitalssystem. Theworkpresentsaperformancemodel
+166
+capable of calculating Mean Response Time, Resource Utilization, and Discard. The
+167
+work also presents an availability model and performs a sensitivity analysis on this
+168
+model. Theresultsshowoptimalsettingsforsystemperformanceandavailability. The
+169
+articleby[18]isoneofthetwoworksthatthisworkextends. ThestudybyAraujo(b)et
+170
+al. [11]proposesanenergyavailabilitymodelforintelligentconstruction. Thepaper
+171
+investigatestheimpactofdifferenttypesofsolarpanelenergysystemsontheavailability
+172
+ofsmartbuildings. Inaddition,theworkalsomakesacostcomparisonfortheadopted
+173
+energysystems.
+174
+Diaz et al. [21] developed a methodological strategy to improve the conditions
+175
+ofautonomousphotovoltaicsystemsthroughreliabilityresearchinthelaboratoryand
+176
+rural areas. Collins et al. [22] propose an RBD model capable of calculating failure
+177
+ratesfordifferentcomponentsoflargephotovoltaicsystems. Theworkresultsshowthe
+178
+relationshipbetweenavailabilityandreliabilityconcerningsystemuptime. Theworkby
+179
+Sayedetal. [23]proposesananalysisoftheavailability,reliability,andmaintainability
+180
+ofaphotovoltaicsystem. RBDcanrepresentmyriadpossibilitiesintermsofcomponent
+181
+relationships or parameters. Finally, Cai et al. [24] proposes a framework for evalu-
+182
+atingthereliabilityofgrid-connectedphotovoltaicsystemswithintermittentfailures
+183
+usingDynamicBayesianNetworks(DBN).Theworkusestheframeworktoassessthe
+184
+availabilityandreliabilityofdifferentphotovoltaicsystems. Table1displaysrelated
+185
+works. Theworkswereclassifiedconsideringsevenaspects: context,metrics,evaluation
+186
+method,considertheuseofenergy,sensitivityanalysis,availability,andreliability.
+187
+Thefirstclassificationcriterionisthework’scontext. Thecontextconcernsthemain
+188
+themeofthework. Thisworkhastwomaincontexts,energyissues,andsmarthospitals.
+189
+--- PAGE 5 ---
+VersionJune14,2026submittedtoSensors 5of24
+skroWdetaleR
+:1elbaT
+-anevujeR
+ytivitisneS
+ehtredisnoC
+noitaulavE
+ytilibaileR
+ytilibaliavA
+scirteM
+txetnoC
+kroW
+noit
+sisylanA
+ygrenEfoesU
+dohteM
+,)SoL(yatSfohtgneLtneitaP
+dna,noitazilitUecruoseR
+erachtlaeHtramS
+oN
+oN
+oN
+oN
+oN
+teNirteP
+]9[
+gnitiaWtneitaPegarevA
+ToIdna
+emiT
+citsahcotS
+erachtlaeHtramS
+oN
+oN
+seY
+oN
+oN
+ytilibaliavA
+]71[
+teNirteP
+ToIdna
+dereyaL
+oN
+oN
+oN
+oN
+oN
+noitazilitUecruoseR
+ToI
+]01[
+ledoM
+oN
+oN
+oN
+oN
+oN
+tseTlacitcarP
+SoQ
+erachtlaeHtramS
+]21[
+citsahcotS
+yrevileDegasseM
+oN
+oN
+seY
+oN
+oN
+erachtlaeHtramS
+]31[
+teNirteP
+ytilibaborP
+citsahcotS
+oN
+oN
+seY
+seY
+oN
+emitnwoDdnaytilibaliavA
+erachtlaeHtramS
+]91[
+teNirteP citsahcotS
+tuphguorhT,ytilibaliavA
+oN
+oN
+seY
+seY
+oN
+erachtlaeHtramS
+]02[
+teNirteP
+emiTecivreSdna
+,emiTesnopseRnaeM
+citsahcotS
+,noitazilitUecruoseR
+oN
+oN
+seY
+seY
+oN
+erachtlaeHtramS
+]81[
+teNirteP
+dnaytilibaliavA,dracsiD
+emitnwoD
+citsahcotS
+ygrenEdnaytilibaliavA
+gnidliuBtramS
+oN
+oN
+seY
+oN
+seY
+]11[
+teNirteP
+tsoC
+ygrenEdna
+lacitamehtaM
+oN
+seY
+oN
+oN
+seY
+ytilibaileR
+ygrenE
+]12[
+ledoM ytilibaileR
+oN
+seY
+seY
+oN
+seY
+kcolB
+ytilibaileRdnaytilibaliavA
+ygrenE
+]22[
+margaiD ytilibaileR
+oN
+seY
+seY
+oN
+seY
+kcolB
+ytilibaileRdnaytilibaliavA
+ygrenE
+]32[
+margaiD
+oN
+seY
+seY
+oN
+seY
+krowemarF
+ytilibaileRdnaytilibaliavA
+ygrenE
+]42[
+citsahcotS
+dnaygrenE
+seY
+seY
+seY
+seY
+seY
+ytilibaileRdnaytilibaliavA
+kroWsihT
+teNirteP
+erachtlaeHtramS
+--- PAGE 6 ---
+VersionJune14,2026submittedtoSensors 6of24
+Theotherworksfocusedononeofthetwocontextsinisolation. Oueidaetal. [9],Santos
+190
+etal. [17]andGrecoetal. [10]weretheonlyworksthatfocusedonIoT.Araujo(b)et
+191
+al. [11]wasuniqueinthecontextofsmartbuilding. Thisworkisfocusedonboththe
+192
+contextofsmarthospitalsandthecontextofenergysupply.
+193
+Thesecondclassificationcriterionwastheinvestigatedmetric. Allworksinthe
+194
+energy context used reliability or availability metrics without directing them to the
+195
+hospitalcontext.Somesmarthospitalsperformedavailabilityanalysiswithoutobserving
+196
+energyissuesandsoftwareaging. TheworksbyOueidaetal. [9],Grecoetal. [10],Chen
+197
+etal. [12]andAraujo(a)etal. [13]usedmetricsmorefocusedontheperformancearea.
+198
+Ourworkisuniqueinexploringavailabilityandreliabilityinthehospitalsettingby
+199
+lookingatenergyissuesandsoftwareaging.
+200
+Thethird-rankingcriterionistheevaluationmethod. Analyticalmodelswerethe
+201
+mostcommonmethodduetotheirpracticalityandagilityingeneratingresults. The
+202
+most used analytical models were Petri nets and reliability block diagrams. Among
+203
+thecitedworks, onlyGrecoetal. [10]havechosenalayeredmodel. Chenetal. [12]
+204
+carriedoutapracticaltest. TheworkbyDiazetal. [21]wasuniqueinthathaveadopted
+205
+alow-levelmathematicalmodeltoevaluateitsproject. Ourworkadoptedthehighly
+206
+representativestochasticPetrinetmodels.
+207
+The fourth classification criterion is to verify if the work considered the energy
+208
+useinthearchitecture. Ourworkconsiderstheuseofenergyforthehospital’sinternal
+209
+functioning. Thefifthclassificationcriterionwasthesensitivityanalysis. Sensitivity
+210
+analysisallowsustodiscoverwhichcomponentsaremoreimportanttoeachsystem
+211
+metric.Thetableshowsthatarticlesmeasuringavailabilityoftenusethistypeofanalysis.
+212
+Availabilityistypicallyusedinconjunctionwithsensitivityanalysisasitpointstothe
+213
+componentthatcanbeimprovedinthearchitecture. Ourworkusessensitivityanalysis
+214
+to help with the availability and reliability metrics and to help with the component
+215
+rejuvenationtechnique.
+216
+The sixth classification criterion was availability. Araujo(a) et al. [13] used the
+217
+availabilitymetriconlytohelpmeasurethemainmetric,withoutexposingtheresults
+218
+ofthemetricitself. Theseventhcriterionwasreliability. Thepapersthatperformeda
+219
+reliabilityanalysisuseditasthemainmetricwithavailability. Furthermore,again,the
+220
+workbyAraujo(a)etal. [13]consideredthereliabilitytomeasurethemainmetricbut
+221
+didnotshowthereliabilityresults. Thelastcriterionwasrejuvenation. Thisworkwas
+222
+theonlyonesurveyedthatappliedrejuvenationtechniqueswhilejoiningthecontextof
+223
+smarthospitalswithenergyandverifiedtheirimpactonsystemavailability.
+224
+3. ArchitectureOverview
+225
+This section presents the characteristics of the modeled architecture. Figure 1
+226
+presentstheIoMTarchitectureadoptedinthispaper. Thearchitecturehasbeendivided
+227
+intotwopartstomakeiteasiertoorganizeandunderstand.ThePowerSystemrepresents
+228
+theentirepowersupplyforthehospital. SmartHospitalrepresentsthehospitalitself
+229
+anditsinternalcomponents.
+230
+ThePowerSystemhasthreeenergysources: PowerGrid,PowerGenerator,and
+231
+SolarPanelSystem. ThePowerGridrepresentsthepublicenergyofferedbypublicor
+232
+private companies that, normally, have no connection with the hospital. The Power
+233
+Generatorisapowergeneratorthatnormallyrunsondiesel, normallyusedinmost
+234
+hospitalsforeventualpoweroutages. Thephotovoltaicsystemconsistsofasolarpanel,
+235
+charger control, battery storage, solar inverter, and switch power. The Solar Panel
+236
+representsoneofthephotovoltaicsystemsourcesthattransformthethermalenergy
+237
+generatedbythesunintoelectricalenergy. BatteryStorageisabatteriessystemthat
+238
+storestheproducedsolarenergy. Batteriesusedtostoresolarenergyarestillconsidered
+239
+limitednowadays[25]. Thus, batterieskeepthehospitalsuppliedforashortperiod
+240
+untilmainpowerisrestored. ChargerControlregulatestheamountofenergyfromthe
+241
+solarpaneltothebatteries. TheSolarInvertertransformstheenergygeneratedfrom
+242
+--- PAGE 7 ---
+VersionJune14,2026submittedtoSensors 7of24
+POWER SYSTEM SMART HOSPITAL
+Power Grid
+Solar Panel
+Cloud Server
+Data
+Energy
+Router Edge Server
+Switch Power
+Gateway Supervisor
+12 V Sensor
+Charger Solar Inverter
+Control
+Room
+Power Generator
+Battery Storage Smart Hospital
+Figure1.Proposedarchitectureofasmarthospitalsystem.
+Developedbyauthors.
+directcurrenttoalternatingcurrent. SwitchPowerisanactuatorthatdecideswhich
+243
+energysourceshouldbeused: solar,public/privatepowergrid,orgenerator. Finally,
+244
+thesystemworks,consideringthatenergycomesprimarilyfromsolarpanels. Power
+245
+Gridwillbeusedifsolarpowerfails. Thegeneratorwillbeactivatedwhentheother
+246
+tworesourcesfail.
+247
+Inside the Smart Hospital, some components will be used to monitor patients.
+248
+Thesecomponentsdistributeinformationacrosstheothercomponents. Thehospital
+249
+hasseveralroomswithsensorsthatcapturepatientdatafromtheirbeds. Thesensors
+250
+areconnectedtotheGateway. TheGatewaycollectsinformationfromallsensorsand
+251
+transmitsittotheRouterandSupervisor. TheSupervisorisresponsibleforobserving
+252
+andanalyzingpatientdataincaseofemergency. TheRouterwilldistributetheGateway
+253
+datatoanedgeserverlocatedinthehospitalandaremotecloudserver. TheEdgeServer
+254
+willstorethedatalocallyatthehospitalforreportingandanyfuturequeries. TheCloud
+255
+Serverwillstorethedataremotelytohaveabackupcopyofthedata,mainlytomonitor
+256
+apatientremotely. Finally,allinternalcomponentsofthehospitalneedtheenergytobe
+257
+availableforaslongaspossible,andtheCloudServerislocatedataremoteplace.
+258
+Operationalconfigurations: Toinvestigatetheimpactofenergyresourceredundancy
+259
+andserverrejuvenationonthesmarthospital’sdependability,weconsiderthreedifferent
+260
+configurationsasshowninTable2. TheconfigurationArepresentsaconventionalsmart
+261
+hospital,includingapowergridandagenerator. ConfigurationBrepresentsasmart
+262
+hospitalwithasustainableenergysystem. ConfigurationCreinforcestheconfiguration
+263
+Bagainstsoftwareagingproblemsrunningoncloud/edgeservers. Theconfiguration
+264
+Cdoesnotinvolveanadditionalphysicalcomponent; instead, aserverrejuvenation
+265
+mechanism at cloud and edge along with two logical components that control the
+266
+rejuvenationprocessistakenintoaccount. TheRejuvenationTriggerisresponsiblefor
+267
+managing the rejuvenation, while the Peakhour Indicator manages the rejuvenation
+268
+togetherwiththeRejuvenationTriggerifthereisapeakhourpolicyforthehospital. The
+269
+configurationBinvolvesthecomponentsofthephotovoltaicsystem,includingtheSolar
+270
+Panel,BatterySystem,ChargerControl,SolarInverter,andSwitchPower.
+271
+4. ProposedSPNModels
+272
+Inthissection,availabilityandreliabilitySPNmodelsaredevelopedfollowingthe
+273
+consideredoperationalconfigurationsofthesmarthospital’scomputinginfrastructure.
+274
+--- PAGE 8 ---
+VersionJune14,2026submittedtoSensors 8of24
+Table2: Operationalconfigurations.
+Smart Power Photovoltaic Rejuvenation Peakhour
+Config. Generator
+Hospital Grid System Trigger Indicator
+A X X X
+B X X X X
+C X X X X X X
+4.1. AvailabilityModels
+275
+ThissubsectionpresentsthethreeSPNmodelsfocusedonavailabilitycalculation.
+276
+4.1.1. ModelA:Basearchitecturewithbasicpowersource
+277
+Figure2showsmodelA.ModelAcorrespondstoconfigurationApresentedinthe
+278
+lastsection. Therefore,ModelAdoesnotconsiderthephotovoltaicsystem. Thismodel
+279
+representsamorecommonpowersourcearchitectureforhospitalsingeneral[26–28].
+280
+Model A will serve as a base model for comparison with the next models presented
+281
+in this section. The hospital is an operative mode on Model A when all the internal
+282
+componentsareactiveandwhenoneoftheexternalenergycomponentsisfunctioning.
+283
+Twobuildingblockscentralizethecontrolofthetwosidesofthearchitectureusingguard
+284
+expressions,PowerSystem,andSmartHospital. Suchcontrolcentralizationenabledus
+285
+tocalculatetheavailabilityonlyfocusedonthesetwobuildingblocks. Alltransitions
+286
+witharedindexmarkareconfiguredwithaguardexpression. Table3summarizesall
+287
+guardexpressions.
+288
+Table3: GuardexpressionsforthemodelAtransitions.
+Guard
+GuardExpression
+Index
+g01 (#PG_U>0)OR(#EDG_U>0)
+g02 (#PG_U<1)AND(#EDG_U<1)
+g03 ((PS_U<1)OR(#IN_U<1)OR(#CC_U<1)OR((#SP_U<1)AND(#BS_U<1)))AND(#PG_U<1)
+((PS_U>0)AND(#IN_U>0)AND(#CC_U>0)AND((#SP_U>0)OR(#BS_U>0)))OR
+g04
+(#PG_U>0)
+((#CS_U>0)AND(#ES_U>0)AND(#RT_U>0)AND(GT_U>0)AND(F_D=0)AND
+g05
+(SV_U>0))AND(POWER_SYSTEM_U>0)
+g06 (#CS_U<1)OR(#ES_U<1)OR(#RT_D>0)OR(GT_D>0)OR(F_D>0)OR(SV_D>0)
+g07 (#POWER_SYSTEM_D>0)
+g08 (#POWER_SYSTEM_U>0)
+g09 (#POWER_SYSTEM_D>0)
+g10 (#POWER_SYSTEM_U>0)
+g11 (#POWER_SYSTEM_D>0)
+g12 (#POWER_SYSTEM_U>0)
+g13 (#POWER_SYSTEM_D>0)
+g14 (#POWER_SYSTEM_U>0)
+g15 (#POWER_SYSTEM_D>0)
+g16 (#POWER_SYSTEM_U>0)
+g20 (#ES_D>0)
+g21 (#CS_D>0)
+Figure 3 shows the Power System and Smart Hospital building block compo-
+289
+nents in more detail. The Power System building block component represented the
+290
+system’s power status. Power System is considered up when there is a token at the
+291
+place POWER_SYSTEM_U. Power System is not working when there is a token at the
+292
+place POWER_SYSTEM_D. The change between active and inactive states is controlled
+293
+byBLACKOUTandRESTOREDtransitions. BLACKOUTandRESTOREDtransitionshaveguard
+294
+expressions. BLACKOUTtransitionisactivatedwhenallenergysourcesareinactive,given
+295
+byexpressiong01= (#PG_U >0)OR(#EDG_U >0). RESTOREDtransitionisactivated
+296
+whenthereisatleastonepowersourceactive,givenbyexpressiong02 = (#PG_U <
+297
+1)AND(#EDG_U <1).
+298
+--- PAGE 9 ---
+VersionJune14,2026submittedtoSensors 9of24
+POWER SYSTEM SMART HOSPITAL
+Cloud Server
+Power Grid Edge Server
+Router
+Gateway Supervisor
+Power Generator
+Beds
+]10g[ [g02]
+[g03]
+[g04]
+]50g[ [g06]
+]31g[
+]90g[
+]70g[
+]41g[
+]01g[
+]80g[
+]11g[
+]51g[
+]21g[
+]61g[
+Power System Smart Hospital
+]12g[
+]02g[
+[g21]
+[g20]
+Figure2.SPNmodelA.
+Developedbyauthors.
+]10g[ [g02] ]50g[ [g06]
+Power System Smart Hospital
+Figure3.PowerSystemandSmartHospitalbuildingblockcontrolcomponents.
+Developedbyauthors.
+TheSmartHospitalbuildingblockcomponentrepresentsthehospitalsystemstatus.
+299
+ThehospitalisactivewhenalltheSmartHospitalcomponentsareactive. Thehospitalis
+300
+deactivatedwhenatleastoneofthecomponentshastokensintheinactivestate. The
+301
+SmartHospitalisupwhenthereisatokenintheplaceHOSPITAL_U.TheSmartHospital
+302
+is not working when there is a token in the place HOSPITAL_D. The change between
+303
+active and inactive states is caused by the transitions FAIL and RECOVER. Thus, FAIL
+304
+transitionisactivatedwhenallenergysourcesareinactive,givenbyexpressiong05=
+305
+((#CS_U > 0)AND(#ES_U > 0)AND(#RT_U > 0)AND(GT_U > 0)AND(F_D =
+306
+--- PAGE 10 ---
+VersionJune14,2026submittedtoSensors 10of24
+0)AND(SV_U >0))AND(POWER_SYSTEM_U >0). RECOVERtransitionisactivated
+307
+whenthereisatleastoneenergysourceactive,givenbyexpressiong06 = (#CS_U <
+308
+1)OR(#ES_U <1)OR(#RT_D >0)OR(GT_D >0)OR(F_D >0)OR(SV_D >0).
+309
+Figure4showsthePowergeneratorcomponentmoredetailed. Thepowergen-
+310
+erator behaves differently from the other model components. The power generator
+311
+hasacoldstandbymechanism[29]; thatis, itwillbeonlyactivewhenacertaincon-
+312
+ditionisreached. TheSWITCH_TIMEtransitionwillgrantthatthepowergeneratorwill
+313
+only be activated when there is no other active energy source. SWITCH_TIME is sup-
+314
+ported by the guard expression: g03 = ((PS_U < 1)OR(#IN_U < 1)OR(#CC_U <
+315
+1)OR((#SP_U < 1)AND(#BS_U < 1)))AND(#PG_U < 1). TheTURN_OFFtransition
+316
+willgrantthatpowergeneratorwillbeimmediatelydeactivatedwhenanyotherenergy
+317
+source start working again, trough expression g04 = ((PS_U > 0)AND(#IN_U >
+318
+0)AND(#CC_U >0)AND((#SP_U >0)OR(#BS_U >0)))OR(#PG_U >0)
+319
+Power Generator
+[g03]
+[g04]
+Figure4.PowerGeneratorcomponent.
+Developedbyauthors.
+Figure5showstheagingmechanismthatwasusedindetail. Softwareagingis
+320
+modeled on Edge Server and Cloud Server through a four-phase Erlang subnet [30].
+321
+Thenumberofphasesdependsontheparametersobtainedforeachcomponentaging.
+322
+Theuse offour agingphases isbasedon thepreviousstudy ofMeloet al. [30]. The
+323
+Erlangsubnetcanrepresentsoftwareagingbyincreasingthe[31]failurerate. When
+324
+theimmediatetransitionTI122triggers,fourtokens(4phases)movetotheES_TO_AGE
+325
+place, andanothertokenmovesbacktoES_Ukeepingthesystemaliveandagingon
+326
+theErlangsubnet. WhenthetimedtransitionES_AGINGtriggers,atokenmovesfrom
+327
+ES_TO_AGEtoES_AGEDrepresentingtheendofoneoftheagingphases. WhenES_AGED
+328
+hasallfourtokens,theimmediatetransitionTI112triggers,movingalltokenstoplace
+329
+ES_AD,puttingthesystemonagingfailure.
+330
+ThesumofthefourphasesofES_AGINGrepresentsthetotaltimeforserveraging.
+331
+WhenthetimedtransitionES_AMTTRtriggers,thesystemisrepairedandbecomesactive
+332
+again. The immediate transitions TI132 and TI142 “clean up’ the aging, removing
+333
+thetokensfromES_TO_AGEandES_AGED.Theagingcleansingprocessoccurswhenthe
+334
+systemfailsorstartstherejuvenationprocess.Therejuvenationprocesswillbepresented
+335
+inSection4.1.3. ImmediatetransitionT1shutsdownEdgeServerwhenPowerSystemis
+336
+unavailableduetofailure. WhenT1fires,atokenmovesfromES_UtoES_D,puttingthe
+337
+EdgeServerinafailedstate. Thesamebehaviorshappentothecloudserver.
+338
+AsthemetricassumesthatPowerSystemandSmartHospitalbuildingblocksmust
+339
+beinanactivestateforavailability,differentfaulttolerancelevelscanbeconfiguredby
+340
+changingtheirguardexpressions. Forexample,thehospitalcanbeconsideredactiveif
+341
+atleastoneserverorNoftheMbedsisactive. Weconsiderthatallinternalcomponents
+342
+mustbeactiveforthehospitaltobeavailable.
+343
+--- PAGE 11 ---
+VersionJune14,2026submittedtoSensors 11of24
+Edge Server
+]51g[
+]61g[
+]02g[
+[g20]
+Figure5.Softwareagingmechanism.
+Developedbyauthors.
+4.1.2. ModelB:Modelwithphotovoltaicsysteminclusion
+344
+Figure 6 shows model B. Model B considers the Power System and the Smart
+345
+Hospital. FormodelB,PowerSystemwillbeimprovedbyaddingaphotovoltaicsystem.
+346
+Allcomponentsareorganizedastheyappearinthearchitectureforeasyvisualization.
+347
+Thecomponentshavethefollowingcharacteristics: (i)Sensorsareattachedtopatientsin
+348
+bedsthatcollectpatientvitalinformationanddata;(ii)Patientinformationisdistributed
+349
+toSupervisor,Edge/CloudServers(forstorageandmonitoring);(iii)SolarPanelwill
+350
+generate energy by receiving sunlight; (iv) Charger Control must adjust the level of
+351
+charge that is sent to the batteries and also to the Solar Inverter; (v) Battery Storage
+352
+muststoreenergytosupporttheSolarPanelifitisnotenough,andinthelastcase,it
+353
+mustsustainthehospitalforabriefperiod—thatissufficienttorepairtheSolarPanel;
+354
+(vi)SolarInverterconvertsdirectcurrentenergy(whichisusedbythesolarpaneland
+355
+batteries)toalternatingcurrent,whichisusedbythehospitaldevices;(vii)SwitchPower
+356
+mustchoosewhichenergysourcetoassumewhenanothersourcefails. (viii)Power
+357
+Generatorwillonlybeactivatedifallotherpossiblepowersourcesfail.
+358
+ForModelB,theSmarthospitalpartandtheSmartHospitalbuildingblockcom-
+359
+ponent will work the same way as for model A. The entire photovoltaic system be-
+360
+comespartofthePowersystemformodelB.Theg01andg02guardexpressionshave
+361
+beenchangedtoupdatethefunctioningofthePowerSystembuildingblockcompo-
+362
+nent. Table 4 presents the guard expressions that have been changed for model B.
+363
+PowerSystembuildingblockcomponentnowconsidersthattheinternalcomponents
+364
+of the photovoltaic system need to be working. The g01 guard expression was up-
+365
+dated to g01 = ((PS_U > 0)AND(#IN_U > 0)AND(#CC_U > 0)AND((#SP_U >
+366
+0)OR(#BS_U >0)))OR(#PG_U >0)OR(#EDG_U >0).Theg02guardexpressionwas
+367
+updatedaswelltog02= ((PS_U <1)OR(#IN_U <1)OR(#CC_U <1)OR((#SP_U <
+368
+1)AND(#BS_U < 1)))AND(#PG_U < 1)AND(#EDG_U < 1), to cover the new be-
+369
+haviorsofthephotovoltaicsystem.
+370
+Table4: NewguardexpressionsforthemodelBtransitions.
+Guard
+GuardExpression
+Index
+((PS_U>0)AND(#IN_U>0)AND(#CC_U>0)AND((#SP_U>0)OR(#BS_U>0)))OR
+g01
+(#PG_U>0)OR(#EDG_U>0)
+((PS_U<1)OR(#IN_U<1)OR(#CC_U<1)OR((#SP_U<1)AND(#BS_U<1)))AND(#PG_U<1)
+g02
+AND(#EDG_U<1)
+Finally,asalreadymentioned,thePowerSystemandSmartHospitalbuildingblock
+371
+componentsservetocentralizethestatusofeachpartofthearchitectureandsimplify
+372
+themetricsequations(availabilityanddowntime). Prepresentstheprobability,and#
+373
+representsthenumberoftokensinagivenplace. Thedowntime(D)canbeobtainedby
+374
+--- PAGE 12 ---
+VersionJune14,2026submittedtoSensors 12of24
+POWER SYSTEM SMART HOSPITAL
+Cloud Server
+Solar Panel Power Grid Edge Server
+Router
+Charger Control Solar Inverter Switch Power
+Gateway Supervisor
+Battery Storage Power Generator
+Beds
+]10g[ [g02]
+[g03]
+[g04]
+]50g[ [g06]
+]31g[
+]90g[
+]70g[
+]41g[
+]01g[
+]80g[
+]11g[
+]51g[
+]21g[
+]61g[
+Power System Smart Hospital
+]12g[
+]02g[
+[g21]
+[g20]
+INCLUDED ELEMENTS
+Figure6.SPNModelB.
+Developedbyauthors.
+Equation1,whereArepresentsthesystemavailabilityand8760thenumberofhours
+375
+in the year. The equation that calculates availability for all models is given by the 2
+376
+Equation,thatis,theprobabilitythatthePowerSystemandSmartHospitalareboth
+377
+workingatthesametime. Itisnoteworthythattheusercanchangetheguardexpression
+378
+ofthecentralbuildingblocksforotherconfigurations.
+379
+D = (1−A)×8760 (1)
+A = P{(#HOSPITAL_U >0)AND(#POWER_SYSTEM_U >0)} (2)
+4.1.3. ModelC:ModelBwithrejuvenationtechniqueinclusion
+380
+Softwarerejuvenationisatechniquethatusuallyimprovessystemavailability[32].
+381
+Rejuvenationhasthefunctionofpreventingcrashesandreducingperformance. The
+382
+techniqueinvolvesoccasionallystoppingthesoftwarefromrunningtoclearitsstate
+383
+andrestartingit[33]. Figure7showsmodelCthatextendsmodelB.Theextensionis
+384
+basedontherejuvenationprocessunderthecloudandedgeservers. ARejuvenation
+385
+Triggercomponentrepresentspeaktimes. Theotherenergyandhospitalcomponents
+386
+workthesameasinModelB.Rejuvenationintroducesplannedinterruptions. Itcanbe
+387
+advantageoustodifferentiatethepeakandoff-peakperiodstoplanthe[33]rejuvenation
+388
+strategy. Weconsiderpeakhoursasdayandoff-peakhoursasnightperiods,with12
+389
+hourseach. ThepeakcomponenthastwolocationscalledPEAK_HOURandOFFPEAK_HOUR
+390
+PEAK_HOURandOFFPEAK_HOURrepresentpeakhourandoff-peakhour,respectively. The
+391
+peakcomponentalsohastwotimedtransitions. WhenTIME_PEAKistriggered,itputs
+392
+thesysteminpeakhours. WhenTIME_OFFPEAKistriggered,thesystemgoestooff-peak
+393
+hours.
+394
+ThesensitivityanalysispresentedlaterpointedouttheEdgeServerasthemost
+395
+sensitivecomponent. Thus,therejuvenationwasappliedtoEdgeServersincemany
+396
+--- PAGE 13 ---
+VersionJune14,2026submittedtoSensors 13of24
+POWER SYSTEM SMART HOSPITAL
+Cloud Server
+Solar Panel Power Grid Edge Server
+Router
+Charger Control Solar Inverter Switch Power
+Gateway Supervisor
+Battery Storage Power Generator
+Beds
+]10g[ [g02]
+[g03]
+[g04]
+]50g[ [g06]
+]31g[
+]90g[
+]70g[
+]41g[
+]01g[
+]80g[
+]11g[
+]51g[
+]21g[
+]61g[
+Rejuvenation Trigger
+Peakhour Indicator
+[g17]
+Power System Smart Hospital
+]12g[
+[g19]
+]02g[
+[g21]
+]81g[
+[g20]
+INCLUDED ELEMENTS
+Figure7.SPNModelCforavailability.
+Developedbyauthors.
+studiesprovethatserverssufferfromsoftwareagingandimpactsonsystemavailability
+397
+[32,34,35]. TherejuvenationmodelwasbasedonthemodelproposedbyGargetal. [36].
+398
+TheplaceES_UrepresentsthattheEdgeServerisactive. TheplaceES_Dindicatesthat
+399
+theEdgeServerhasfailedandisdisabled. WhentheES_MTTFtransitionistriggered,
+400
+atokenmovesfromES_UtoES_D,puttingtheEdgeServerinafailedstate. Whenthe
+401
+ES_MTTRtransitionistriggered,theEdgeServerisrepaired,puttingitbackintotheactive
+402
+state. TheremainingcomponentwasexplainedinSection4.1.1.
+403
+AnothercomponentpresentedintheCmodelistheRejuvenationTrigger,which
+404
+defines when the Edge Server will rejuvenate. The aging and rejuvenation process
+405
+wasbasedonthemodelproposedby[37]. TheClockplaceisusedtostoretheEdge
+406
+Server rejuvenation token. When the TRIGGER transition is triggered, a token moves
+407
+fromCLOCKtoTIME_TO_REJ,indicatingthatthesystemisreadytobeginrejuvenation.
+408
+The TRIGGER represents the time-until-rejuvenate, that is, the time interval until the
+409
+rejuvenation process occurs again. When TIME_TO_REJ has a token, the immediate
+410
+transitionSTART_REJtriggers,movingatokenfromES_UtoREJ,puttingthesystemina
+411
+rejuvenationstate. WhenREJhasatoken,theimmediateT0transitiontriggers,moving
+412
+thetokenfromTIME_TO_REJtoCLOCK,startingthecountdownforthenextrejuvenation.
+413
+WhenREJhasatoken,theimmediatetransitionsTI132andTI142cleartheagingphase
+414
+progress. When the timed transition REJ_TIME triggers, a token moves from REJ to
+415
+ES_U,rejuvenatingthesystem. TheREJ_TIMEtransitionrepresentsthetimetorejuvenate
+416
+theEdgeServer. Duringtherejuvenationprocess,thesystemisunavailable. Table5
+417
+showssomeguardtransitionsaddedandmodifiedtograntthenewbehaviorsofthe
+418
+rejuvenationmechanism.
+419
+The model uses two rejuvenation policies with peak times (no-peak policy and
+420
+peakpolicy). Theno-peakpolicyignorespeaktimes. TheTRIGGERtransitionindicates
+421
+thetimefortherejuvenationtooccurregardlessofbeinginapeakperiodornot. The
+422
+peakpolicypreventsthesystemstartingrejuvenatingduringpeakhours. Whenthe
+423
+--- PAGE 14 ---
+VersionJune14,2026submittedtoSensors 14of24
+Table5: NewguardexpressionsforthemodelCtransitions.
+Guard
+GuardExpression
+Index
+g17∗ (OFFPEAK_HOUR>0)
+g18 (#REJ>0)
+g19 (#TIME_TO_REJ>0)
+g20 (#REJ>0)OR(#ES_D>0)
+∗onlyusedifthereisapeakhourpolicy.
+systemisoff-peak(hasatokeninOFFPEAK_HOUR),therejuvenationbehavesthesame
+424
+astheno-peakpolicy. However, whenthesystemisinpeakhours(ithasatokenin
+425
+PEAK_HOUR),theTRIGGERtransitionisnottriggeredevenaftertheassociatedtimeunit
+426
+haselapsed. ConsideringmodelC,thesystemisavailablewhentheEdgeServertoken
+427
+isactive(atokeninES_U.Finally,theequation2definestheavailabilityofmodelC.
+428
+4.2. ReliabilityModel
+429
+Reliabilityistheconditionalprobabilityofasystemremainingoperationalover
+430
+a time interval [0, t], considering that it was operational at t = 0. Figure 8 presents
+431
+thereliabilitymodelsoftheproposedsystem. Thethreepossibleconfigurationswere
+432
+organizedintoasinglefigure. Inprinciple,themodelworksthesameastheavailability
+433
+SPNmodels. Inthismodel,thecomponentsdonothavethetransitionsthatallowtheir
+434
+recovery. ThereliabilityofthepresentedmodelscanbecalculatedusingEquation3.
+435
+Finally, pcalculatestheprobabilitythatthesystemisunavailable. Theequationcan
+436
+generateacurvethatshowshowreliabilitydeclinesovertime.
+437
+R =1−(P{((#HOSPITAL_D >0)OR(#POWER_SYSTEM_D >0))}) (3)
+5. SensitivityAnalysis
+438
+This section presents the sensitivity analysis. Table 6 shows the results for the
+439
+sensitivity of the availability models components. The sensitivity experiment was
+440
+obtainedthroughstationarysimulation. Thisdecisionwasdeterminedbythesystem’s
+441
+significantnumberofpossiblestates. Duetomanycomponents,onlythefirsttenresults
+442
+wereselectedfromeachmodel.
+443
+Table6: Sensitivityanalysisresultsforthe3availabilitymodels.
+ModelA ModelB ModelC
+Component Index Component Index Component Index
+PG_MTTF 8.80X10−4 ES_AGING 3.36X10−3 CS_AGING 2.39X10−3
+ES_AGING 8.18X10−4 CS_AGING 2.42X10−3 ES_MTTF 1.90X10−3
+ES_MTTF 7.64X10−4 ES_MTTR 2.37X10−3 CS_MTTR 1.87X10−3
+ES_MTTR 7.53X10−4 CS_MTTR 1.88X10−3 CS_MTTF 1.51X10−3
+CS_AGING 6.06X10−4 ES_MTTF 1.48X10−3 ES_AGING 1.39X10−3
+CS_MTTR 4.38X10−4 CS_MTTF 1.45X10−3 ES_MTTR 1.00X10−3
+CS_MTTF 4.19X10−4 GT_MTTF 6.31X10−5 TIMECLOCK 1.05X10−4
+SW_MTTR 1.93X10−4 SW_MTTF 5.73X10−5 SW_MTTR 6.53X10−5
+GT_MTTR 1.59X10−4 N 2.79X10−5 SU_MTTF 6.24X10−5
+SE_MTTR 3.48X10−5 CC_MTTF 2.20X10−5 PG_MTTF 6.10X10−5
+ModelAusesthePowerGridandadieselgeneratortokeepthehospitalactive.
+444
+Thus,itcanbeseenthatthePowerGridwasthemostcriticalcomponentofthearchi-
+445
+tecture;thatis,itssensitivityindexcausesasignificantimpactonsystemavailability.
+446
+Powerissuesimpactthefinalavailabilityofthesystem,andPowerGridhasaslightly
+447
+morecriticalsensitivityindexthanthesecondplace,whichisedgeagingtime. Fromthe
+448
+secondpositionon-wards(modelA),allcomponentsareinternaltothehospital,asthe
+449
+--- PAGE 15 ---
+VersionJune14,2026submittedtoSensors 15of24
+POWER SYSTEM SMART HOSPITAL
+Cloud Server
+Solar Panel Power Grid Edge Server
+Router
+Charger Control Solar Inverter Switch Power
+Gateway Supervisor
+Battery Storage Power Generator
+Beds
+]10g[ [g02]
+[g03]
+]50g[ [g06]
+]31g[
+]90g[
+]70g[
+]11g[
+]51g[
+Model A
+Model B
+Model C
+Rejuvenation Trigger
+Peakhour Indicator
+[g17]
+Power System Smart Hospital
+]12g[
+[g19]
+]02g[
+[g21]
+]81g[
+[g20]
+Figure8.Reliabilitymodelscreatedfromavailabilitymodels.
+Developedbyauthors.
+generatorisonlyoccasionallyturnedon. Theothertwocomponentsthatprovedtobe
+450
+morecriticalaretheedgeandcloudserversduetotheirlowfailureandrecoverytimes
+451
+and their respective aging. Edge Server and Cloud Server can be considered critical
+452
+becausetheypresentedahighersensitivityindexthantheothercomponents.
+453
+Model B brings redundancy when adding the photovoltaic system, an unusual
+454
+configuration in hospitals today. The Power Grid index is no longer among the ten
+455
+mostcritical. Theedgeaging(ES_AGING)sensitivityindexbecomesmorecriticaland
+456
+takesthefirstposition,followedbycloudaging(CS_AGING).Thephotovoltaicsystem
+457
+increasessystemavailability. However,agingisstillacriticalfactorforavailability. The
+458
+cloudandedge-relatedcomponentswerethemostcriticalformodelB,theywerealso
+459
+morecriticalthanmostcomponentsinmodelA,buttheirvaluesgrewfrom10−4to
+460
+10−3. Thenumberofsensorsrepresentsaverysmallimpactonthesystem,eventhough
+461
+itappearsamongthetenmostcritical. Thevariationinthenumberofthesensordidnot
+462
+significantlyimpactavailability.
+463
+Inadditiontoproposingusingthephotovoltaicsystem, ModelCalsoproposes
+464
+rejuvenatingtheedgecomponent. TheedgeserverbecamemorecriticalinModelB,so
+465
+rejuvenationwasapplied. Themostrelevantindicesforthismodelarestillaround10−3
+466
+anddecreasetovaluesin10−5. Themostcriticalindexforthisscenarioisthecloud’s
+467
+agingtime. Theedge’sagingindexdecreasesduetotherejuvenationappliedtothe
+468
+component. Astherejuvenationwasnotappliedinthecloud,itremainedwiththesame
+469
+index. Edge and cloud failure and recovery components continue to occupy the top
+470
+positionsofthesensitivitytablealongwithagingtimes.Thecriticalityreductionofcloud
+471
+andedgerecoveryandfailureindicescouldbesolvedwithsomeformofredundancy.
+472
+However,theobjectiveofthisworkwastocheckrejuvenationissues,whichmakethe
+473
+processcheaper.
+474
+Figure6showsindetailthevariationofthetwomostcriticalindicesforeachmodel.
+475
+Figure9(a)showstheimpactofPG_MTTFparametervariationonsystemavailability.
+476
+--- PAGE 16 ---
+VersionJune14,2026submittedtoSensors 16of24
+Availabilityrangedfromabout99.25%to99.45%. Asthecurvepresentsanexponential
+477
+behavior,itcanbededucedthatthelessreliabletheenergy,themoreabruptlythevalue
+478
+tendstofall. Figure9(b)showstheimpactofedgeaginginmodelA.Thevariationinthe
+479
+edgeagingtimecausedtheavailabilitytovarygreatly,butthemaximumandaverage
+480
+valueswerelowerthanthoseseeninthePG_MTTFvariation. Figure9(c)showsthe
+481
+impactofedgeagingonmodelBavailability.
+482
+ytilbaliavA
+99.45
+99.40
+99.35
+99.30 Parameter
+Baseline
+99.25
+4,000 6,000 8,000 10,000 12,000 14,000
+PG_MTTF (h)
+(a)PG_MTTFxModelA.
+ytilibaliavA
+99.45
+99.40
+99.35
+99.30
+99.25
+Parameter
+99.20 Baseline
+99.15
+99.10
+99.05
+100 150 200 250 300
+ES_AGING (h)
+(b)ES_AGINGxModelA.
+ytilibaliavA
+99.50
+99.45
+99.40
+99.35
+99.30
+99.25
+Parameter
+99.20 Baseline
+99.15
+99.10
+100 150 200 250 300
+ES_AGING (h)
+(c)ES_AGINGxModelB.
+ytilibaliavA
+99.55
+99.50
+99.45
+99.40
+99.35
+Parameter
+99.30 Baseline
+99.25
+60 80 100 120 140 160 180 200 220 240
+CS_AGING (h)
+(d)CS_AGINGxModelB.
+ytilibaliavA
+99.65
+99.60
+99.55
+99.50
+99.45 Parameter
+Baseline
+99.40
+99.35
+60 80 100 120 140 160 180 200 220 240
+CS_AGING (h)
+(e)CS_AGINGxModelC.
+ytilibaliavA
+99.65
+99.60
+99.55
+99.50
+Parameter
+99.45 Baseline
+99.40
+400 600 800 1,000 1,200 1,400
+ES_MTTF (h)
+(f)ES_MTTFxModelC.
+Figure9.Resultsforthesensitivityofavailabilitymodels.
+Figure 9(d) shows the impact of cloud aging on model B. The cloud aging time
+483
+variationresultedinslightlyhigheravailability,buttheedgeaginghadalargeenough
+484
+variationtosurpasscloudagingtimeasthemostcriticalcomponent. Figure9(e)shows
+485
+theimpactoftheCS_AGINGparameterontheavailabilityofmodelC.Valuesrange
+486
+fromabout99.38%toabout99.62%. Thevariationisstilllarge,giventheparameter’s
+487
+sensitivityindexvalue,whichisexpected. However,theadditionofedgerejuvenation
+488
+causedthebeginningandendofthesensitivityresultintervaltoincrease. Therangein
+489
+--- PAGE 17 ---
+VersionJune14,2026submittedtoSensors 17of24
+thepreviousscenariosstartedjustbelow99.30%,whereasinthisscenario,itstartsabove
+490
+99.30%. Thesamebehaviorisrepeatedfortheupperrange,increasingmorethanthe
+491
+modelBsensitivityresult. Finally,Figure9(f)showstheimpactofedgefailuretimeon
+492
+modelCavailability. Cloudaginghadanoticeablylongerrangebetweenvalues,sothe
+493
+edgerecoverytimewasthesecondmostimportant.
+494
+6. CaseStudies
+495
+The results of different experiments with the models proposed in the previous
+496
+sectionarepresented. Table7presentstheparametersusedtofeedtheproposedmodels.
+497
+Thevaluesusedweretakenfromothervalidatedstudies. Thevaluesweretakenfrom
+498
+fourpapers[18],[11],[38]and[39]. TheTIME_PEAKandTIME_OFFPEAKvaluesrepresent
+499
+daytimeandnighttimerespectively. TheSWITCH_TIMEhasbeensetto0.0833333hours.
+500
+EdgeServerandCloudServeragingtimeswerebasedontheirMTTFs,asforthework
+501
+of[37]. TheexperimentswereperformedusingtheMercury modelingtool[40]. All
+502
+modeltransitionsworkinsingleservermode,exceptBedscomponenttransitions. Beds
+503
+componentworkinInfiniteServermode. Bedsworkininfiniteservermodeduetotheir
+504
+nature, asthesensorsworkandarerepairedinparallel. Theavailabilityexperiment
+505
+was obtained through stationary simulation due to the model size and rejuvenation
+506
+particularities. Thereliabilityexperimentwascarriedoutthroughtransientsimulation
+507
+fortheabovementionedreasons.
+508
+Table7: Inputparametersforproposedmodels.
+AvailabilityParameters
+Component MTTF(Hours) MTTR(Hours)
+Sensors/Actuators 300000 1
+Gateway 480770 8
+Supervisor 44957 1
+Router 698220 8
+CloudServer 760 0.74
+EdgeServer 940 1.37
+SolarPanel 219000 8
+BatterySystem 47829 8
+ChargeControl 70080 8
+SolarInverter 24820 8
+EmergencyDieselGenerator 636 37
+PowerGrid 8757 4.807
+RejuvenationParameters
+Transition Time(Hours)
+TRIGGER 20-200(stepsod20)
+REJ_TIME 0.0333333
+ES_AGING 200
+CS_AGING 150
+TIME_OFFPEAK 12
+TIME_PEAK 12
+6.1. Casestudy1-Availabilityanddowntimeanalysisofthethreemodels
+509
+Inthissection,theresultsoftheavailabilitymodelwillbeshown. Figure10shows
+510
+theresultsforavailabilityanddowntimefordifferentmodels. Figure10(a)showsthe
+511
+resultsforavailability. ModelAhadthelowestavailability,withapproximately99.40%
+512
+availability. With approximately 99.53% availability, Model B increased about 0.13%
+513
+comparedtomodelA.ModelCachievedthehighestavailablevalue,withapproximately
+514
+99.64%availability. Overall,therewasanincreaseofabout0.24%betweenmodelsAand
+515
+C.ModelCshowedanincreaseof0.11%comparedtomodelBproposedinthiswork.
+516
+--- PAGE 18 ---
+VersionJune14,2026submittedtoSensors 18of24
+ytilibaliavA
+99.65
+99.60
+99.55
+99.50
+99.45
+99.40
+A B C
+Model
+(a)Availabilityvaryingthemodels.
+)y/h(
+emitnwoD
+55
+50
+45
+40
+35
+30
+A B C
+Model
+(b)Downtimevaryingthemodels.
+Figure10.Resultsforavailabilitymodels.
+Figure10(b)showssystemdowntimebasedondifferentConfigurations. Model
+517
+A showed the longest downtime, with approximately 52 hours of downtime. With
+518
+approximately40hoursofdowntime,ModelBshowedareductionofabout12hours
+519
+compared to model A. Model C had the lowest downtime, with around 31 hours of
+520
+downtime. ModelCshowsadifferenceofabout21hoursconcerningmodelA,almosta
+521
+dayofdifference. ThereductioninmodelCconsideringtheBwasabout9hours.
+522
+Theresultsforavailabilityvaryconsiderablylittle,butlookingatthedowntime
+523
+results, we can see that it is an obvious difference. Availability has this slightly low
+524
+variance, as power itself is a component that must be reliable; that is, it rarely fails.
+525
+However,theinclusionofthesolarenergysystemfurtherincreasestheavailabilityasit
+526
+isamorereliablesourceofenergythanthepublicone.Theadditionofthephotovoltaic
+527
+system showed the greatest increase in availability among the scenarios. Energy is
+528
+indeedacomponenttobeconsideredinmodelingthistypeofsystem. ModelCdidnot
+529
+showanincreaseasbigasmodelB,asitonlyaddsarejuvenatingmechanism,butitis
+530
+stillavisibleincrease. Furthermore,arejuvenationcaseinthecloudcouldincreasethe
+531
+resultofthelastscenario. However,thispaperhasfocusedmoreoninternalcomponents
+532
+inthehospital’scontrol.
+533
+6.2. Casestudy2-AnalysisofAvailabilityandDowntimeofRejuvenationPoliciesinModelC
+534
+Figure11showstheavailabilityanddowntimeoftherejuvenationmodel. Again,
+535
+thesimulationmethodwasusedwiththeMercurytool[40]consideringtheavailability
+536
+modelBandthetworejuvenationpoliciesonmodelC.Figure11(a)showstheavailability
+537
+ofthesystemformodelBandmodelCofrejuvenationinnon-peakandpeakpolicies.
+538
+ThedeterministictransitiontimeTRIGGERisvariedinthesimulationsfrom20to200,
+539
+with intervals of 20 hours, based on the model proposed in [33]. When time-until-
+540
+rejuvenate(TRIGGER)isat20hours,theno-peakpolicyhasloweravailabilitythanthe
+541
+extendedmodel,about99.46%availability. Afterthetime-until-rejuvenatereaches40
+542
+hours,theno-peakpolicyavailabilityimprovessignificantly,outpacingtheextended
+543
+modelavailability.
+544
+The availability of the no-peak policy continues to increase as the time-until-
+545
+rejuvenateincreases. Whenthetimeuntilrejuvenatewasat20hours,therejuvenation
+546
+happenedsooftenthatithinderedsystemavailability. Toofrequentrejuvenationim-
+547
+pairsavailabilityasthesystemgoesdownforashortperiodduringrejuvenation. After
+548
+thetime-until-rejuvenatereaches40hoursormore,rejuvenationoccurslessfrequently.
+549
+Rejuvenation prevents the system from having more serious failures and improving
+550
+availability. Astime-until-rejuvenateincreases,availabilityimproves,asrejuvenation
+551
+occursatmorestrategictimesuntilitpeaksin140hourswithanavailabilityof99.64%.
+552
+Afterthetime-until-rejuvenateexceeds140hours,rejuvenationbeginstotaketoolong
+553
+--- PAGE 19 ---
+VersionJune14,2026submittedtoSensors 19of24
+to occur, making the system prone to more serious failures and decreasing system
+554
+availability.
+555
+ytilibaliavA
+99.65
+99.6
+99.55
+99.5 Model C - Rejuvenation Without Peak Policy
+Model C - Rejuvenation With Peak Policy
+Model B
+99.45
+0 50 100 150 200
+Time Until Rejuvenate (h)
+(a)Availability.
+)y/h(
+emitnwoD
+48
+46 Model C - Rejuvenation Without Peak Policy
+Model C - Rejuvenation With Peak Policy
+44 Model B
+42
+40
+38
+36
+34
+32
+30
+0 50 100 150 200 250
+Time Until Rejuvenate (h)
+(b)Downtime.
+Figure 11. Comparison of levels of availability and downtime in relation to the rejuvenation
+model.
+Thepeakpolicybehavesdifferentlyfromtheno-peakpolicy. Whenthetime-until-
+556
+rejuvenateisat20hours,thepeakpolicyhitsitshighestavailabilitypeakat99.61%. As
+557
+time-until-rejuvenateincreases, theavailabilityoftheno-peakpolicydecreases. The
+558
+peakpolicyonlyrejuvenatesifthesystemisoff-peak,doingfarfewerrejuvenationsthan
+559
+theno-peakpolicy. Thetime-until-rejuvenatein20hoursisalreadytheidealtimefor
+560
+rejuvenatingthepeakpolicy. Asthetime-until-rejuvenateincreases,rejuvenationtakesa
+561
+longtime,impairingsystemavailability. Afterexceeding160hoursuntilrejuvenating,
+562
+thepeakpolicyavailabilityislowerthanthatoftheextendedmodel. Ingeneral,rejuve-
+563
+nationwasabletoincreasesystemavailabilitygreatly. Allnon-peakandpeakpolicy
+564
+valueswerebetterthanmodelBvalues,especiallyshorteruntilrejuvenating. Whilethe
+565
+no-peakpolicyhasfarbetteravailabilitythanthepeakpolicy,rejuvenatingduringpeak
+566
+hoursmaynotbethebestchoice. Thepeakpolicyisalsoasmartchoiceinascenario
+567
+wherethiscannothappen,withbetterresultsthanModelB,especiallyin20hoursuntil
+568
+rejuvenate.
+569
+Figure11(b)showsthesystemdowntimeformodelBandtherejuvenationmodel
+570
+in both peak and non-peak hour policies. This graph reflects the availability graph,
+571
+showing downtime over a year. When the time-until-rejuvenate is at 20 hours, the
+572
+no-peakpolicyisatitsbestdowntimeof33.92hours. Astime-until-rejuvenateincreases,
+573
+downtimealsoincreases. Thelowertheavailability,thegreaterthedowntime. Afterthe
+574
+time-until-rejuvenatepasses180hours,thepeakpolicy’sdowntimereaches41.30hours,
+575
+surpassingthe40.68hoursofmodelB.Theno-peakpolicyhasthelongestdowntimeat
+576
+46.78hourswhenthetimeuntilrejuvenatingis20hours. However,downtimedecreases
+577
+asthetime-until-rejuvenateincreases,until31.36hoursperyearwhenthetime-until-
+578
+rejuvenateis140hours. After140hoursuntilrejuvenate,thedowntimestartstoincrease,
+579
+reaching33.42hourswhenthetime-until-rejuvenateis200hours. Therefore,thetwo
+580
+rejuvenationpolicieshadalowerdowntimethanmodelB,especiallywheneachpolicy’s
+581
+time-until-rejuvenateisatitspeak.
+582
+6.3. Casestudy3-AnalysisoftheImpactofTimeUntilRejuvenateandEdgeMTTFon
+583
+Availability
+584
+Figure12presentsa3Dsurfacegraphtoshowthesystem’sbehaviorconsidering
+585
+availability by varying two factors with a high impact on availability. Edge MTTF
+586
+and Time Until Rejuvenate factors were varied in 5 ranges: base value, minus 25%,
+587
+minus 50%, plus 25%, and 50%. Colors are related to the result of availability. The
+588
+bar on the right indicates the magnitude of the results. The upper part of the bar
+589
+--- PAGE 20 ---
+VersionJune14,2026submittedtoSensors 20of24
+indicatesthehighestavailabilities,whilethelowerpartindicatesthelowestavailabilities
+590
+achieved. Sotheredcolormeansthehighestavailability,andthepurplecolormeans
+591
+thelowestavailability. ChangingtheMTTFismoreimpactfulthanchangingtheTime
+592
+UntilRejuvenate. ThecolorredispresentinmostoftheEdgeMTTFprojections. Ifthe
+593
+MTTFvalueislow,theavailabilityalwaystendstobelow,evenchangingtheTimeUntil
+594
+Rejuvenate. Therefore,theresultindicatesthatincreasingtheMTTFimprovessystem
+595
+availability. However,findinganidealvalueforTimeUntilRejuvenatewillalsobenefit
+596
+thesystem’savailability.
+597
+99.70
+99.65
+99.60
+A
+v
+a
+99.55
+ila
+b
+99.50
+ility
+(% )
+9
+9 9
+9
+T 9 9 9
+.
+9 i .
+4
+m . 4 . 3
+5
+3 0 5 0 e 0 2 U 0 n 40 til 6 R 0 8 e 0 j 1 u 0 v 0 1 e 2 n 0 a 14 te 0 1
+(
+6
+h
+0 1
+)
+80 200
+220
+400 600 800 E d 1 g 0 e 0 M 0 1 T 2 T 0 F 0 1 4 (h 0 ) 0
+Figure12.Availabilityanalysisbyvaryingconcomitantfactors.
+6.4. Casestudy4-ReliabilityAnalysis
+598
+Thissectiondisplaystheresultsforthemodel’sreliabilitymetric. Figure13shows
+599
+theresultsforreliabilityover20000hoursvaryingthecloudagingtime(CS_AGING)
+600
+for the C model. The cloud aging time was chosen due to its high sensitivity index.
+601
+Therearethreereliabilitymodels. However, varyingmodelCprovedmorerelevant
+602
+whenanalyzingthesensitivityanalysisresults. Theclouddoesnothavearejuvenation
+603
+mechanism.Thus,thecloudbecamethemostcriticalcomponentsystem.Theexperiment
+604
+simulatesareliabilityanalysisinscenarioswherethecloudcannotberejuvenated,and
+605
+amoreorlessreliablecloudmustbechosen. Allresultsdecreaseovertime,asthisis
+606
+thenatureofthisexperiment. Inotherwords,thereliabilityofasystemalwaystendsto
+607
+decreaseovertime.
+608
+Thescenariowherethecloudhasagingtimereducedby50%presentedvaluesthat
+609
+remainbelowthevaluespresentedintheothertwoscenarios.Thebasescenarioalso
+610
+touchestheX-axisatvaluesabove20000hours. Thescenariowherethecloudhasits
+611
+agingtimeincreasedby50%,hasshownbetterresultsthanallotherscenarios,staying
+612
+above the others from the start and following through for practically the entire time
+613
+interval.
+614
+The+50%scenarioalsotouchestheX-axisatvaluesgreaterthanthe20000hoursof
+615
+theexperimentasintheotherscenarios. The+50%scenarioremainsabovetheother
+616
+scenariosatthe20,000-hourendpointonthechart,witharound3%ofconfidence,versus
+617
+around 2% for the other two scenarios. The results show a trend towards increased
+618
+reliabilityinobtainingasloweragingcloud,whichisexpected. Themainpointofthis
+619
+--- PAGE 21 ---
+VersionJune14,2026submittedtoSensors 21of24
+ytilibaileR
+1
+Cloud aging time +50%
+0.8 Base cloud aging time
+Cloud aging time -50%
+0.6
+0.4
+0.2
+0
+0 5,000 10,000 15,000 20,000
+Time (h)
+Figure13.ReliabilityresultsvaryingtheCS_AGINGparameterinmodelC.
+casestudyisthat,givenabudget,itisfeasibletoselectthemostadvantageouscloudfor
+620
+thecompanyaslongasitmeetstheestablisheddependabilitycriteria. Forexample,if
+621
+thereisaneedforacloudthatmakesthesystematleast20%reliableafter3000hours,
+622
+thebasecloudwouldbeenoughtomeetthedemandwithoutinvestingmoreinamore
+623
+expensivecloud.
+624
+7. ConclusionsandFutureWorks
+625
+ThispaperproposedstochasticPetrinetmodelsforanarchitectureofintelligent
+626
+hospitals to help system administrators plan computing architectures. The models
+627
+considerseveralfactorsthatinfluencethetotalavailabilityofthesystem. Energyisone
+628
+ofthebigfactorsthatwereconsidered,andtheuseofsolarenergy,inadditiontomaking
+629
+thehospitalmoresustainable,showedaconsiderableincreaseinavailability. Theaging
+630
+ofmorecomplexcomponentssuchasservershasalsohadamajorimpactonsystem
+631
+availability. Theuseofrejuvenationtotreatagingwasconsideredinthemodel,and
+632
+the analysis shows that the model can estimate the ideal time between rejuvenation
+633
+foragivenmodel. Theavailabilitymodelcanbeconfiguredusingabout20different
+634
+parameters,whilethereliabilitymodelhasabouthalfthatamount.
+635
+Modelsprovideaccurateestimatesofavailability,downtime,andreliabilitymetrics.
+636
+Themodelsweredemonstratedbycarryingout4casestudies,1ofthemforthereliability
+637
+analysisandtheotherthreeforfurtheravailabilityanalysis. Theresultsshowhoweach
+638
+modelbehavesbyvaryingparametersbysensitivityanalysis. Thecasestudiesprovidea
+639
+practicalguidethatshowshowasystemadministratorcanapplythemodeltoperform
+640
+assessmentsofvariousconfigurationsforasustainablesmarthospitalarchitecture.
+641
+Thisworkpresentssomelimitationsthatareimportanttohighlight: (i)Aimingto
+642
+avoidthe“state-spaceexplosion"problem,acoupleofsimplificationswerenecessary
+643
+forthemodels. Therearecomplexcomponentssuchaspowergridandcloudserver,
+644
+forexample,thataretreatedasencapsulatedcomponentswithsinglecorresponding
+645
+MTTF/MTTRparameters. (ii)availabilityissometimesinfluencedbyuserinteraction,
+646
+securityrisks,andenvironmentalissues. Noneoftheseaspectswereinvestigated,only
+647
+agingprocesses. (iii)therejuvenationstrategywasappliedonlyatcloud/edgeservers.
+648
+However,theotherhardwareequipment(router,supervisor,andgateway)mayalso
+649
+suffer from aging. We did not consider that. (iv) we have used only heterogeneous
+650
+redundancy(distinctpowersupplysources)atthepowersystemside. Thehospitalcan
+651
+have,forexample,morethanonepowerdieselgenerator,butwedidnotconsidersucha
+652
+possibility. Futureworkintendstocarryoutaperformanceanalysistoverifytheimpact
+653
+--- PAGE 22 ---
+VersionJune14,2026submittedtoSensors 22of24
+thattheavailabilityofcomponentscanhaveontheresponsetimeandthroughputof
+654
+thesystem. Moreexternalfactorscanalsobeconsidered,suchasthefunctioningofthe
+655
+photovoltaicsystemoncloudydays.
+656
+657 AuthorContributions: Conceptualization,methodology,andsupervision,F.A.S.;projectadminis-
+658 tration,formalanalysisandinvestigation,T.A.N.;resources,fundingacquisitionandinvestigation,
+659 M.T.,J.W.L.;validation,C.B.,andG.A.;writing-originaldraft,F.A.S.,C.B.,G.A.;writing-review
+660 &editing,T.A.N.,I.F.andP.M.;Allauthorshavereadandagreedtothepublishedversionof
+661 themanuscript.
+662 Funding: ThisworkwassupportedbytheNationalFoundationofKorea(NRF)grantfunded
+663 bytheKoreagovernment(MinistryofScienceandICT(MIST))(No.2021R1A2C209494311)This
+664 researchwassupportedbyBasicScienceResearchProgramthroughtheNationalResearchFoun-
+665 dationofKorea(NRF),fundedbytheMinistryofEducation(number2020R1A6A1A03046811).
+666 InstitutionalReviewBoardStatement:Notapplicable
+667 InformedConsentStatement:Notapplicable
+668 DataAvailabilityStatement:Notapplicable
+669 ConflictsofInterest:Theauthorsdeclarenoconflictofinterest.
+References
+670
+671 1. Nguyen, T.A.; Fe, I.; Brito, C.; Kaliappan, V.K.; Choi, E.; Min, D.; Lee, J.W.; Silva, F.A.
+672 PerformabilityEvaluationofLoadBalancingandFail-overStrategiesforMedicalInformation
+673 SystemswithEdge/FogComputingUsingStochasticRewardNets. Sensors2021,21,6253.
+674 2. Santos,L.;Cunha,B.;Fé,I.;Vieira,M.;Silva,F.A. DataProcessingonEdgeandCloud:APer-
+675 formabilityEvaluationandSensitivityAnalysis. JournalofNetworkandSystemsManagement
+676 2021,29,1–24.
+677 3. Said,A.M.;Yahyaoui,A.;Abdellatif,T. EfficientAnomalyDetectionforSmartHospitalIoT
+678 Systems. Sensors2021,21,1026.
+679 4. Zou,X.;Dai,Y.S.;Doebbeling,B.;Qi,M. Dependabilityandsecurityinmedicalinformation
+680 system. LectureNotesinComputerScience(includingsubseriesLectureNotesinArtificial
+681 IntelligenceandLectureNotesinBioinformatics),2007,Vol.4553LNCS,pp.549–558. doi:
+682 10.1007/978-3-540-73111-5\_63.
+683 5. Gardner,R.M.;AllanPryor,T.;Warner,H.R. TheHELPhospitalinformationsystem:Update
+684 1998. International Journal of Medical Informatics 1999, 54, 169–182. doi:10.1016/S1386-
+685 5056(99)00013-1.
+686 6. Nelson,N.C. Downtimeproceduresforaclinicalinformationsystem:acriticalissue. Journal
+687 ofCriticalCare2007,22,45–50. doi:10.1016/j.jcrc.2007.01.004.
+688 7. Jenkins,D.;Qureshi,R.S.;Moinudheen,J.;Pathan,S.A.;Thomas,S.H.Evaluationofelectronic
+689 medicalrecorddowntimeinabusyemergencydepartment. QatarMedicalJournal2020,2020.
+690 doi:10.5339/QMJ.2020.20.
+691 8. Patricia S. Coffey, RHIA, C.; Susan Postal, DNP, R.B.; Susan M. Houston, RN-BC, PMP,
+692 CPHIMS,F.;JonW.McKeeby,DSc,MBA,C. LessonsLearnedfromanElectronicHealth
+693 RecordDowntime|Perspectives,2016.
+694 9. Oueida,S.;Kotb,Y.;Aloqaily,M.;Jararweh,Y.;Baker,T. Anedgecomputingbasedsmart
+695 healthcareframeworkforresourcemanagement. Sensors2018,18,4307.
+696 10. Greco,L.;Ritrovato,P.;Xhafa,F. Anedge-streamcomputinginfrastructureforreal-time
+697 analysisofwearablesensorsdata. FutureGenerationComputerSystems2019,93,515–528.
+698 11. Araujo,E.;Pereira,P.;Dantas,J.;Maciel,P. DependabilityImpactintheSmartSolarPower
+699 Systems:AnAnalysisofSmartBuildings. Energies2021,14,124.
+700 12. Chen, M.; Li, W.; Hao, Y.; Qian, Y.; Humar, I. Edge cognitive computing based smart
+701 healthcaresystem. FutureGenerationComputerSystems2018,86,403–411.
+702 13. Araujo,J.;Silva,B.;Oliveira,D.;Maciel,P. Dependabilityevaluationofamhealthsystem
+703 usingamobilecloudinfrastructure. 2014IEEEInternationalConferenceonSystems,Man,
+704 andCybernetics(SMC).IEEE,2014,pp.1348–1353.
+705 14. Carvalho, D.; Rodrigues, L.; Endo, P.T.; Kosta, S.; Silva, F.A. Mobile Edge Computing
+706 PerformanceEvaluationusingStochasticPetriNets. 2020IEEESymposiumonComputers
+707 andCommunications(ISCC).IEEE,2020,pp.1–6.
+--- PAGE 23 ---
+VersionJune14,2026submittedtoSensors 23of24
+708 15. Carvalho, D.; Rodrigues, L.; Endo, P.T.; Kosta, S.; Silva, F.A. Edgeserversplacementin
+709 mobileedgecomputingusingstochasticPetrinets. InternationalJournalofComputational
+710 ScienceandEngineering2020,23,352–366.
+711 16. Silva,F.A.;Rodrigues,M.;Maciel,P.;Kosta,S.;Mei,A.Planningmobilecloudinfrastructures
+712 using stochastic petri nets and graphic processing units. 2015 IEEE 7th International
+713 ConferenceonCloudComputingTechnologyandScience(CloudCom). IEEE,2015, pp.
+714 471–474.
+715 17. Santos,G.L.; Gomes,D.; Kelner,J.; Sadok,D.; Silva,F.A.; Endo,P.T.; Lynn,T. Theinter-
+716 netofthingsforhealthcare: optimisinge-healthsystemavailabilityinthefogandcloud.
+717 InternationalJournalofComputationalScienceandEngineering2020,21,615–628.
+718 18. Rodrigues, L.; Gonçalves, I.; Fé, I.; Endo, P.T.; Silva, F.A. Performance and availability
+719 evaluationofansmarthospitalarchitecture. Computing2021,103,2401–2435.
+720 19. da Silva Lisboa, M.F.F.; Santos, G.L.; Lynn, T.; Sadok, D.; Kelner, J.; Endo, P.T.; others.
+721 Modelingtheavailabilityofane-healthsystemintegratedwithedge,fogandcloudinfras-
+722 tructures. 2018IEEESymposiumonComputersandCommunications(ISCC).IEEE,2018,
+723 pp.00416–00421.
+724 20. Santos,G.L.;Endo,P.T.;daSilvaLisboa,M.F.F.;daSilva,L.G.F.;Sadok,D.;Kelner,J.;Lynn,
+725 T.;others. Analyzingtheavailabilityandperformanceofane-healthsystemintegratedwith
+726 edge,fogandcloudinfrastructures. JournalofCloudComputing2018,7,1–22.
+727 21. Diaz,P.;Egido,M.A.;Nieuwenhout,F. Dependabilityanalysisofstand-alonephotovoltaic
+728 systems. Progressinphotovoltaics:Researchandapplications2007,15,245–264.
+729 22. Collins,E.; Dvorack,M.; Mahn,J.; Mundt,M.; Quintana,M. Reliabilityandavailability
+730 analysisofafieldedphotovoltaicsystem. 200934thIEEEPhotovoltaicSpecialistsConference
+731 (PVSC).IEEE,2009,pp.002316–002321.
+732 23. Sayed,A.;El-Shimy,M.;El-Metwally,M.;Elshahed,M. Reliability,availabilityandmaintain-
+733 abilityanalysisforgrid-connectedsolarphotovoltaicsystems. Energies2019,12,1213.
+734 24. Cai, B.; Liu, Y.; Ma, Y.; Huang, L.; Liu, Z. Aframeworkforthereliabilityevaluationof
+735 grid-connectedphotovoltaicsystemsinthepresenceofintermittentfaults. Energy2015,
+736 93,1308–1320.
+737 25. Hassan,M.;Saha,S.;Haque,M.E.Aframeworkfortheperformanceevaluationofhousehold
+738 rooftopsolarbatterysystems. InternationalJournalofElectricalPower&EnergySystems2021,
+739 125,106446.
+740 26. Kolokotsa,D.;Tsoutsos,T.;Papantoniou,S. Energyconservationtechniquesforhospital
+741 buildings.AdvancesinBuildingEnergyResearch2012,6,159–172,[https://doi.org/10.1080/17512549.2012.672007].
+742 doi:10.1080/17512549.2012.672007.
+743 27. Yoshida,S.;Ito,K.;Yokoyama,R. Sensitivityanalysisinstructureoptimizationofenergy
+744 supplysystemsforahospital. EnergyConversionandManagement2007,48,2836–2843. 19th
+745 InternationalConferenceonEfficiency,Cost,Optimization,SimulationandEnvironmental
+746 ImpactofEnergySystems,doi:https://doi.org/10.1016/j.enconman.2007.06.045.
+747 28. Ji,R.;Qu,S. InvestigationandEvaluationofEnergyConsumptionPerformanceforHospital
+748 BuildingsinChina. Sustainability2019,11. doi:10.3390/su11061724.
+749 29. Araújo,G.;Rodrigues,L.;Oliveira,K.;Fé,I.;Khan,R.;Silva,F.A. Vehicularcloudcomputing
+750 networks: availabilitymodellingandsensitivityanalysis. InternationalJournalofSensor
+751 Networks2021,36,125–138.
+752 30. Melo,M.;Maciel,P.;Araujo,J.;Matos,R.;Araujo,C. Availabilitystudyoncloudcomputing
+753 environments:Livemigrationasarejuvenationmechanism. 201343rdannualIEEE/IFIP
+754 internationalconferenceonDependablesystemsandnetworks(DSN).IEEE,2013,pp.1–6.
+755 31. Machida,F.;Kim,D.S.;Trivedi,K.S. Modelingandanalysisofsoftwarerejuvenationina
+756 servervirtualizedsystemwithliveVMmigration. PerformanceEvaluation2013,70,212–230.
+757 32. Matos,R.;Araujo,J.;Alves,V.;Maciel,P. Experimentalevaluationofsoftwareagingeffects
+758 intheeucalyptuselasticblockstorage. 2012IEEEInternationalConferenceonSystems,Man,
+759 andCybernetics(SMC).IEEE,2012,pp.1103–1108.
+760 33. Wang,D.;Xie,W.;Trivedi,K.S.Performabilityanalysisofclusteredsystemswithrejuvenation
+761 undervaryingworkload. PerformanceEvaluation2007,64,247–265.
+762 34. Huang,Y.;Kintala,C.;Kolettis,N.;Fulton,N.D. Softwarerejuvenation:Analysis,module
+763 andapplications. Twenty-fifthinternationalsymposiumonfault-tolerantcomputing.Digest
+764 ofpapers.IEEE,1995,pp.381–390.
+--- PAGE 24 ---
+VersionJune14,2026submittedtoSensors 24of24
+765 35. Torquato,M.;Araujo,J.;Umesh,I.;Maciel,P. Sware:amethodologyforsoftwareagingand
+766 rejuvenationexperiments. JournalofInformationSystemsEngineeringandManagement2018,
+767 3,15.
+768 36. Garg,S.;Puliafito,A.;Telek,M.;Trivedi,K.S.AnalysisofsoftwarerejuvenationusingMarkov
+769 regenerativestochasticPetrinet. ProceedingsofSixthInternationalSymposiumonSoftware
+770 ReliabilityEngineering.ISSRE’95.IEEE,1995,pp.180–187.
+771 37. Torquato,M.;Umesh,I.;Maciel,P.Modelsforavailabilityandpowerconsumptionevaluation
+772 ofaprivatecloudwithVMMrejuvenationenabledbyVMLiveMigration. TheJournalof
+773 Supercomputing2018,74,4817–4841.
+774 38. Marqusee,J.;Ericson,S.;Jenket,D. EmergencyDieselGeneratorReliabilityandInstallation
+775 EnergySecurity. Technicalreport,NationalRenewableEnergyLab.(NREL),Golden,CO
+776 (UnitedStates),2020.
+777 39. Perdue,M.;Gottschalg,R.Energyyieldsofsmallgridconnectedphotovoltaicsystem:effects
+778 ofcomponentreliabilityandmaintenance. IETRenewablePowerGeneration2015,9,432–437.
+779 40. Silva,B.;Matos,R.;Callou,G.;Figueiredo,J.;Oliveira,D.;Ferreira,J.;Dantas,J.;Lobo,A.;
+780 Alves,V.;Maciel,P.Mercury:Anintegratedenvironmentforperformanceanddependability
+781 evaluationofgeneralsystems. ProceedingsofIndustrialTrackat45thDependableSystems
+782 andNetworksConference,DSN,2015.
+--- PAGE 25 ---
+VersionJune14,2026submittedtoSensors 25of24
+--- PAGE 26 ---
+VersionJune14,2026submittedtoSensors 26of24

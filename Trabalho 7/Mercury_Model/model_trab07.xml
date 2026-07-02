@@ -1,0 +1,1839 @@
+<com.local.entities.ProjectDesdac>
+  <file>C:\Users\jsous\OneDrive\Área de Trabalho\Trabalho 7\model_trab07.xml</file>
+  <graphChanged>true</graphChanged>
+  <name>model_trab07</name>
+  <mercuryVersion>5.0.1</mercuryVersion>
+  <mttf>33.062136758788924</mttf>
+  <mttr>2.110722347360782</mttr>
+  <availability>0.9399900263725862</availability>
+  <appSPN>
+    <edspn>
+      <numberPlaces>0</numberPlaces>
+      <numberTransitions>0</numberTransitions>
+      <numberDelayParameters>0</numberDelayParameters>
+      <numberMarkingParameters>0</numberMarkingParameters>
+      <numberRewardMeasures>0</numberRewardMeasures>
+      <numberLabelModels>0</numberLabelModels>
+      <numberDefinitions>0</numberDefinitions>
+      <places/>
+      <delayParameters/>
+      <transitions/>
+      <labelModels/>
+      <rewardMeasures/>
+      <definitions/>
+    </edspn>
+  </appSPN>
+  <appEFM>
+    <componentsAvaiables>
+      <org.modcs.tools.efm.entities.EfmComponent>
+        <model>POWER</model>
+        <energyInput>0.0</energyInput>
+        <energyOutput>0.0</energyOutput>
+        <ccu>0.0</ccu>
+        <retailPrice>0.0</retailPrice>
+        <maximumEnergyCapacity>Infinity</maximumEnergyCapacity>
+        <energeticEfficiency>100.0</energeticEfficiency>
+        <demandedEnergy>0.0</demandedEnergy>
+        <embeddedEnergy>0.0</embeddedEnergy>
+        <energyFlowing>0.0</energyFlowing>
+        <type>SourcePoint</type>
+        <path>/gifs/source.png</path>
+        <name>SourcePoint</name>
+        <working>true</working>
+        <exergyCorrection>0.0</exergyCorrection>
+        <calorificPower>0.0</calorificPower>
+        <maxPowerConsumption>0.0</maxPowerConsumption>
+        <thermalEnergyIn>0.0</thermalEnergyIn>
+        <thermalEnergyOut>0.0</thermalEnergyOut>
+        <chilledWaterTemp>0.0</chilledWaterTemp>
+        <waterTempCoolingTower>0.0</waterTempCoolingTower>
+        <roomTemperature>0.0</roomTemperature>
+        <coldWater>0.0</coldWater>
+        <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+        <environmentTemperature>0.0</environmentTemperature>
+        <AC>0.0</AC>
+        <visited>false</visited>
+        <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+        <custo>0.0</custo>
+        <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+      </org.modcs.tools.efm.entities.EfmComponent>
+      <org.modcs.tools.efm.entities.EfmComponent>
+        <model>POWER</model>
+        <energyInput>0.0</energyInput>
+        <energyOutput>0.0</energyOutput>
+        <ccu>0.0</ccu>
+        <retailPrice>0.0</retailPrice>
+        <maximumEnergyCapacity>Infinity</maximumEnergyCapacity>
+        <energeticEfficiency>100.0</energeticEfficiency>
+        <demandedEnergy>0.0</demandedEnergy>
+        <embeddedEnergy>0.0</embeddedEnergy>
+        <energyFlowing>0.0</energyFlowing>
+        <type>TargetPoint</type>
+        <path>/gifs/target.png</path>
+        <name>TargetPoint</name>
+        <working>true</working>
+        <exergyCorrection>0.0</exergyCorrection>
+        <calorificPower>0.0</calorificPower>
+        <maxPowerConsumption>0.0</maxPowerConsumption>
+        <thermalEnergyIn>0.0</thermalEnergyIn>
+        <thermalEnergyOut>0.0</thermalEnergyOut>
+        <chilledWaterTemp>0.0</chilledWaterTemp>
+        <waterTempCoolingTower>0.0</waterTempCoolingTower>
+        <roomTemperature>0.0</roomTemperature>
+        <coldWater>0.0</coldWater>
+        <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+        <environmentTemperature>0.0</environmentTemperature>
+        <AC>0.0</AC>
+        <visited>false</visited>
+        <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+        <custo>0.0</custo>
+        <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+      </org.modcs.tools.efm.entities.EfmComponent>
+    </componentsAvaiables>
+    <graphicalConnectionEFM>
+      <componentGraphicalElements/>
+      <arrowGraphicalElements/>
+      <labelModels/>
+    </graphicalConnectionEFM>
+    <efmComponentSet>
+      <components>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>0.0</retailPrice>
+          <maximumEnergyCapacity>0.0</maximumEnergyCapacity>
+          <energeticEfficiency>100.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.0</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>PowerComponent</type>
+          <path>/gifs/PowerComponent.png</path>
+          <name>PowerComponent</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>15000.0</retailPrice>
+          <maximumEnergyCapacity>1000.0</maximumEnergyCapacity>
+          <energeticEfficiency>95.3</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>111.0</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>ACSource</type>
+          <path>/gifs/acsource.png</path>
+          <name>ACSource</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>3600.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>95.3</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>3.1392</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>UPS_5kVA</type>
+          <path>/gifs/ups.png</path>
+          <name>UPS_5kVA</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>60000.0</retailPrice>
+          <maximumEnergyCapacity>250.0</maximumEnergyCapacity>
+          <energeticEfficiency>95.3</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>61.03986048</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>UPS_250kVA</type>
+          <path>/gifs/ups.png</path>
+          <name>UPS_250kVA</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>550.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>98.5</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.35928</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>SDTransformer</type>
+          <path>/gifs/sdt.png</path>
+          <name>SDTransformer</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>800.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>99.5</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.7992</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>STS</type>
+          <path>/gifs/sts.png</path>
+          <name>STS</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>800.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>99.5</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.7992</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>ATS</type>
+          <path>/gifs/ats.png</path>
+          <name>ATS</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>200.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>99.9</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.4284</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>Subpanel</type>
+          <path>/gifs/subpanel.png</path>
+          <name>Subpanel</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>200.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>99.5</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.35568</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>PowerStrip</type>
+          <path>/gifs/powerstrip.png</path>
+          <name>PowerStrip</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>150.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>99.9</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.26676</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>JunctionBox</type>
+          <path>/gifs/jb.png</path>
+          <name>JunctionBox</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>200.0</retailPrice>
+          <maximumEnergyCapacity>5.0</maximumEnergyCapacity>
+          <energeticEfficiency>99.5</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.35568</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>PowerStrip10s</type>
+          <path>/gifs/powerstrip.png</path>
+          <name>PowerStrip10s</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>GENERATOR</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>6000.0</retailPrice>
+          <maximumEnergyCapacity>10.0</maximumEnergyCapacity>
+          <energeticEfficiency>25.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>9.7</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>GeneratorGroup</type>
+          <path>/gifs/generator.png</path>
+          <name>GeneratorGroup</name>
+          <working>true</working>
+          <exergyCorrection>1.06</exergyCorrection>
+          <calorificPower>43000.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>GENERATOR</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>66000.0</retailPrice>
+          <maximumEnergyCapacity>500.0</maximumEnergyCapacity>
+          <energeticEfficiency>25.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>97.7</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>GeneratorGroup500</type>
+          <path>/gifs/generator.png</path>
+          <name>GeneratorGroup500</name>
+          <working>true</working>
+          <exergyCorrection>1.06</exergyCorrection>
+          <calorificPower>43000.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>3000.0</retailPrice>
+          <maximumEnergyCapacity>550.0</maximumEnergyCapacity>
+          <energeticEfficiency>90.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.35568</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>Server</type>
+          <path>/gifs/server.png</path>
+          <name>Server</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>400.0</retailPrice>
+          <maximumEnergyCapacity>550.0</maximumEnergyCapacity>
+          <energeticEfficiency>90.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.35568</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>Switch</type>
+          <path>/gifs/switch.png</path>
+          <name>Switch</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>POWER</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>4000.0</retailPrice>
+          <maximumEnergyCapacity>550.0</maximumEnergyCapacity>
+          <energeticEfficiency>90.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>0.35568</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>Router</type>
+          <path>/gifs/router.png</path>
+          <name>Router</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>COOLING</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>5300.0</retailPrice>
+          <maximumEnergyCapacity>15.0</maximumEnergyCapacity>
+          <energeticEfficiency>4.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>4.5209</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>Chiller</type>
+          <path>/gifs/chiller.png</path>
+          <name>Chiller</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>7.0</chilledWaterTemp>
+          <waterTempCoolingTower>35.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>COOLING</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>40000.0</retailPrice>
+          <maximumEnergyCapacity>250.0</maximumEnergyCapacity>
+          <energeticEfficiency>4.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>34.12</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>Chiller_C</type>
+          <path>/gifs/chiller.png</path>
+          <name>Chiller_C</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>0.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>7.0</chilledWaterTemp>
+          <waterTempCoolingTower>35.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>COOLING</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>1500.0</retailPrice>
+          <maximumEnergyCapacity>20.0</maximumEnergyCapacity>
+          <energeticEfficiency>0.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>1.2795</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>C_Tower </type>
+          <path>/gifs/coolingtower.png</path>
+          <name>C_Tower </name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>3.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>35.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>25.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>COOLING</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>9000.0</retailPrice>
+          <maximumEnergyCapacity>250.0</maximumEnergyCapacity>
+          <energeticEfficiency>0.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>7.6777</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>C_Tower_C</type>
+          <path>/gifs/coolingtower.png</path>
+          <name>C_Tower_C</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>3.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>0.0</roomTemperature>
+          <coldWater>0.0</coldWater>
+          <temperatureHotWaterFromChiller>35.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>25.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>COOLING</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>3200.0</retailPrice>
+          <maximumEnergyCapacity>20.0</maximumEnergyCapacity>
+          <energeticEfficiency>98.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>2.7296</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>CRAC</type>
+          <path>/gifs/crac.png</path>
+          <name>CRAC</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>3.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>20.0</roomTemperature>
+          <coldWater>7.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+        <org.modcs.tools.efm.entities.EfmComponent>
+          <model>COOLING</model>
+          <energyInput>0.0</energyInput>
+          <energyOutput>0.0</energyOutput>
+          <ccu>0.0</ccu>
+          <retailPrice>30000.0</retailPrice>
+          <maximumEnergyCapacity>300.0</maximumEnergyCapacity>
+          <energeticEfficiency>98.0</energeticEfficiency>
+          <demandedEnergy>0.0</demandedEnergy>
+          <embeddedEnergy>25.59</embeddedEnergy>
+          <energyFlowing>0.0</energyFlowing>
+          <type>CRAC_30t</type>
+          <path>/gifs/crac.png</path>
+          <name>CRAC_30t</name>
+          <working>true</working>
+          <exergyCorrection>0.0</exergyCorrection>
+          <calorificPower>0.0</calorificPower>
+          <maxPowerConsumption>3.0</maxPowerConsumption>
+          <thermalEnergyIn>0.0</thermalEnergyIn>
+          <thermalEnergyOut>0.0</thermalEnergyOut>
+          <chilledWaterTemp>0.0</chilledWaterTemp>
+          <waterTempCoolingTower>0.0</waterTempCoolingTower>
+          <roomTemperature>20.0</roomTemperature>
+          <coldWater>7.0</coldWater>
+          <temperatureHotWaterFromChiller>0.0</temperatureHotWaterFromChiller>
+          <environmentTemperature>0.0</environmentTemperature>
+          <AC>0.0</AC>
+          <visited>false</visited>
+          <fluxoPaiNoAtual>0.0</fluxoPaiNoAtual>
+          <custo>0.0</custo>
+          <multiplicaEficienciasAnteriores>0.0</multiplicaEficienciasAnteriores>
+        </org.modcs.tools.efm.entities.EfmComponent>
+      </components>
+      <map>
+        <entry>
+          <string>ATS</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[7]"/>
+        </entry>
+        <entry>
+          <string>JunctionBox</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[10]"/>
+        </entry>
+        <entry>
+          <string>PowerStrip</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[9]"/>
+        </entry>
+        <entry>
+          <string>Chiller</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[17]"/>
+        </entry>
+        <entry>
+          <string>Server</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[14]"/>
+        </entry>
+        <entry>
+          <string>UPS_5kVA</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[3]"/>
+        </entry>
+        <entry>
+          <string>GeneratorGroup</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[12]"/>
+        </entry>
+        <entry>
+          <string>Subpanel</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[8]"/>
+        </entry>
+        <entry>
+          <string>Router</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[16]"/>
+        </entry>
+        <entry>
+          <string>Chiller_C</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[18]"/>
+        </entry>
+        <entry>
+          <string>SDTransformer</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[5]"/>
+        </entry>
+        <entry>
+          <string>CRAC</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[21]"/>
+        </entry>
+        <entry>
+          <string>PowerStrip10s</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[11]"/>
+        </entry>
+        <entry>
+          <string>STS</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[6]"/>
+        </entry>
+        <entry>
+          <string>Switch</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[15]"/>
+        </entry>
+        <entry>
+          <string>PowerComponent</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent"/>
+        </entry>
+        <entry>
+          <string>UPS_250kVA</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[4]"/>
+        </entry>
+        <entry>
+          <string>C_Tower_C</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[20]"/>
+        </entry>
+        <entry>
+          <string>C_Tower</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[19]"/>
+        </entry>
+        <entry>
+          <string>GeneratorGroup500</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[13]"/>
+        </entry>
+        <entry>
+          <string>CRAC_30t</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[22]"/>
+        </entry>
+        <entry>
+          <string>ACSource</string>
+          <org.modcs.tools.efm.entities.EfmComponent reference="../../../components/org.modcs.tools.efm.entities.EfmComponent[2]"/>
+        </entry>
+      </map>
+      <fileName>EFMcomponents.xml</fileName>
+    </efmComponentSet>
+  </appEFM>
+  <appCTMC>
+    <ctmc>
+      <numberSpaces>0</numberSpaces>
+      <numberLabelModels>0</numberLabelModels>
+      <spaces/>
+      <labelModels/>
+      <parametersList/>
+      <metricList/>
+    </ctmc>
+  </appCTMC>
+  <appDTMC>
+    <dtmc>
+      <spaces/>
+      <labelModels/>
+      <parametersList/>
+      <metricList/>
+      <numberSpaces>0</numberSpaces>
+      <numberLabelModels>0</numberLabelModels>
+    </dtmc>
+  </appDTMC>
+  <appRBD>
+    <rbdModel>
+      <blocksOfModel>
+        <org.modcs.tools.rbd.blocks.BlockExponential>
+          <name>b1</name>
+          <bState>Default</bState>
+          <failureRate>0.0</failureRate>
+          <repairRate>0.0</repairRate>
+          <costOfBlock>0.0</costOfBlock>
+          <isReliabilityEdited>false</isReliabilityEdited>
+          <isMaintainabilityEdited>false</isMaintainabilityEdited>
+          <parameterValue>0.0</parameterValue>
+          <parameterType>TIME</parameterType>
+          <metricsFromSubModel/>
+          <isFirstParamAnalysisStationary>true</isFirstParamAnalysisStationary>
+          <subModelFirstParamTransientAnalysisTime>0.0</subModelFirstParamTransientAnalysisTime>
+          <isSecondParamAnalysisStationary>true</isSecondParamAnalysisStationary>
+          <subModelSecondParamTransientAnalysisTime>0.0</subModelSecondParamTransientAnalysisTime>
+        </org.modcs.tools.rbd.blocks.BlockExponential>
+      </blocksOfModel>
+      <model class="org.modcs.tools.rbd.blocks.BlockExponential" reference="../blocksOfModel/org.modcs.tools.rbd.blocks.BlockExponential"/>
+      <name>Teste</name>
+      <indexOfBlocks>2</indexOfBlocks>
+      <numberOfBlocks>1</numberOfBlocks>
+    </rbdModel>
+    <fileHandler class="org.modcs.tools.rbd.file.FileStream"/>
+    <labelSet>
+      <labels/>
+      <propertyChangeSupport serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <source class="org.modcs.tools.rbd.evaluatorrbd.LabelSet" reference="../../../.."/>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </propertyChangeSupport>
+    </labelSet>
+    <propertyChangeSupport serialization="custom">
+      <java.beans.PropertyChangeSupport>
+        <default>
+          <source class="org.modcs.tools.rbd.evaluatorrbd.ApplicationRBD" reference="../../../.."/>
+          <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+        </default>
+        <null/>
+      </java.beans.PropertyChangeSupport>
+    </propertyChangeSupport>
+  </appRBD>
+  <propertyChangeSupport serialization="custom">
+    <java.beans.PropertyChangeSupport>
+      <default>
+        <source class="com.local.entities.ProjectDesdac" reference="../../../.."/>
+        <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+      </default>
+      <null/>
+    </java.beans.PropertyChangeSupport>
+  </propertyChangeSupport>
+  <appFT>
+    <ftModel class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode">
+      <children>
+        <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode>
+          <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+          <children>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e12</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Cloud Srv</eventName>
+              <blockParameters>
+                <name>e12</name>
+                <eventName>Cloud Srv</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.0013157894736842105</failureRate>
+                <repairRate>1.3513513513513513</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>760.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>0.74</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e13</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Edge svr</eventName>
+              <blockParameters>
+                <name>e13</name>
+                <eventName>Edge svr</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.0010638297872340426</failureRate>
+                <repairRate>0.7299270072992701</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>940.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>1.37</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e14</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Router</eventName>
+              <blockParameters>
+                <name>e14</name>
+                <eventName>Router</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.0014322133424994987</failureRate>
+                <repairRate>0.125</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>698.22</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>8.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e15</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Gateway</eventName>
+              <blockParameters>
+                <name>e15</name>
+                <eventName>Gateway</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.002079996672005325</failureRate>
+                <repairRate>0.125</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>480.77</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>8.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e16</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Superv</eventName>
+              <blockParameters>
+                <name>e16</name>
+                <eventName>Superv</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.022243477100340324</failureRate>
+                <repairRate>1.0</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>44.957</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>1.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeKooNNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+              <children>
+                <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                  <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeKooNNode" reference="../../.."/>
+                  <children/>
+                  <isLeaf>true</isLeaf>
+                  <type>COMPONENT</type>
+                  <name>e19</name>
+                  <description></description>
+                  <isRoot>false</isRoot>
+                  <isFilled>true</isFilled>
+                  <eventName>adasda</eventName>
+                  <blockParameters>
+                    <name>e19</name>
+                    <eventName>Sensors</eventName>
+                    <description></description>
+                    <numberBlocks>1</numberBlocks>
+                    <parameterType>TIME</parameterType>
+                    <state>Default</state>
+                    <retailPrice>0.0</retailPrice>
+                    <failureRate>0.05555555555555555</failureRate>
+                    <repairRate>0.5</repairRate>
+                    <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>18.0</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </failureRVGenerator>
+                    <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>2.0</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </repairRVGenerator>
+                    <n>10</n>
+                    <k>6</k>
+                    <updated>false</updated>
+                  </blockParameters>
+                </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              </children>
+              <isLeaf>false</isLeaf>
+              <type>KooN</type>
+              <name>kn1</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Beds</eventName>
+              <k>5</k>
+              <n>10</n>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeKooNNode>
+          </children>
+          <isLeaf>false</isLeaf>
+          <type>OR</type>
+          <name>or3</name>
+          <description></description>
+          <isRoot>false</isRoot>
+          <isFilled>true</isFilled>
+          <eventName>Hosp Fail</eventName>
+        </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode>
+        <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode>
+          <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+          <children>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e3</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Power Grid</eventName>
+              <blockParameters>
+                <name>e3</name>
+                <eventName>Power Grid</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.11419435879867534</failureRate>
+                <repairRate>0.20802995631370916</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>8.757</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>4.807</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode" reference="../../.."/>
+              <children/>
+              <isLeaf>true</isLeaf>
+              <type>COMPONENT</type>
+              <name>e4</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Power Gen</eventName>
+              <blockParameters>
+                <name>e4</name>
+                <eventName>Power Gen</eventName>
+                <description></description>
+                <numberBlocks>1</numberBlocks>
+                <parameterType>TIME</parameterType>
+                <state>Default</state>
+                <retailPrice>0.0</retailPrice>
+                <failureRate>0.0015723270440251573</failureRate>
+                <repairRate>0.02702702702702703</repairRate>
+                <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>636.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </failureRVGenerator>
+                <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                  <map>
+                    <entry>
+                      <string>Mean delay</string>
+                      <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        <value>37.0</value>
+                      </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                    </entry>
+                  </map>
+                  <constructorDistributionOrder>
+                    <string>Mean delay</string>
+                  </constructorDistributionOrder>
+                  <paramNames reference="../constructorDistributionOrder"/>
+                  <disInitialValues>
+                    <double>0.0</double>
+                  </disInitialValues>
+                </repairRVGenerator>
+                <n>0</n>
+                <k>0</k>
+                <updated>false</updated>
+              </blockParameters>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+            <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode>
+              <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode" reference="../../.."/>
+              <children>
+                <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                  <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+                  <children/>
+                  <isLeaf>true</isLeaf>
+                  <type>COMPONENT</type>
+                  <name>e6</name>
+                  <description></description>
+                  <isRoot>false</isRoot>
+                  <isFilled>true</isFilled>
+                  <eventName>Sw Power</eventName>
+                  <blockParameters>
+                    <name>e6</name>
+                    <eventName>Sw Power</eventName>
+                    <description></description>
+                    <numberBlocks>1</numberBlocks>
+                    <parameterType>TIME</parameterType>
+                    <state>Default</state>
+                    <retailPrice>0.0</retailPrice>
+                    <failureRate>0.04</failureRate>
+                    <repairRate>0.125</repairRate>
+                    <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>25.0</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </failureRVGenerator>
+                    <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>8.0</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </repairRVGenerator>
+                    <n>0</n>
+                    <k>0</k>
+                    <updated>false</updated>
+                  </blockParameters>
+                </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                  <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+                  <children/>
+                  <isLeaf>true</isLeaf>
+                  <type>COMPONENT</type>
+                  <name>e7</name>
+                  <description></description>
+                  <isRoot>false</isRoot>
+                  <isFilled>true</isFilled>
+                  <eventName>Sol Inv</eventName>
+                  <blockParameters>
+                    <name>e7</name>
+                    <eventName>Sol Inv</eventName>
+                    <description></description>
+                    <numberBlocks>1</numberBlocks>
+                    <parameterType>TIME</parameterType>
+                    <state>Default</state>
+                    <retailPrice>0.0</retailPrice>
+                    <failureRate>0.040290088638195005</failureRate>
+                    <repairRate>0.125</repairRate>
+                    <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>24.82</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </failureRVGenerator>
+                    <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>8.0</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </repairRVGenerator>
+                    <n>0</n>
+                    <k>0</k>
+                    <updated>false</updated>
+                  </blockParameters>
+                </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                  <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+                  <children/>
+                  <isLeaf>true</isLeaf>
+                  <type>COMPONENT</type>
+                  <name>e8</name>
+                  <description></description>
+                  <isRoot>false</isRoot>
+                  <isFilled>true</isFilled>
+                  <eventName>Chg Ctrl</eventName>
+                  <blockParameters>
+                    <name>e8</name>
+                    <eventName>Chg Ctrl</eventName>
+                    <description></description>
+                    <numberBlocks>1</numberBlocks>
+                    <parameterType>TIME</parameterType>
+                    <state>Default</state>
+                    <retailPrice>0.0</retailPrice>
+                    <failureRate>0.014269406392694065</failureRate>
+                    <repairRate>0.125</repairRate>
+                    <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>70.08</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </failureRVGenerator>
+                    <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                      <map>
+                        <entry>
+                          <string>Mean delay</string>
+                          <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            <value>8.0</value>
+                          </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                        </entry>
+                      </map>
+                      <constructorDistributionOrder>
+                        <string>Mean delay</string>
+                      </constructorDistributionOrder>
+                      <paramNames reference="../constructorDistributionOrder"/>
+                      <disInitialValues>
+                        <double>0.0</double>
+                      </disInitialValues>
+                    </repairRVGenerator>
+                    <n>0</n>
+                    <k>0</k>
+                    <updated>false</updated>
+                  </blockParameters>
+                </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode>
+                  <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode" reference="../../.."/>
+                  <children>
+                    <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                      <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode" reference="../../.."/>
+                      <children/>
+                      <isLeaf>true</isLeaf>
+                      <type>COMPONENT</type>
+                      <name>e10</name>
+                      <description></description>
+                      <isRoot>false</isRoot>
+                      <isFilled>true</isFilled>
+                      <eventName>Sol Painel</eventName>
+                      <blockParameters>
+                        <name>e10</name>
+                        <eventName>Sol Painel</eventName>
+                        <description></description>
+                        <numberBlocks>1</numberBlocks>
+                        <parameterType>TIME</parameterType>
+                        <state>Default</state>
+                        <retailPrice>0.0</retailPrice>
+                        <failureRate>0.0045662100456621</failureRate>
+                        <repairRate>0.125</repairRate>
+                        <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                          <map>
+                            <entry>
+                              <string>Mean delay</string>
+                              <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                                <value>219.0</value>
+                              </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            </entry>
+                          </map>
+                          <constructorDistributionOrder>
+                            <string>Mean delay</string>
+                          </constructorDistributionOrder>
+                          <paramNames reference="../constructorDistributionOrder"/>
+                          <disInitialValues>
+                            <double>0.0</double>
+                          </disInitialValues>
+                        </failureRVGenerator>
+                        <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                          <map>
+                            <entry>
+                              <string>Mean delay</string>
+                              <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                                <value>8.0</value>
+                              </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            </entry>
+                          </map>
+                          <constructorDistributionOrder>
+                            <string>Mean delay</string>
+                          </constructorDistributionOrder>
+                          <paramNames reference="../constructorDistributionOrder"/>
+                          <disInitialValues>
+                            <double>0.0</double>
+                          </disInitialValues>
+                        </repairRVGenerator>
+                        <n>0</n>
+                        <k>0</k>
+                        <updated>false</updated>
+                      </blockParameters>
+                    </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                    <org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                      <parent class="org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode" reference="../../.."/>
+                      <children/>
+                      <isLeaf>true</isLeaf>
+                      <type>COMPONENT</type>
+                      <name>e11</name>
+                      <description></description>
+                      <isRoot>false</isRoot>
+                      <isFilled>true</isFilled>
+                      <eventName>Battery</eventName>
+                      <blockParameters>
+                        <name>e11</name>
+                        <eventName>Battery</eventName>
+                        <description></description>
+                        <numberBlocks>1</numberBlocks>
+                        <parameterType>TIME</parameterType>
+                        <state>Default</state>
+                        <retailPrice>0.0</retailPrice>
+                        <failureRate>0.020907817432938177</failureRate>
+                        <repairRate>0.125</repairRate>
+                        <failureRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                          <map>
+                            <entry>
+                              <string>Mean delay</string>
+                              <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                                <value>47.829</value>
+                              </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            </entry>
+                          </map>
+                          <constructorDistributionOrder>
+                            <string>Mean delay</string>
+                          </constructorDistributionOrder>
+                          <paramNames reference="../constructorDistributionOrder"/>
+                          <disInitialValues>
+                            <double>0.0</double>
+                          </disInitialValues>
+                        </failureRVGenerator>
+                        <repairRVGenerator class="org.modcs.tools.spn.simulator.randomvariates.ExponentialRandomVariateGenerator">
+                          <map>
+                            <entry>
+                              <string>Mean delay</string>
+                              <org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                                <value>8.0</value>
+                              </org.modcs.tools.spn.simulator.randomvariates.DefaulRandomParameterProvider>
+                            </entry>
+                          </map>
+                          <constructorDistributionOrder>
+                            <string>Mean delay</string>
+                          </constructorDistributionOrder>
+                          <paramNames reference="../constructorDistributionOrder"/>
+                          <disInitialValues>
+                            <double>0.0</double>
+                          </disInitialValues>
+                        </repairRVGenerator>
+                        <n>0</n>
+                        <k>0</k>
+                        <updated>false</updated>
+                      </blockParameters>
+                    </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeComponentNode>
+                  </children>
+                  <isLeaf>false</isLeaf>
+                  <type>AND</type>
+                  <name>and2</name>
+                  <description></description>
+                  <isRoot>false</isRoot>
+                  <isFilled>true</isFilled>
+                  <eventName>Sol + Bat</eventName>
+                </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode>
+              </children>
+              <isLeaf>false</isLeaf>
+              <type>OR</type>
+              <name>or2</name>
+              <description></description>
+              <isRoot>false</isRoot>
+              <isFilled>true</isFilled>
+              <eventName>Solar Sys</eventName>
+            </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeORNode>
+          </children>
+          <isLeaf>false</isLeaf>
+          <type>AND</type>
+          <name>and1</name>
+          <description></description>
+          <isRoot>false</isRoot>
+          <isFilled>true</isFilled>
+          <eventName>Pwr Fail</eventName>
+        </org.modcs.tools.faulttree.mercuryfx.entities.FaultTreeANDNode>
+      </children>
+      <isLeaf>false</isLeaf>
+      <type>OR</type>
+      <name>or1</name>
+      <description></description>
+      <isRoot>true</isRoot>
+      <isFilled>true</isFilled>
+      <eventName>Sys Fail</eventName>
+    </ftModel>
+    <fileHandler class="org.modcs.tools.rbd.file.FileStream"/>
+    <labelSet>
+      <labels/>
+      <propertyChangeSupport serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <source class="org.modcs.tools.faulttree.rbd.evaluatorrbd.FTLabelSet" reference="../../../.."/>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </propertyChangeSupport>
+    </labelSet>
+    <propertyChangeSupport serialization="custom">
+      <java.beans.PropertyChangeSupport>
+        <default>
+          <source class="org.modcs.tools.faulttree.entities.ApplicationFT" reference="../../../.."/>
+          <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+        </default>
+        <null/>
+      </java.beans.PropertyChangeSupport>
+    </propertyChangeSupport>
+  </appFT>
+</com.local.entities.ProjectDesdac>
